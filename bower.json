@@ -35,6 +35,18 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "node_modules",
+    "app",
+    "tests",
+    ".bowerrc",
+    ".editorconfig",
+    ".gitattributes",
+    ".gitignore",
+    ".jshintrc",
+    ".travis.yml",
+    "Gruntfile.js",
+    "karma-e2e.conf.js",
+    "karma.conf.js",
+    "package.json"
   ]
 }
