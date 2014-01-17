@@ -1,0 +1,38 @@
+//***********************************//
+//**********bmm-player-about*********//
+.bmm-player-thumbnail {
+	width: 4.5em;
+	height: 4.5em;
+	margin-right: .5em;
+	background-color: black;
+	border: .2em #eee solid;
+	float: left;
+}
+
+.bmm-player-title {
+	padding-top: 1em;
+	font-weight: bold;
+	white-space: nowrap;
+	color: #eee;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.bmm-player-subtitle,
+.bmm-player-extra {
+	font-size: 0.8em;
+	white-space: nowrap;
+	color: #eee;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.bmm-minified .bmm-player-thumbnail,
+.bmm-minified .bmm-player-subtitle,
+.bmm-minified .bmm-player-extra {
+	display: none;
+}
+
+.bmm-minified .bmm-player-title {
+	padding: 0;
+}

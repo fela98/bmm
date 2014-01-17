@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('frontendApp')
+angular.module('bmmLib')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

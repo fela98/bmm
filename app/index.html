@@ -10,23 +10,23 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/jplayer/skin/pink.flag/jplayer.pink.flag.css" />
     <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/jqueryui/themes/eggplant/jquery-ui.css" />
     <link rel="stylesheet" href="styles/main.css">
+    <!-- build:css({.tmp,app}) bmm.css -->
+    <link rel="stylesheet" href="styles/directives.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="frontendApp">
+  <body ng-app="bmmLib">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div ng-include="'views/main.html'"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -44,7 +44,6 @@
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -55,11 +54,14 @@
     <script src="bower_components/jplayer/jquery.jplayer/jquery.jplayer.js"></script>
     <script src="bower_components/jqueryui/ui/jquery-ui.js"></script>
     <!-- endbower -->
-    <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+
+        <!-- build:js({.tmp,app}) bmm.js -->
+        <script src="scripts/directives/bmm_player_about.js"></script>
+        <script src="scripts/directives/bmm_resize.js"></script>
         <!-- endbuild -->
+
 </body>
 </html>
