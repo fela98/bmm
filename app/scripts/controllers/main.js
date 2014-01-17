@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bmmLib')
+angular.module('bmmDebug')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

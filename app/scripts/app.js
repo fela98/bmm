@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('bmmLib', [
+angular.module('bmmDebug', [
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'bmmLib'
 ]).run(['$route', function($route)  {
     $route.reload();
   }])

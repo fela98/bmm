@@ -25,7 +25,10 @@
     "steffan <steffanhalv@gmail.com>"
   ],
   "description": "Javascript library for bmm",
-  "main": "dist/bmm.js",
+  "main": [
+    "dist/bmm.js",
+    "dist/bmm.css"
+  ],
   "keywords": [
     "bmm"
   ],
