@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmPlayerAbout', function () {
+  .directive('bmmPlayerAbout', [function () {
     return {
       template: '<div class="bmm-player-thumbnail"></div>'+
 				'<div class="bmm-player-title"></div>'+
@@ -46,4 +46,4 @@ angular.module('bmmLibApp')
 
       }
     };
-  });
+  }]);

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmVideoContainer', function ($timeout, bmmUser) {
+  .directive('bmmVideoContainer', ['$timeout', 'bmmUser', function ($timeout, bmmUser) {
     return {
       template: '<div bmm-video-screen></div>',
       compile : function() {
@@ -114,4 +114,4 @@ angular.module('bmmLibApp')
         };
       }
     };
-  });
+  }]);

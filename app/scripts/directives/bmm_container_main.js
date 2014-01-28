@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmContainerMain', function ($timeout) {
+  .directive('bmmContainerMain', [function () {
     return {
       compile : function() {
         return {
@@ -9,17 +9,9 @@ angular.module('bmmLibApp')
 
             //PRESET
             element.addClass('bmm-container-main');
-
-            //INITIALIZE
-            $timeout(function() {
-
-              $(window).resize(function() {
-
-              });
-            });
             
           }
         };
       }
     };
-  });
+  }]);

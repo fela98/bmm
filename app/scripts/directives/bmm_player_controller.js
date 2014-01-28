@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmPlayerController', function ($timeout, bmmUser) {
+  .directive('bmmPlayerController', ['$timeout', 'bmmUser', function ($timeout, bmmUser) {
     return {
       template: '<div bmm-video-container></div>'+
                 '<div class="bmm-max-width">'+
@@ -456,4 +456,4 @@ angular.module('bmmLibApp')
         };
       }
     };
-  });
+  }]);

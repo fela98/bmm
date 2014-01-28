@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmVolumeController', function ($timeout) {
+  .directive('bmmVolumeController', ['$timeout', function ($timeout) {
     return {
       template: '<div bmm-volume-mute></div>'+
                 '<div bmm-volume-slider></div>'+
@@ -66,4 +66,4 @@ angular.module('bmmLibApp')
         };
       }
     };
-  });
+  }]);

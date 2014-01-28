@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmPlayerMediaslider', function ($timeout) {
+  .directive('bmmPlayerMediaslider', ['$timeout', function ($timeout) {
     return {
       template: '<div class="bmm-player-mediaslider-behind"></div>',
       compile : function() {
@@ -89,4 +89,4 @@ angular.module('bmmLibApp')
         };
       }
     };
-  });
+  }]);

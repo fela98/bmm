@@ -1,17 +1,12 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmTrackTimer', function () {
+  .directive('bmmTrackTimer', [function () {
     return {
       link: function postLink(scope, element) {
+        
         element.addClass('bmm-track-timer');
-
-        var initialize = function() {
-
-        };
-
-        initialize();
 
       }
     };
-  });
+  }]);

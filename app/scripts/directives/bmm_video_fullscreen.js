@@ -1,24 +1,17 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmVideoFullscreen', function ($timeout) {
+  .directive('bmmVideoFullscreen', [function () {
     return {
       compile : function() {
         return {
           pre : function(scope, element) {
-            
-            //DEFINITIONS
 
             //PRESET
             element.addClass('bmm-video-fullscreen');
-
-            //INITIALIZE
-            $timeout(function() {
-
-            });
             
           }
         };
       }
     };
-  });
+  }]);
