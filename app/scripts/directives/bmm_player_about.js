@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bmmLib')
+angular.module('bmmLibApp')
   .directive('bmmPlayerAbout', function () {
     return {
       template: '<div class="bmm-player-thumbnail"></div>'+
@@ -8,6 +8,7 @@ angular.module('bmmLib')
         '<div class="bmm-player-subtitle"></div>'+
         '<div class="bmm-player-extra"></div>',
       link: function postLink(scope, element, attrs) {
+        element.addClass('bmm-player-about');
 
         var initialize = function() {
           if (typeof attrs.thumbnail!=='undefined') {

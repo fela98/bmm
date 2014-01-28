@@ -3,7 +3,7 @@
 describe('Directive: bmmResize', function () {
 
   // load the directive's module
-  beforeEach(module('bmmLib'));
+  beforeEach(module('bmmLibApp'));
 
   var element,
     scope;

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bmmLib')
+angular.module('bmmLibApp')
 	.directive('bmmResize', function () {
 		return {
 			link: function postLink(scope, element) {

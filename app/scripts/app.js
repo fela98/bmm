@@ -4,7 +4,7 @@ angular.module('bmmDebug', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'bmmLib'
+  'bmmLibApp'
 ]).run(['$route', function($route)  {
     $route.reload();
   }])
@@ -13,6 +13,12 @@ angular.module('bmmDebug', [
       .when('/', {
         templateUrl: 'views/pages/directives.html',
         controller: 'MainCtrl'
+      })
+      .when('/bmm_main', {
+        templateUrl: 'views/previews/bmm_main.html',
+      })
+      .when('/bmm_player_controller', {
+        templateUrl: 'views/previews/bmm_player_controller.html',
       })
       .when('/bmm_player_about', {
         templateUrl: 'views/previews/bmm_player_about.html',

@@ -2,7 +2,12 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 @import 'sass-bootstrap/lib/bootstrap';
 
 body {
-	background-color: #eee;
+	background: #eee;
+}
+
+.bmm-max-width {
+	margin: 0 auto;
+	max-width: 70em;
 }
 
 .bmm-lib-navigator {
@@ -38,9 +43,10 @@ body {
 	padding: 2em;
 	background-color: rgba(0,0,0,0.3);
 	border-radius: 0.7em;
-	margin: auto;
+	margin: 0 auto 2em;
 	li {
-		padding: 3em;
+		padding: 2em;
+		margin: 0 1em 1em 0;
 		float: left;
 		border-radius: 0.3em;
 		background-color: #ddd;
@@ -55,9 +61,23 @@ body {
 	}
 }
 
+.bmm-groups {
+	background: rgba(19, 95, 230, 0.53);
+	li {
+		background: rgba(230, 240, 114, 0.94)
+	}
+}
+
+.bmm-units {
+	background: rgba(155, 226, 89, 0.53);
+	li {
+		background: rgba(29, 118, 231, 0.53);
+	}
+}
+
 .bmm-lib-preview {
 	position: relative;
 	margin: 2em;
-	height: 30em;
+	height: 45em;
 	background-color: white;
 }
