@@ -1,139 +1,189 @@
+$bmm-spacing: 20px;
+@import "compass/utilities";
+@import "compass/css3";
+@import "bmm/*.png";
+
+@include  all-bmm-sprites;
+
+@mixin sprite-size($map, $sprite, $width2, $height2, $oX, $oY) {
+
+  $spritePath:     sprite-path($map);
+  $spriteWidth1:   image-width($spritePath);
+  $spriteHeight1:  image-height($spritePath);
+  $width1:         image-width(sprite-file($map, $sprite));
+  $height1:        image-height(sprite-file($map, $sprite));
+  $x1:             nth(sprite-position($map, $sprite), 1);
+  $y1:             nth(sprite-position($map, $sprite), 2);
+
+  $relX: ($width2/$width1);
+  $relY: ($height2/$height1);
+
+  @include background-size($relX*$spriteWidth1 $relY*$spriteHeight1);
+  background-position: ($relX*$x1)+$oX ($relY*$y1)+$oY;
+
+}
+
 //***********************************//
 //**********bmm-common-divs**********//
 
 .bmm-options {
 
-	position: absolute;
-	top: 1em;
-	right: .4em;
-	display: inline-block;
-	float: left;
-	padding: .5em 1em;
-	z-index: 10;
+  position: absolute;
+  top: 1em;
+  right: .4em;
+  display: inline-block;
+  float: left;
+  padding: .5em 1em;
+  z-index: 10;
 
-	select {
-		font-size: .9em;
-		border-radius: .4em;
-		padding: .2em;
-		background: #333;
-		color: #fff;
-		border: none;
-		box-shadow: 0 0 .2em #999;
-	}
+  select {
+    font-size: .9em;
+    border-radius: .4em;
+    padding: .2em;
+    background: #333;
+    color: #fff;
+    border: none;
+    box-shadow: 0 0 .2em #999;
+  }
 }
 
 .minified .bmm-options {
 
-	position: relative;
-	top: auto;
-	right: auto;
+  position: relative;
+  top: auto;
+  right: auto;
 
-	select {
-		font-size: 1em;
-		border-radius: 0;
-		padding: .2em;
-		background: #fff;
-		color: #000;
-		border: .1em solid #ccc;
-		box-shadow: none;
-	}
+  select {
+    font-size: 1em;
+    border-radius: 0;
+    padding: .2em;
+    background: #fff;
+    color: #000;
+    border: .1em solid #ccc;
+    box-shadow: none;
+  }
 }
 
 .bmm-main-container {
-	border-top-left-radius: .2em;
-	border-top-right-radius: .2em;
-	background: #e7e7e7;
+  border-top-left-radius: .2em;
+  border-top-right-radius: .2em;
+  background: #e7e7e7;
 }
 
 .bmm-logo {
-	position: absolute;
-	background: url('../images/logo.png');
-	background-size: contain;
-	width: 7.5em;
-	height: 3.3em;
-	margin: 1.8em 0 0;
+  @include background-size(cover);
+  position: absolute;
+  width: 7.5em;
+  height: 3.3em;
+  margin: 1.8em 0 0;
 }
 
 .bmm-logo.minified {
-	position: relative;
-	float: left;
-	margin: .6em;
-	width: 3.5em;
-	height: 1.6em;
-	background-size: contain;
-	z-index: 10;
+  @include sprite-size(
+    $bmm-sprites,
+    logo,
+    49px,
+    23px,
+    0px,
+    0px
+  );
+  position: relative;
+  float: left;
+  margin: .6em;
+  width: 3.5em;
+  height: 1.6em;
+  z-index: 10;
 }
 
 .bmm-search {
-	position: relative;
-	margin: auto;
-	padding-top: 3em;
-	width: 15em;
-	white-space: nowrap;
-	z-index: 1;
+  position: relative;
+  margin: auto;
+  padding-top: 3em;
+  width: 15em;
+  white-space: nowrap;
+  z-index: 1;
 
-	input {
-		height: 1.7em;
-		border: none;
-	}
+  input {
+    height: 1.7em;
+    border: none;
+  }
 
-	input:first-child {
-		padding: .1em .5em;
-		border-top-left-radius: .2em;
-		border-bottom-left-radius: .2em;
-		float: left;
-		width: 15em;
-	}
+  input:first-child {
+    padding: .1em .5em;
+    border-top-left-radius: .2em;
+    border-bottom-left-radius: .2em;
+    float: left;
+    width: 15em;
+  }
 
-	input:last-child {
-		border-top-right-radius: .2em;
-		border-bottom-right-radius: .2em;
-		background: url('../images/search.jpg');
-		background-size: cover;
-		background-repeat: no-repeat;
-		width: 3em;
-	}
+  input:last-child {
+    @extend .bmm-search-btn;
+    @include sprite-size(
+      $bmm-sprites,
+      search-btn,
+      43px,
+      26px,
+      0px,
+      -2px
+    );
+    border-top-right-radius: .4em;
+    border-bottom-right-radius: .4em;
+    width: 3em;
+  }
+
+  input:last-child:hover {
+    @extend .bmm-search-btn:hover;
+    @include sprite-size(
+      $bmm-sprites,
+      search-btn_hover,
+      43px,
+      26px,
+      0px,
+      -2px
+    );
+  }
+
 }
 
 .minified .bmm-search {
-	input:first-child {
-		border: .1em solid #ccc;
-		width: auto;
-	}
+  input:first-child {
+    border: .1em solid #ccc;
+    width: auto;
+  }
 }
 
 .bmm-wrapper {
-	position: relative;
-	margin: 2em auto;
-	max-width: 70em;
-	overflow: auto;
+  position: relative;
+  margin: 2em auto;
+  max-width: 70em;
+  overflow: auto;
 }
 
 .bmm-view {
-	position: relative;
-	overflow: auto;
-	padding: 2em 0;
+  position: relative;
+  overflow: auto;
+  padding: 2em 0;
     margin: 0 1em 1em 0;
-	background-color: white;
+  background-color: white;
 }
 
 .bmm-view.minified {
-	height: 100%;
+  height: 100%;
     margin: 0;
 }
 
 .bmm-minified-header {
-	display: none;
-	width: 100%;
+  display: none;
+  width: 100%;
 
-	.bmm-search {
-		margin-top: .5em;
-	}
+  .bmm-search {
+    margin-top: .5em;
+  }
 
 }
 
 .minified .bmm-minified-header {
-	display: inline-block;
+  display: inline-block;
 }
 
 .bmm-view.minified {
@@ -141,12 +191,12 @@
 }
 
 .ui-resizable-n {
-	top: 0;
+  top: 0;
     height: 10px
 }
 
 .ui-resizable-s {
-	bottom: 0;
+  bottom: 0;
     height: 10px
 }
 
@@ -158,219 +208,237 @@
 //***********************************//
 //******bmm-navigator-playlist*******//
 .bmm-navigator-playlist {
-	position: relative;
-	float: left;
-	width: 18em;
-	min-width: 18em;
-	overflow: auto;
+  position: relative;
+  float: left;
+  width: 18em;
+  min-width: 18em;
+  overflow: auto;
 
-	ul {
+  ul {
+    //@include pretty-bullets("/../images/bmm/navigator-playlist-static.png");
+    margin: 0;
+    padding: 0;
+    width: 100%;
 
-		margin: 0;
-		padding: 0;
-		width: 100%;
+    li {
+      @extend .bmm-navigator-playlist-static;
+      @include sprite-size(
+        $bmm-sprites,
+        navigator-playlist-static,
+        18px,
+        18px,
+        0px,
+        5px
+      );
+      list-style: none;
+      padding: .5em 0 .5em 1.8em;
+      margin: 0 1.1em;
+      background-repeat: no-repeat;
+    }
 
-		li {
-			list-style: none;
-			background: none;
-			padding: .5em 0 .5em 1.8em;
-			margin: 0 1.1em;
-			background: url('../images/mainplaylist.png');
-			background-position: left center;
-			background-repeat: no-repeat;
+    li:hover {
+      background-color: rgba(255,255,255,0.3);
+      cursor: pointer;
+    }
 
-		}
+  }
 
-		li:hover {
-			background-color: rgba(255,255,255,0.3);
-			cursor: pointer;
-		}
+  ul:last-child {
 
-	}
+    margin-bottom: 2em;
 
-	ul:last-child {
+    li {
+      @extend .bmm-navigator-playlist-dynamic;
+      @include sprite-size(
+        $bmm-sprites,
+        navigator-playlist-dynamic,
+        18px,
+        18px,
+        0px,
+        5px
+      );
+    }
 
-		margin-bottom: 2em;
+    li:hover {
+      background-color: rgba(255,255,255,0.3);
+      cursor: pointer;
+    }
 
-		li {
-			background: url('../images/videoplaylist.png');
-			background-position: left center;
-			background-repeat: no-repeat;
-		}
+  }
 
-		li:hover {
-			background-color: rgba(255,255,255,0.3);
-			cursor: pointer;
-		}
+  h1 {
+    padding-left: .5em;
+    font-size: 2.1em;
+    color: #adadad;
+  }
 
-	}
+  h3 {
+    @extend .bmm-navigator-playlist-pluss;
+    @include sprite-size(
+      $bmm-sprites,
+      navigator-playlist-pluss,
+      26px,
+      26px,
+      0px,
+      0px
+    );
+    padding: .5em 0 .5em 1.8em;
+    font-size: 1em;
+    margin: 1em 1.1em;
+  }
 
-	h1 {
-		padding-left: .5em;
-		font-size: 2.1em;
-		color: #adadad;
-	}
-
-	h3 {
-		background: url('../images/pluss.png');
-		background-position: left center;
-		background-repeat: no-repeat;
-		padding: .5em 0 .5em 1.8em;
-		font-size: 1em;
-		margin: 1em 1.1em;
-	}
-
-	h3:hover {
-		background-color: rgba(255,255,255,0.3);
-		cursor: pointer;
-	}
+  h3:hover {
+    background-color: rgba(255,255,255,0.3);
+    cursor: pointer;
+  }
 
 }
 
 .bmm-navigator-playlist.minified {
-	height: 100%;
-	margin: 0;
+  height: 100%;
+  margin: 0;
 }
 
 //***********************************//
 //********bmm-navigator-main*********//
 .bmm-navigator-main {
-	position: relative;
-	background: #e4e4e4;
-	box-shadow: 0 .7em 2em #fff inset;
-	border-top-left-radius: .2em;
-	border-top-right-radius: .2em;
-	border-bottom: .1em solid #aaa;
-	width: 100%;
-	overflow: hidden;
+  position: relative;
+  background: #e4e4e4;
+  box-shadow: 0 .7em 2em #fff inset;
+  border-top-left-radius: .2em;
+  border-top-right-radius: .2em;
+  border-bottom: .1em solid #aaa;
+  width: 100%;
+  overflow: hidden;
 
-	ul {
+  ul {
 
-		float: right;
-		display: inline-block;
-		right: 10em;
-		margin: 0 10em 0 0;
+    float: right;
+    display: inline-block;
+    right: 10em;
+    margin: 0 10em 0 0;
 
-		li:first-child {
-			border-left: none;
-		}
+    li:first-child {
+      border-left: none;
+    }
 
-		li {
-			color: #858585;
-			float: left;
-			list-style: none;
-			padding: 0 1.3em;
-			margin: .3em 0;
-			border-left: .1em solid #ccc;
-		}
+    li {
+      color: #858585;
+      float: left;
+      list-style: none;
+      padding: 0 1.3em;
+      margin: .3em 0;
+      border-left: .1em solid #ccc;
+    }
 
-		li:hover {
-			cursor: pointer;
-			background: rgba(255,255,255,0.3);
-		}
+    li:hover {
+      cursor: pointer;
+      background: rgba(255,255,255,0.3);
+    }
 
-	}
+  }
 }
 
 .bmm-navigator-main.minified {
-	background: none;
-	box-shadow: none;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-	border-bottom: none;
-	float: left;
-	width: 18em;
-	height: 100%;
-	min-width: 18em;
-	margin: 0;
-	overflow: auto;
+  background: none;
+  box-shadow: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom: none;
+  float: left;
+  width: 18em;
+  height: 100%;
+  min-width: 18em;
+  margin: 0;
+  overflow: auto;
 
-	ul {
+  ul {
 
-		float: left;
-		right: auto;
-		margin: 0;
-		padding: 0;
-		width: 100%;
+    float: left;
+    right: auto;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 
-		li {
-			list-style: none;
-			background: none;
-			color: #585858;
-			font-weight: bold;
-			width: 100%;
-			padding: .4em .2em .4em 2em;
-		}
+    li {
+      border-left: none;
+      list-style: none;
+      background: none;
+      color: #585858;
+      font-weight: bold;
+      width: 100%;
+      padding: .4em .2em .4em 2em;
+    }
 
-		li:hover {
-			background: rgba(255,255,255,0.3);
-		}
+    li:hover {
+      background: rgba(255,255,255,0.3);
+    }
 
-	}
+  }
 }
 
 .bmm-navigator-toggle {
-	position: absolute;
-	top: 0;
-	width: 2em;
-	height: 2em;
-	z-index: 10;
-	background-color: #333;
+  position: absolute;
+  top: 0;
+  width: 2em;
+  height: 2em;
+  z-index: 10;
+  background-color: #333;
 }
 
 .bmm-navigator-switch {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 2em;
-	height: 2em;
-	z-index: 10;
-	background-color: #455;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2em;
+  height: 2em;
+  z-index: 10;
+  background-color: #455;
 }
 
 .bmm-navigator-toggle.load,
 .bmm-navigator-switch.load {
-	visibility: hidden;
+  visibility: hidden;
 }
 
 //***********************************//
 //********bmm-container-main*********//
 .bmm-container-main {
-	background: url('../images/background.jpg');
-	background-position: top center;
-	background-repeat: no-repeat;
-	overflow: auto;
+  background: url('/images/container-main.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  overflow: auto;
 }
 
 //***********************************//
 //*******bmm-container-header********//
 .bmm-container-header {
-	background: url('../images/header.jpg');
-	background-size: contain;
-	background-repeat: repeat-x;
-	width: 100%;
-	height: 6em;
+  background: url('/images/container-header.png');
+  background-size: contain;
+  background-repeat: repeat-x;
+  width: 100%;
+  height: 6em;
 
-	.bmm-wrapper {
-		overflow: visible;
-		margin: 0 auto;
-	}
+  .bmm-wrapper {
+    overflow: visible;
+    margin: 0 auto;
+  }
 }
 
 //***********************************//
 //********bmm-video-container********//
 .bmm-video-container {
-	position: relative;
-	width: 100%;
-	height: 0;
-	background: #1c1c1c;
-	z-index: 30;
+  position: relative;
+  width: 100%;
+  height: 0;
+  background: #1c1c1c;
+  z-index: 30;
 
-	.bmm-video-screen {
-		position: relative;
-		margin: auto;
-		background: gray;
-	}
+  .bmm-video-screen {
+    position: relative;
+    margin: auto;
+    background: gray;
+  }
 
 }
 
@@ -378,244 +446,251 @@
 //*******bmm-player-controller*******//
 .bmm-player-controller {
 
-	position: absolute;
-	width: 100%;
-	bottom: 0;
-	background-color: #1c1c1c;
-	z-index: 3;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background-color: #1c1c1c;
+  z-index: 3;
 
-	.bmm-player-about {
-		padding: 1em 0 1em 1em;
-		width: 18em;
-		float: left;
-	}
+  .bmm-player-about {
+    padding: 1em 0 1em 1em;
+    width: 18em;
+    float: left;
+  }
 
-	.bmm-player-buttons {
-		padding: 1em 0;
-		overflow: auto;
+  .bmm-player-buttons {
+    padding: 1em 0;
+    overflow: auto;
 
-		.bmm-player-video {
-			margin-left: 1em;
-		}
+    .bmm-player-video {
+      margin-left: 1em;
+    }
 
-		div {
-			float: left;
-		}
+    div {
+      float: left;
+    }
 
-		.bmm-player-mediaslider {
-			margin: .3em 1em .5em;
-		}
+    .bmm-player-mediaslider {
+      margin: .3em 1em .5em;
+    }
 
-		.bmm-player-mediaslider.bmm-minified {
-			margin: 0 .2em 0;
-		}
+    .bmm-player-mediaslider.bmm-minified {
+      margin: 0 .2em 0;
+    }
 
-		.bmm-player-tools {
-			float: right;
-			padding-right: 2em;
-		}
+    .bmm-player-tools {
+      float: right;
+      padding-right: 2em;
+    }
 
-	}
+  }
 
-	.bmm-player-minitimer {
-		z-index: 31;
-	}
+  .bmm-player-minitimer {
+    z-index: 31;
+  }
 
 }
 
 //***********************************//
 //**********bmm-player-about*********//
 .bmm-player-thumbnail {
-	width: 4.5em;
-	height: 4.5em;
-	margin-right: .5em;
-	background-color: black;
-	border: .2em #eee solid;
-	float: left;
+  width: 4.5em;
+  height: 4.5em;
+  margin-right: .5em;
+  background-color: black;
+  border: .2em #eee solid;
+  float: left;
 }
 
 .bmm-player-title {
-	padding-top: 1em;
-	font-weight: bold;
-	white-space: nowrap;
-	color: #eee;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  padding-top: 1em;
+  font-weight: bold;
+  white-space: nowrap;
+  color: #eee;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .bmm-player-subtitle,
 .bmm-player-extra {
-	font-size: 0.8em;
-	white-space: nowrap;
-	color: #eee;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  font-size: 0.8em;
+  white-space: nowrap;
+  color: #eee;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .bmm-minified .bmm-player-thumbnail,
 .bmm-minified .bmm-player-subtitle,
 .bmm-minified .bmm-player-extra {
-	display: none;
+  display: none;
 }
 
 .bmm-minified .bmm-player-title {
-	padding: 0;
+  padding: 0;
 }
 
 //***********************************//
 //*******bmm-player-mediaslider******//
 .bmm-player-mediaslider-behind {
-	background-color: rgb(151, 205, 246);
-	height: 100%;
+  background-color: rgb(151, 205, 246);
+  height: 100%;
 }
 
 .ui-widget-content {
-	background: #ccc;
+  background: #ccc;
 }
 
 .ui-slider .ui-slider-handle {
-	height: 1.8em;
-	width: 1.8em;
-	top: -.6em;
-	background: url('../images/handle.png');
-	background-size: contain;
+  @extend .bmm-slider-handle;
+  background-color: transparent;
+  height: 1.8em;
+  width: 1.8em;
+  top: -.6em;
 }
 
 .ui-slider-vertical.ui-slider .ui-slider-handle {
-	top: auto;
-	left: -.6em;
+  top: auto;
+  left: -.6em;
 }
 
 .bmm-minified.ui-slider .ui-slider-handle {
-	height: 1.1em;
-	width: 1.1em;
-	top: -.35em;
+  @include sprite-size(
+    $bmm-sprites,
+    slider-handle,
+    15px,
+    15px,
+    0px,
+    0px
+  );
+  height: 1.1em;
+  width: 1.1em;
+  top: -.35em;
 }
 
 .ui-slider-vertical.bmm-minified.ui-slider .ui-slider-handle {
-	top: auto;
-	left: -.4em;
+  top: auto;
+  left: -.4em;
 }
 
 .ui-slider .ui-corner-all {
-	border: none;
+  border: none;
 }
 
 .ui-slider {
-	border: none;
-	border-radius: 0;
+  border: none;
+  border-radius: 0;
 
-	a {
-		outline: none;
-	}
+  a {
+    outline: none;
+  }
 }
 
 .ui-slider-horizontal {
-	height: .6em;
+  height: .6em;
 }
 
 .ui-slider-vertical {
-	display: inline-block;
-	width: .6em;
-	height: 5em;
+  display: inline-block;
+  width: .6em;
+  height: 5em;
 }
 
 .bmm-minified.ui-slider-horizontal {
-	height: .35em;
+  height: .35em;
 }
 
 .bmm-minified.ui-slider-vertical {
-	width: .35em;
+  width: .35em;
 }
 
 //***********************************//
 //**********bmm-player-play**********//
 .bmm-player-play {
-	background: url('../images/play.png');
-	background-size: contain;
-	width: 1.5em;
-	height: 1.5em;
-	cursor: pointer;
-}
-
-.bmm-player-play:hover {
-	background: url('../images/playhover.png');
-	background-size: contain;
+  width: 1.5em;
+  height: 1.5em;
+  cursor: pointer;
 }
 
 //***********************************//
 //********bmm-player-previous********//
 .bmm-player-previous {
-	background: url('../images/prev.png');
-	background-size: contain;
-	width: 2.8em;
-	height: 1.8em;
-	cursor: pointer;
-}
-
-.bmm-player-previous:hover {
-	background: url('../images/prevhover.png');
-	background-size: contain;
+  width: 2.8em;
+  height: 1.8em;
+  cursor: pointer;
 }
 
 //***********************************//
 //**********bmm-player-next**********//
 .bmm-player-next {
-	background: url('../images/next.png');
-	background-size: contain;
-	width: 2.8em;
-	height: 1.8em;
-	cursor: pointer;
-}
-
-.bmm-player-next:hover {
-	background: url('../images/nexthover.png');
-	background-size: contain;
+  width: 2.8em;
+  height: 1.8em;
+  cursor: pointer;
 }
 
 //***********************************//
 //*****bmm-player-maincontrollers****//
 .bmm-player-maincontrollers{
-	.bmm-player-play {
-		margin-top:	.1em;
-	}
-	div {
-		float: left;
-	}
+  .bmm-player-play {
+    margin-top: .1em;
+  }
+  div {
+    float: left;
+  }
 }
 
 //***********************************//
 //*********bmm-player-repeat*********//
 .bmm-player-repeat {
-	background: url('../images/loop.png');
-	background-size: contain;
-	width: 1.8em;
-	height: 1.8em;
-	cursor: pointer;
-	background-repeat: no-repeat;
+  @include sprite-size(
+    $bmm-sprites,
+    player-repeat,
+    30px,
+    24px,
+    -3px,
+    -3px
+  );
+  width: 1.9em;
+  height: 1.8em;
+  cursor: pointer;
 }
 
 .bmm-player-repeat:hover {
-	background: url('../images/loophover.png');
-	background-size: contain;
-	background-repeat: no-repeat;
+  @include sprite-size(
+    $bmm-sprites,
+    player-repeat_hover,
+    30px,
+    24px,
+    -3px,
+    -3px
+  );
 }
 
 //***********************************//
 //*********bmm-player-shuffle********//
 .bmm-player-shuffle {
-	background: url('../images/shufle.png');
-	background-size: contain;
-	width: 1.8em;
-	height: 1.8em;
-	cursor: pointer;
-	background-repeat: no-repeat;
+  @include sprite-size(
+    $bmm-sprites,
+    player-shuffle,
+    30px,
+    20px,
+    0px,
+    0px
+  );
+  width: 1.9em;
+  height: 1.8em;
+  cursor: pointer;
 }
 
 .bmm-player-shuffle:hover {
-	background: url('../images/shuflehover.png');
-	background-size: contain;
-	background-repeat: no-repeat;
+  @include sprite-size(
+    $bmm-sprites,
+    player-shuffle_hover,
+    30px,
+    20px,
+    0px,
+    0px
+  );
 }
 
 //***********************************//
@@ -624,18 +699,28 @@
 //***********************************//
 //*****bmm-player-video****//
 .bmm-player-video {
-	background: url('../images/open.png');
-	background-size: contain;
-	width: 3em;
-	height: 2em;
-	cursor: pointer;
-	background-repeat: no-repeat;
+  @include sprite-size(
+    $bmm-sprites,
+    player-video,
+    35px,
+    25px,
+    0px,
+    0px
+  );
+  width: 3em;
+  height: 2em;
+  cursor: pointer;
 }
 
 .bmm-player-video:hover {
-	background: url('../images/openhover.png');
-	background-size: contain;
-	background-repeat: no-repeat;
+  @include sprite-size(
+    $bmm-sprites,
+    player-video_hover,
+    35px,
+    25px,
+    0px,
+    0px
+  );
 }
 
 //***********************************//
@@ -647,101 +732,96 @@
 //***********************************//
 //*****bmm-volume-mute****//
 .bmm-volume-mute {
-	background: url('../images/mute.png');
-	background-size: contain;
-	width: 1.8em;
-	height: 1.8em;
-	cursor: pointer;
-	background-repeat: no-repeat;
+  @include sprite-size(
+    $bmm-sprites,
+    volume-mute,
+    30px,
+    30px,
+    0px,
+    -3px
+  );
+  margin-right: .4em;
+  width: 1.8em;
+  height: 1.8em;
+  cursor: pointer;
+  background-repeat: no-repeat;
 }
 
 .bmm-volume-mute:hover {
-	background: url('../images/mutehover.png');
-	background-size: contain;
-	background-repeat: no-repeat;
+  @include sprite-size(
+    $bmm-sprites,
+    volume-mute_hover,
+    30px,
+    30px,
+    0px,
+    -3px
+  );
 }
 
 //***********************************//
 //*****bmm-volume-max****//
 .bmm-volume-max {
-	background: url('../images/maxvolume.png');
-	background-size: contain;
-	width: 1.8em;
-	height: 1.8em;
-	cursor: pointer;
-	background-repeat: no-repeat;
+  @include sprite-size(
+    $bmm-sprites,
+    volume-max,
+    30px,
+    30px,
+    0px,
+    -3px
+  );
+  margin-left: .3em;
+  width: 1.8em;
+  height: 1.8em;
+  cursor: pointer;
 }
 
 .bmm-volume-max:hover {
-	background: url('../images/maxvolumehover.png');
-	background-size: contain;
-	background-repeat: no-repeat;
+  @include sprite-size(
+    $bmm-sprites,
+    volume-max_hover,
+    30px,
+    30px,
+    0px,
+    -3px
+  );
 }
 
 //***********************************//
 //*********bmm-track-favorite********//
-.bmm-track-favorite{
-	background: url('../images/heart.png');
-	background-size: contain;
-	width: 1.8em;
-	height: 1.8em;
-	background-repeat: no-repeat;
-}
-.bmm-track-favorite:hover{
-	background: url('../images/hearthover.png');
-	background-size: contain;
-	background-repeat: no-repeat;
+.bmm-track-favorite {
+  width: 1.8em;
+  height: 1.8em;
+  cursor: pointer;
 }
 
 //***********************************//
 //***********bmm-track-timer*********//
-.bmm-track-timer{
-	background: url('../images/playertimer.png');
-	background-size: contain;
-	width: 1.8em;
-	height: 1.8em;
-	background-repeat: no-repeat;
-}
-.bmm-track-timer:hover{
-	background: url('../images/playertimerhover.png');
-	background-size: contain;
-	background-repeat: no-repeat;
+.bmm-track-timer {
+  width: 1.8em;
+  height: 1.8em;
+  cursor: pointer;
 }
 
 //***********************************//
 //***********bmm-track-share*********//
-.bmm-track-share{
-	background: url('../images/playershare.png');
-	background-size: contain;
-	width: 1.8em;
-	height: 1.8em;
-	background-repeat: no-repeat;
-}
-.bmm-track-share:hover{
-	background: url('../images/playersharehover.png');
-	background-size: contain;
-	background-repeat: no-repeat;
+.bmm-track-share {
+  width: 1.8em;
+  height: 1.8em;
+  cursor: pointer;
 }
 
 //***********************************//
 //*********bmm-track-download********//
 .bmm-track-download{
-	background: url('../images/playerdownload.png');
-	background-size: contain;
-	width: 1.8em;
-	height: 1.8em;
-	background-repeat: no-repeat;
-}
-.bmm-track-download:hover{
-	background: url('../images/playerdownloadhover.png');
-	background-size: contain;
-	background-repeat: no-repeat;
+  width: 1.8em;
+  height: 1.8em;
+  cursor: pointer;
 }
 
 //***********************************//
 //*********bmm-track-download********//
 .bmm-track-tools{
-	div {
-		float: left;
-	}
+  div {
+    float: left;
+  }
 }
