@@ -16,7 +16,7 @@
     <!-- endbower -->
     <link rel="stylesheet" href="bower_components/jqueryui/themes/eggplant/jquery-ui.css" />
     <link rel="stylesheet" href="styles/main.css">
-    <!-- build:css({.tmp,app}) bmm.css -->
+    <!-- build:css({.tmp,app}) styles/bmm.css -->
     <link rel="stylesheet" href="styles/directives.css">
     <!-- endbuild -->
   </head>
@@ -89,7 +89,15 @@
         <script src="scripts/directives/bmm_container_header.js"></script>
         <script src="scripts/directives/bmm_navigator_main.js"></script>
         <script src="scripts/directives/bmm_navigator_playlist.js"></script>
+        <script src="scripts/services/bmm_playlist.js"></script>
+        <script src="scripts/services/bmm_player.js"></script>
+        <script src="scripts/services/bmm_api.js"></script>
+        <script src="scripts/services/bmm_translator.js"></script>
+        <script src="scripts/services/bmm_shuffle.js"></script>
         <!-- endbuild -->
+
+        <!-- Requires bmm_lib -->
+        <script src="scripts/services/bmm_playlist_demo.js"></script>
 
 </body>
 </html>

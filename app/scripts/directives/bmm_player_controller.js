@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmPlayerController', ['$timeout', 'bmmUser', function ($timeout, bmmUser) {
+  .directive('bmmPlayerController', ['$timeout', 'bmmUser', 'bmmPlayer', function ($timeout, bmmUser, bmmPlayer) {
     return {
       template: '<div bmm-video-container></div>'+
                 '<div class="bmm-max-width">'+
-                  '<div bmm-player-about title="hei"></div>'+
+                  '<div bmm-player-about title=""></div>'+
                   '<div class="bmm-player-buttons">'+
                     '<div bmm-player-repeat></div>'+
-                    '<div bmm-player-clock>00:00</div>'+
+                    '<div bmm-player-clock id="clock1">00:00</div>'+
                     '<div bmm-player-mediaslider></div>'+
-                    '<div bmm-player-clock>00:00:00</div>'+
+                    '<div bmm-player-clock id="clock2">00:00</div>'+
                     '<div bmm-player-shuffle></div>'+
                     '<div bmm-player-maincontrollers></div>'+
                     '<div class="bmm-player-tools">'+
@@ -58,6 +58,27 @@ angular.module('bmmLibApp')
               $timeout(function() {
                 resizeTarget();
                 resizeVideoScreen();
+              });
+
+              //UPDATE MEDIASLIDER WHILE PLAYING
+              $timeout(function() {
+
+                scope.bmmPlayer = bmmPlayer;
+                scope.$watch('bmmPlayer.getCurrentTimePercent', function(time) {
+                  if (!mediaslider.children('.ui-slider-handle').hasClass('ui-state-active')) {
+                    mediaslider.slider('value', time);
+                  }
+                  element.find('#clock1').attr('time', bmmPlayer.getCurrentTime);
+                  element.find('#clock2').attr('time', bmmPlayer.getDuration()-bmmPlayer.getCurrentTime);
+                  checkForChanges();
+                });
+
+                mediaslider.slider({
+                  slide: function(e, ui) {
+                    bmmPlayer.setCurrentTime(ui.value);
+                  }
+                });
+
               });
 
               video.click(function() {
@@ -171,13 +192,11 @@ angular.module('bmmLibApp')
               if (toolsPos==='sideTools'&&defaultVideoPos) {
 
                 defaultVideoPos = false;
-                videoContainer.detach().insertAfter(target);
-                videoContainer = element.parent().find('.bmm-video-container');
-
                 videoContainer.css({
                   position: 'absolute',
                   right: element.parent().find('.bmm-player-tools').width()-1,
                   height: target.height()+1,
+                  top: -videoContainer.height(),
                   width: 0
                 }).attr({
                   direction: 'w'
@@ -193,13 +212,11 @@ angular.module('bmmLibApp')
                         )) {
 
                 defaultVideoPos = true;
-                videoContainer.detach().prependTo(element);
-                videoContainer = element.find('.bmm-video-container');
-
                 videoContainer.css({
                   position: '',
                   right: '',
                   height: 0,
+                  top: '',
                   width: ''
                 }).attr({
                   direction: 'n'
@@ -212,7 +229,8 @@ angular.module('bmmLibApp')
               } else if (toolsPos==='sideTools') {
 
                 videoContainer.css({
-                  height: target.height()
+                  top: -videoContainer.height()+2,
+                  height: target.height()+4
                 });
 
               }
@@ -221,8 +239,6 @@ angular.module('bmmLibApp')
 
             //CHANGE TARGET DIMENSIONS
             var resizeTarget = function() {
-
-              target.css('zIndex', '20');
 
               if (toolsPos===''||toolsPos==='normalTools') {
 
@@ -322,9 +338,9 @@ angular.module('bmmLibApp')
                   minitimer = element.find('.bmm-player-minitimer');
 
                   repeat.detach().appendTo(minitimer);
-                  clock1.detach().appendTo(minitimer);
-                  minitimer.html(minitimer.html()+'<div>&nbsp/&nbsp</div>');
-                  clock2.detach().appendTo(minitimer);
+                  clock1.remove().appendTo(minitimer);
+                  minitimer.append('<div>&nbsp/&nbsp</div>');
+                  clock2.remove().appendTo(minitimer);
                   shuffle.detach().appendTo(minitimer);
 
                   minitimer.children().css('float', 'left');

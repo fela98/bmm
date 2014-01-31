@@ -3,11 +3,7 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 body {
 	background: #eee;
-}
-
-.bmm-max-width {
-	margin: 0 auto;
-	max-width: 70em;
+	overflow: hidden;
 }
 
 .bmm-lib-navigator {

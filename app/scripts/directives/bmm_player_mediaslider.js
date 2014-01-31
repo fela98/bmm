@@ -57,6 +57,9 @@ angular.module('bmmLibApp')
                   orientation: 'vertical',
                   slide: function(e, ui) {
                     behind.css({ height: ui.value+'%' });
+                  },
+                  change: function(e, ui) {
+                    behind.css({ height: ui.value+'%' });
                   }
                 });
 
@@ -76,7 +79,10 @@ angular.module('bmmLibApp')
                   orientation: 'horizontal',
                   slide: function(e, ui) {
                     behind.css({ width: ui.value+'%' });
-                  }
+                  },
+                  change: function(e, ui) {
+                    behind.css({ width: ui.value+'%' });
+                  },
                 });
 
               }

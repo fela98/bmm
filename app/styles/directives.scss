@@ -26,6 +26,11 @@ $bmm-spacing: 20px;
 //***********************************//
 //**********bmm-common-divs**********//
 
+.bmm-max-width {
+  margin: 0 auto;
+  max-width: 70em;
+}
+
 .bmm-options {
 
   position: absolute;
@@ -404,7 +409,7 @@ $bmm-spacing: 20px;
 //***********************************//
 //********bmm-container-main*********//
 .bmm-container-main {
-  background: url('/images/container-main.jpg');
+  background: url('../images/container-main.jpg');
   background-position: top center;
   background-repeat: no-repeat;
   overflow: auto;
@@ -413,7 +418,7 @@ $bmm-spacing: 20px;
 //***********************************//
 //*******bmm-container-header********//
 .bmm-container-header {
-  background: url('/images/container-header.png');
+  background: url('../images/container-header.png');
   background-size: contain;
   background-repeat: repeat-x;
   width: 100%;
@@ -437,7 +442,14 @@ $bmm-spacing: 20px;
   .bmm-video-screen {
     position: relative;
     margin: auto;
-    background: gray;
+    background: black;
+    height: 0;
+
+    .bmm-video-target {
+      width: 100%;
+      height: 100%;
+    }
+
   }
 
 }
@@ -612,6 +624,20 @@ $bmm-spacing: 20px;
   cursor: pointer;
 }
 
+.bmm-player-play.active {
+  @extend .bmm-player-pause;
+  width: 1.5em;
+  height: 1.5em;
+  cursor: pointer;
+}
+
+.bmm-player-play:hover.active {
+  @extend .bmm-player-pause:hover;
+  width: 1.5em;
+  height: 1.5em;
+  cursor: pointer;
+}
+
 //***********************************//
 //********bmm-player-previous********//
 .bmm-player-previous {
@@ -641,7 +667,8 @@ $bmm-spacing: 20px;
 
 //***********************************//
 //*********bmm-player-repeat*********//
-.bmm-player-repeat {
+.bmm-player-repeat,
+.bmm-player-repeat:hover {
   @include sprite-size(
     $bmm-sprites,
     player-repeat,
@@ -655,7 +682,7 @@ $bmm-spacing: 20px;
   cursor: pointer;
 }
 
-.bmm-player-repeat:hover {
+.bmm-player-repeat.active {
   @include sprite-size(
     $bmm-sprites,
     player-repeat_hover,
@@ -668,7 +695,8 @@ $bmm-spacing: 20px;
 
 //***********************************//
 //*********bmm-player-shuffle********//
-.bmm-player-shuffle {
+.bmm-player-shuffle,
+.bmm-player-shuffle:hover {
   @include sprite-size(
     $bmm-sprites,
     player-shuffle,
@@ -682,7 +710,7 @@ $bmm-spacing: 20px;
   cursor: pointer;
 }
 
-.bmm-player-shuffle:hover {
+.bmm-player-shuffle.active {
   @include sprite-size(
     $bmm-sprites,
     player-shuffle_hover,
@@ -698,7 +726,8 @@ $bmm-spacing: 20px;
 
 //***********************************//
 //*****bmm-player-video****//
-.bmm-player-video {
+.bmm-player-video,
+.bmm-player-video:hover {
   @include sprite-size(
     $bmm-sprites,
     player-video,
@@ -712,7 +741,7 @@ $bmm-spacing: 20px;
   cursor: pointer;
 }
 
-.bmm-player-video:hover {
+.bmm-player-video.active {
   @include sprite-size(
     $bmm-sprites,
     player-video_hover,
@@ -740,7 +769,6 @@ $bmm-spacing: 20px;
     0px,
     -3px
   );
-  margin-right: .4em;
   width: 1.8em;
   height: 1.8em;
   cursor: pointer;
@@ -769,7 +797,6 @@ $bmm-spacing: 20px;
     0px,
     -3px
   );
-  margin-left: .3em;
   width: 1.8em;
   height: 1.8em;
   cursor: pointer;

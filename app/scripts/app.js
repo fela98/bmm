@@ -6,7 +6,9 @@ angular.module('bmmDebug', [
   'ngRoute',
   'bmmLibApp'
 ]).run(['$route', function($route)  {
+    
     $route.reload();
+
   }])
   .config(function ($routeProvider) {
     $routeProvider

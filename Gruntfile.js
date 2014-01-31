@@ -115,7 +115,7 @@ module.exports = function (grunt) {
         files: [{
           dot: true,
           src: [
-            '.tmp',
+            //'.tmp',
             '<%= yeoman.dist %>/*',
             '!<%= yeoman.dist %>/.git*'
           ]
@@ -158,7 +158,7 @@ module.exports = function (grunt) {
         fontsDir: '<%= yeoman.app %>/styles/fonts',
         importPath: ['<%= yeoman.app %>'],
         httpImagesPath: '/images',
-        httpGeneratedImagesPath: '/images/generated',
+        httpGeneratedImagesPath: '../images/generated',
         httpFontsPath: '/styles/fonts',
         relativeAssets: false,
         assetCacheBuster: false,
@@ -203,7 +203,7 @@ module.exports = function (grunt) {
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
       html: ['<%= yeoman.dist %>/**/*.html'],
-      css: ['<%= yeoman.dist %>/*.css'],
+      css: ['<%= yeoman.dist %>/**/*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>', '<%= yeoman.dist %>/images']
       }

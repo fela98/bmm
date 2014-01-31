@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmVolumeMute', [function () {
+  .directive('bmmVolumeMute', ['bmmPlayer', function (bmmPlayer) {
     return {
       link: function postLink(scope, element) {
         
-        element.addClass('bmm-volume-mute');
+        element.addClass('bmm-volume-mute').click(function() {
+          bmmPlayer.setMute();
+        });
 
       }
     };

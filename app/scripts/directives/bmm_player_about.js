@@ -30,6 +30,19 @@ angular.module('bmmLibApp')
             checkMinified();
 
           });
+
+          scope.$watch('bmmPlayer.getTitle', function(title) {
+            element.find('.bmm-player-title').html(title);
+          });
+
+          scope.$watch('bmmPlayer.getSubtitle', function(subtitle) {
+            element.find('.bmm-player-subtitle').html(subtitle);
+          });
+
+          scope.$watch('bmmPlayer.getExtra', function(extra) {
+            element.find('.bmm-player-extra').html(extra);
+          });
+
         };
 
         var checkMinified = function() {

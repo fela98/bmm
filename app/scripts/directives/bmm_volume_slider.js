@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmVolumeSlider', ['$timeout', function ($timeout) {
+  .directive('bmmVolumeSlider', ['$timeout', 'bmmPlayer', function ($timeout, bmmPlayer) {
     return {
       template: '<div bmm-player-mediaslider class="bmm-minified"></div>',
       compile : function() {
@@ -34,6 +34,7 @@ angular.module('bmmLibApp')
 
                 slider.attr('orientation', orientation);
                 slider.attr('length', length);
+                playerListener();
 
               });
 
@@ -44,6 +45,7 @@ angular.module('bmmLibApp')
 
                   orientation = element.attr('orientation');
                   scope.$apply(function() { slider.attr('orientation', orientation); });
+                  playerListener();
 
                 }
 
@@ -52,11 +54,36 @@ angular.module('bmmLibApp')
 
                   length = element.attr('length');
                   scope.$apply(function() { slider.attr('length', length); });
+                  playerListener();
 
                 }
 
               });
+
             });
+
+            var playerListener = function() {
+              $timeout(function() {
+                $timeout(function() {
+
+                  var slider = element.find('.bmm-player-mediaslider');
+
+                  scope.bmmPlayer = bmmPlayer;
+                  scope.$watch('bmmPlayer.getVolume', function(volume) {
+                    if (!slider.children('.ui-slider-handle').hasClass('ui-state-active')) {
+                      slider.slider('value', (volume*100));
+                    }
+                  });
+
+                  slider.slider({
+                    slide: function(e, ui) {
+                      bmmPlayer.setVolume((ui.value/100));
+                    }
+                  });
+
+                });
+              });
+            };
             
           }
         };
