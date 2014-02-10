@@ -3,7 +3,7 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 body {
 	background: #eee;
-	overflow: hidden;
+	overflow: hidden; /*Uncomment when not working with bmm_main*/
 }
 
 .bmm-lib-navigator {
@@ -76,4 +76,13 @@ body {
 	margin: 2em;
 	height: 45em;
 	background-color: white;
+}
+
+.bmm-lib-api-paragraph {
+	position: relative;
+	margin: 1.5em 2em;
+	padding: 1em 2em;
+	min-height: 2em;
+	background-color: #3D6172;
+	color: #ddd;
 }

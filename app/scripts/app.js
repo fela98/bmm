@@ -4,7 +4,9 @@ angular.module('bmmDebug', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'bmmLibApp'
+  'bmmLibApp',
+  'ui.sortable',
+  'angularTreeview'
 ]).run(['$route', function($route)  {
     
     $route.reload();
@@ -18,6 +20,10 @@ angular.module('bmmDebug', [
       })
       .when('/bmm_main', {
         templateUrl: 'views/previews/bmm_main.html',
+      })
+      .when('/bmm_api', {
+        templateUrl: 'views/previews/bmm_api.html',
+        controller: 'ApiCtrl'
       })
       .when('/bmm_player_controller', {
         templateUrl: 'views/previews/bmm_player_controller.html',

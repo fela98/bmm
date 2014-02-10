@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .factory('bmmUser', function () {
+  .factory('bmmUser', [function () {
 
     var factory = {},
         video = {},
@@ -48,4 +48,4 @@ angular.module('bmmLibApp')
 
     return factory;
 
-  });
+  }]);

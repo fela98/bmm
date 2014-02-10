@@ -110,15 +110,23 @@
 
 				</ul>
 
-				<h3>Ny spilleliste</h3>
+				<h3 ng-click="bmmPlaylistAdd = true" ng-hide="bmmPlaylistAdd">Ny spilleliste</h3>
+
+				<div ng-show="bmmPlaylistAdd">
+				<form>
+					<input type="text" placeholder="Ny spilleliste"/>
+					<input type="submit" value="V"/>
+					<input type="button" value="X" ng-click="bmmPlaylistAdd = false"/>
+				</form>
+				</div>
 
 				<ul>
 
-					<li>Min1</li>
-					<li>Min2</li>
-					<li>Min3</li>
-					<li>Min4</li>
-					<li>Min5</li>
+					<li class="bmm-playlist-private">Min1</li>
+					<li class="bmm-playlist-private">Min2</li>
+					<li class="bmm-playlist-private">Min3</li>
+					<li class="bmm-playlist-private">Min4</li>
+					<li class="bmm-playlist-private">Min5</li>
 
 				</ul>
 
@@ -127,6 +135,10 @@
 			<div class="bmm-view">
 
 				<div class="bmm-navigator-toggle load"></div>
+
+				<div bmm-path></div>
+
+				<div bmm-playlist></div>
 
 			</div>
 

@@ -1,7 +1,7 @@
 {
   "name": "bmmLib",
   "directory": "public",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "dependencies": {
     "angular": "1.2.6",
     "json3": "~3.2.6",
@@ -12,9 +12,10 @@
     "angular-sanitize": "1.2.6",
     "angular-route": "1.2.6",
     "jplayer": "~2.5.4",
-    "slickgrid": "~2.1.0",
     "jqueryui": "~1.10.3",
-    "jqueryui-touch-punch": "*"
+    "jqueryui-touch-punch": "*",
+    "angular-ui-sortable": "~0.10.0",
+    "angular-treeview": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",
@@ -51,5 +52,8 @@
     "karma-e2e.conf.js",
     "karma.conf.js",
     "package.json"
-  ]
+  ],
+  "resolutions": {
+    "angular": "1.2.6"
+  }
 }

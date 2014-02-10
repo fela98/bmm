@@ -1,2 +1,4 @@
 /.sass-cache/
 /.tmp/
+/app/bower_components/
+/app/testmedia/
