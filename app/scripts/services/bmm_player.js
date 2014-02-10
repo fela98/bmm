@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .factory('bmmPlayer', ['bmmPlaylistDemo', '$timeout', '$rootScope', function (bmmPlaylistDemo, $timeout, $rootScope) {
+  .factory('bmmPlayer', ['bmmPlaylist', '$timeout', '$rootScope', function (bmmPlaylist, $timeout, $rootScope) {
   
   var factory = {},
       videoTarget,
@@ -18,7 +18,7 @@ angular.module('bmmLibApp')
       $(videoTarget).jPlayer({
         ready: function(e) {
           //Initialization complete
-          factory.setSource(bmmPlaylistDemo.getCurrent());
+          factory.setSource(bmmPlaylist.getCurrent());
           factory.getVolume = e.jPlayer.options.volume;
         },
         swfPath: 'bower_components/jplayer/jquery.jplayer/Jplayer.swf',
@@ -72,14 +72,14 @@ angular.module('bmmLibApp')
   };
 
   factory.setNext = function() {
-    var src = bmmPlaylistDemo.getNext();
+    var src = bmmPlaylist.getNext();
     if (src!==false) {
       factory.setSource(src);
     }
   };
 
   factory.setPrevious = function() {
-    var src = bmmPlaylistDemo.getPrevious();
+    var src = bmmPlaylist.getPrevious();
     if (src!==false) {
       factory.setSource(src);
     }
