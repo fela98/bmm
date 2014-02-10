@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmPlayerShuffle', ['bmmPlaylistDemo', function (bmmPlaylistDemo) {
+  .directive('bmmPlayerShuffle', ['bmmPlaylist', function (bmmPlaylist) {
     return {
       link: function postLink(scope, element) {
         
@@ -9,10 +9,10 @@ angular.module('bmmLibApp')
 
         element.click(function() {
           if (!element.hasClass('active')) {
-            bmmPlaylistDemo.setShuffle(true);
+            bmmPlaylist.setShuffle(true);
             element.addClass('active');
           } else {
-            bmmPlaylistDemo.setShuffle(false);
+            bmmPlaylist.setShuffle(false);
             element.removeClass('active');
           }
         });
