@@ -47,6 +47,7 @@ angular.module('bmmLibApp')
                     }, 'fast', function() {
                       element.height(0);
                       view.width('100%');
+                      $(window).trigger('resize');
                     });
 
                   }
@@ -78,6 +79,8 @@ angular.module('bmmLibApp')
                   if (element.height()===0) {
                     element.height('').animate({
                       marginLeft: 0
+                    }, 'fast', function() {
+                      $(window).trigger('resize');
                     });
                   }
 

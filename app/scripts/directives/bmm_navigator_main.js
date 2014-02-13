@@ -39,6 +39,8 @@ angular.module('bmmLibApp')
                     view.width('');
                     element.height('').animate({
                       marginLeft: 0
+                    }, 'fast' , function() {
+                      $(window).trigger('resize');
                     });
 
                   } else {
@@ -46,6 +48,8 @@ angular.module('bmmLibApp')
                     view.width('');
                     playlistNav.height('').animate({
                       marginLeft: 0
+                    }, 'fast', function() {
+                      $(window).trigger('resize');
                     });
 
                   }
@@ -63,6 +67,7 @@ angular.module('bmmLibApp')
                     }, 'fast', function() {
                       element.height(0);
                       view.width('100%');
+                      $(window).trigger('resize');
                     });
 
                   } else {
@@ -72,6 +77,7 @@ angular.module('bmmLibApp')
                     }, 'fast', function() {
                       playlistNav.height(0);
                       view.width('100%');
+                      $(window).trigger('resize');
                     });
 
                   }
