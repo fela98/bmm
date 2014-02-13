@@ -3,75 +3,44 @@
 angular.module('bmmLibApp')
   .directive('bmmSliderList', [function () {
     return {
-      template: '<div class="list">'+
-                  '<div class="list-header">'+
-                    '<div class="list-title">Tittel</div>'+
-                    '<div class="list-btns"></div>'+
-                  '</div>'+
-                '</div>',
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope, element) {
 
-        var lists, html;
+        element.addClass('bmm-slider-list');
+        element.find('> div:first-child').addClass('active');
+        element.append('<div class="bullets"></div>');
 
-        scope.$watch(function() {
+        element.children().each(function() {
+          if (!$(this).hasClass('bullets')) {
+            element.find('.bullets').append('<div></div>');
+          }
+        });
 
-          if (attrs.bmmLists!==lists) {
+        element.find('.bullets div:first-child').addClass('active');
 
-            lists = attrs.bmmLists;
-            element.find('ul').remove();
+        element.find('.bullets').children().each(function() {
 
-            $.each($.parseJSON(lists), function() {
+          $(this).click(function() {
 
-              html = '<ul>';
+            element.children().removeClass('active');
+            element.find('.bullets').children().removeClass('active');
 
-              $.each(this, function() {
+            element.find('> div:nth-child('+($(this).index()+1)+')').addClass('active');
+            element.find('.bullets > div:nth-child('+($(this).index()+1)+')').addClass('active');
 
-                html+='<li>'+this.title+'</li>';
+          });
 
-              });
+        });
 
-              html+='</ul>';
+        $(window).resize( function() {
 
-              element.find('.list').append(html);
-
-            });
-
-            initialize();
-
+          if (element.parent().width()<600) {
+            element.width('100%');
+          } else {
+            element.width('');
           }
 
         });
 
-        var initialize = function() {
-
-          element.css({
-            position: 'relative',
-            width: '24%',
-            float: 'left',
-            marginTop: '2.5em'
-          });
-
-          element.find('ul').each(function(index) {
-
-            element.find('.list-btns').append('<div idx="'+index+'" class="list-btn"></div>');
-            $(this).css('display','none');
-
-          });
-
-          element.find('ul:first').css('display','inline-block');
-          element.find('.list-btn:first').css('background','white');
-
-          element.find('.list-btn').click(function() {
-
-            element.find('.list-btn').css('background', 'none');
-            $(this).css('background','white');
-
-            element.find('ul').css('display','none');
-            element.find('ul:nth-child('+(Number($(this).attr('idx'))+2)+')').css('display','inline-block');
-
-          });
-
-        };
 
       }
     };

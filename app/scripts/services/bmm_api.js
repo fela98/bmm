@@ -53,7 +53,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'POST',
-      url: serverUrl+'album/',
+      url: serverUrl+'album',
       data: $.param(options)
     }).fail( function(xhr) {
 
@@ -78,7 +78,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'album/latest/',
+      url: serverUrl+'album/latest',
       data: $.param(options)
     }).fail( function(xhr) {
 
@@ -186,7 +186,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'facets/published/years/',
+      url: serverUrl+'facets/published/years',
       data: $.param(options)
     }).fail( function(xhr) {
 
@@ -208,7 +208,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'POST',
-      url: serverUrl+'login/authentication/',
+      url: serverUrl+'login/authentication',
       data: $.param(options)
     }).fail( function(xhr) {
 
@@ -315,7 +315,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'POST',
-      url: serverUrl+'track/',
+      url: serverUrl+'track',
       data: $.param(options)
     }).fail( function(xhr) {
 
@@ -341,7 +341,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'track/latest/',
+      url: serverUrl+'track/latest',
       data: $.param(options)
     }).fail( function(xhr) {
 
@@ -515,7 +515,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'user/'
+      url: serverUrl+'user'
     }).fail( function(xhr) {
 
       console.log(xhr);

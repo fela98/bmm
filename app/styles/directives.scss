@@ -310,8 +310,8 @@ $gray: #858585;
     cursor: pointer;
   }
 
-  form {
-    margin: 1.1em 1.1em;
+  form.bmm-private {
+     margin: 1.1em;
   }
 
 }
@@ -917,4 +917,349 @@ $gray: #858585;
   div {
     float: left;
   }
+}
+
+//***********************************//
+//**********bmm-slider-video*********//
+$animation-video-speed: 0.7s;
+$animation-video-type: ease;
+
+.bmm-slider-video {
+
+  position: relative;
+  width: 100%;
+
+  > div.bmm-video-shadow {
+    position: relative;
+    margin: auto;
+    top: 86%;
+    width: 45%;
+    height: 2%;
+    opacity: 0.5;
+    background-color: #afafaf;
+    box-shadow: 0 0 .9em .2em #777;
+  }
+
+  > div.bmm-slider-video-prev,
+  > div.bmm-slider-video-next {
+    position: absolute;
+    height: 30%;
+    width: 5%;
+    left: 0;
+    z-index: 10;
+  }
+
+  > div.bmm-slider-video-next {
+    right: 0;
+    left: auto;
+    @include sprite-size(
+      $bmm-sprites,
+      slider-video-next,
+      40px,
+      55px,
+      0px,
+      0px
+    );
+    width: 40px;
+    height: 55px;
+  }
+
+  > div.bmm-slider-video-prev {
+    @include sprite-size(
+      $bmm-sprites,
+      slider-video-prev,
+      40px,
+      55px,
+      0px,
+      0px
+    );
+    width: 40px;
+    height: 55px;
+  }
+
+  > div.bmm-slider-video-next:hover {
+    cursor: pointer;
+    @include sprite-size(
+      $bmm-sprites,
+      slider-video-next-hover,
+      40px,
+      55px,
+      0px,
+      0px
+    );
+  }
+
+  > div.bmm-slider-video-prev:hover {
+    cursor: pointer;
+    @include sprite-size(
+      $bmm-sprites,
+      slider-video-prev-hover,
+      40px,
+      55px,
+      0px,
+      0px
+    );
+  }
+
+  > div.bmm-videos > div:hover {
+    > div .bmm-slider-video-play {
+      @include sprite-size(
+        $bmm-sprites,
+        slider-video-play-hover,
+        80px,
+        80px,
+        0px,
+        0px
+      );
+      position: relative;
+      margin: auto;
+      margin-top: -40px;
+      top: 50%;
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  > div.bmm-videos {
+
+    //DEFAULT POSITION (LEFT)
+    > div {
+      //COMMON SETTINGS
+      position: absolute;
+      margin: auto;
+      top: 5%;
+      left: 25%;
+      width: 50%;
+      height: 75%;
+      background-color: black;
+      display: none;
+
+      -webkit-transition: all $animation-video-speed $animation-video-type;
+      -moz-transition: all $animation-video-speed $animation-video-type;
+      -ms-transition: all $animation-video-speed $animation-video-type;
+      -o-transition: all $animation-video-speed $animation-video-type;
+      transition: all $animation-video-speed $animation-video-type;
+      
+      @include transform(perspective(600px) scale(1,1) rotateY(0deg) translate3d(0,0,0));
+      
+      > img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      > p {
+        visibility: hidden;
+      }
+
+      > div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        .bmm-slider-video-play {
+          @include sprite-size(
+            $bmm-sprites,
+            slider-video-play,
+            80px,
+            80px,
+            0px,
+            0px
+          );
+          position: relative;
+          margin: auto;
+          margin-top: -40px;
+          top: 50%;
+          width: 80px;
+          height: 80px;
+        }
+      }
+
+    }
+
+    //LEFT ELEMENT
+    > div.left {
+      display: block;
+      left: 6%;
+      @include transform(perspective(600px) scale(0.8,0.8) rotateY(20deg));
+      -webkit-transform-origin: 0% 45%;
+      -ms-transform-origin: 0% 45%;
+      transform-origin: 0% 45%;
+    }
+
+    //ELEMENT IN FOCUS
+    > div.middle {
+      display: block;
+      > p {
+        position: relative;
+        top: 65%;
+        margin: auto;
+        visibility: visible;
+        background-color: #1D74D3;
+        color: white;
+        padding: .4em .7em .2em .7em;
+        text-decoration:underline;
+        display: table;
+        a {
+          color: white;
+        }
+      }
+    }
+
+    //RIGHT ELEMENT
+    > div.right {
+      display: block;
+      left: 44%;
+      @include transform(perspective(400px) scale(0.8,0.8) rotateY(-20deg));
+      -webkit-transform-origin: 100% 45%;
+      -ms-transform-origin: 100% 45%;
+      transform-origin: 100% 45%;
+    }
+
+  }
+}
+
+//***********************************//
+//**********bmm-slider-album*********//
+
+.bmm-slider-album {
+
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  > .bmm-slider-album-prev,
+  > .bmm-slider-album-next {
+    position: absolute;
+    height: 50%;
+    width: 6%;
+    background-color: silver;
+    margin: 0;
+  }
+
+  > .bmm-slider-album-prev {
+    left: 0;
+  }
+
+  > .bmm-slider-album-next {
+    right: 0;
+  }
+
+  ul {
+    margin: 0 2%;
+    padding: 0;
+  }
+
+  li {
+    position: absolute;
+    width: 23%;
+    height: 100%;
+    display: inline-block;
+    list-style-type: none;
+  }
+
+}
+
+//***********************************//
+//**********bmm-slider-list*********//
+
+.bmm-slider-list {
+
+  position: relative;
+  width: 14em;
+
+  > div {
+    width: 100%;
+    display: none;
+  }
+
+  > div.active {
+    display: inline-block;
+    p {
+        font-weight: bold;
+        color: white;
+        background: #FF8F00;
+        width: 100%;
+        padding: .5em 0 0 1em;
+      }
+
+    ul {
+      margin: 0;
+      padding: 0 0 0 1em;
+      overflow: auto;
+      max-height: 10em;
+
+      li {
+        list-style-type: none;
+      }
+
+    }
+
+  }
+
+  > div.bullets {
+    position: absolute;
+    display: inline-block;
+    top: .6em;
+    right: .5em;
+    width: auto;
+    > div {
+      float: left;
+      width: .7em;
+      height: .7em;
+      border: .2em solid white;
+      border-radius: .4em;
+      margin-left: .3em;
+      cursor: pointer;
+    }
+    > div.active {
+      background-color: white;
+    }
+  }
+
+}
+
+//***********************************//
+//**********bmm-slider-image*********//
+
+.bmm-slider-image {
+
+  position: relative;
+  max-width: 100%;
+  min-width: 1%;
+  overflow: hidden;
+
+  > .bmm-slider-image-prev,
+  > .bmm-slider-image-next {
+    position: absolute;
+    height: 2em;
+    width: 2em;
+    border-radius: 1em;
+    background-color: white;
+    box-shadow: 0 0 .4em .3em rgba(168, 168, 168, 0.62);
+    margin: 0 1em;
+  }
+
+  > .bmm-slider-image-prev {
+    left: 0;
+  }
+
+  > .bmm-slider-image-next {
+    right: 0;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    list-style-type: none;
+  }
+
 }

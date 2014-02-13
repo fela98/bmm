@@ -1,229 +1,196 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmSliderVideo', ['$timeout', 'bmmIndex', function ($timeout, bmmIndex) {
+  .directive('bmmSliderVideo', ['$timeout', function ($timeout) {
     return {
-      template: '<div class="video-left"></div>'+
-            '<ul class="video-content">'+
-              '<li ng-repeat="video in latestVideos">'+
-                '<div class="title"></div>'+
-              '</li>'+
-            '</ul>'+
-            '<div class="video-right"></div>'+
-            '<div class="videoshadow"></div>',
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope, element) {
 
-        var videos = [], video;
-        
-        scope.$watch(function() {
+        element.addClass('bmm-slider-video');
+        element.append('<div class="bmm-slider-video-prev"></div>');
+        element.append('<div class="bmm-slider-video-next"></div>');
+        element.append('<div class="bmm-video-shadow"></div>');
 
-          if (attrs.bmmVideos!==videos) {
+        var videos = element.find('.bmm-videos'),
+            btnLeft = element.find('.bmm-slider-video-prev'),
+            btnRight = element.find('.bmm-slider-video-next');
 
-            videos = attrs.bmmVideos;
-            element.find('ul').empty();
+        var active = videos.find('>:nth-child(1)');
 
-            $.each($.parseJSON(videos), function() {
+        videos.children().each(function() {
+          $(this).zIndex(0);
+        });
 
-              video = '<li><div class="video-title">'+this.interprets+'</div></li>';
-              element.find('ul').append(video);
+        //APPLY POSITION TO VIDEOS IN DIRECTIVE
+        if (videos.children().length>2) {
+          videos.children().last().zIndex(2).addClass('left');
+        }
 
-            });
+        active.zIndex(3).addClass('middle');
 
-            element.find('.video-title').css({
-              opacity: 0
-            });
+        if (videos.children().length>1) {
+          active.next().zIndex(2).addClass('right');
+        }
 
-            initialize();
+        //SLIDE FUNCTIONALITY
+        btnLeft.click(function() {
+
+          var newActive, newNext, prev;
+
+          videos.children().each(function() {
+
+            if ($(this).zIndex()<=1) {
+              $(this).zIndex(0);
+            }
+
+          });
+
+          if (videos.children().length>=3) {
+
+            if (active.is(':last-child')) {
+              
+              newActive = videos.find('> div:first-child');
+              newNext = newActive.next();
+              prev = active.prev();
+              
+            } else if (active.next().is(':last-child')) {
+              
+              newActive = active.next();
+              newNext = videos.find('> div:first-child');
+              prev = active.prev();
+
+            } else if (active.is(':first-child')) {
+
+              newActive = active.next();
+              newNext = newActive.next();
+              prev = videos.find('> div:last-child');
+
+            } else {
+              newActive = active.next();
+              newNext = newActive.next();
+              prev = active.prev();
+            }
+
+            //Update z-index
+            prev.zIndex(1);
+            active.zIndex(2);
+            newActive.zIndex(4);
+            newNext.zIndex(2);
+
+            //Remove old classes
+            prev.removeClass('left');
+            active.removeClass('middle');
+            newActive.removeClass('right');
+
+            //Add new classes
+            active.addClass('left');
+            newActive.addClass('middle');
+            newNext.addClass('right');
+
+            //Switch variables to new divs
+            active = newActive;
+
+          } else if (!active.is(':last-child')) {
+
+            active.zIndex(2).removeClass('middle').addClass('left');
+            active.next().zIndex(3).removeClass('right')
+            .addClass('middle');
+            active = active.next();
 
           }
 
         });
 
-        var initialize = function() {
+        btnRight.click(function() {
 
-          var vleft = element.find('.video-left'),
-            vright = element.find('.video-right'),
-            shadow = element.find('.videoshadow'),
-            left, height,
-            vidIndex = 1,
-            vidIndexMax = element.find('li').length;
+          var newActive, newNext, prev;
 
-          //START CSS
-          element.css('position', 'relative');
+          videos.children().each(function() {
 
-          left = (element.width()/2)-(element.find('li').width()/2);
-          height = element.find('li').width()/(16/9);
-
-          shadow.css('top', height+(height/10) );
-          vleft.css('top', height/2-(vleft.height()/2) );
-          vright.css('top', height/2-(vright.height()/2) );
-
-          element.find('li').css({
-            left: left,
-            height: height
-          }).hide();
-
-          //VIDEO LEFT
-          if (vidIndexMax>1) {
-            element.find('li:nth-child('+bmmIndex.prev(vidIndex, vidIndexMax, 1, 1)+')').css({
-              zIndex: 1,
-              transform: 'perspective(600px) scale(0.7,0.7) rotateY(30deg) translate3d(-190px,0,-50px)'
-            }).show();
-          }
-
-          //VIDEO MIDDLE
-          if (vidIndexMax!==-1) {
-            element.find('li:nth-child('+vidIndex+')').css({
-              zIndex: 2,
-              transform: 'perspective(600px) scale(1,1) rotateY(0deg) translate3d(0,0,0)'
-            }).show().find('.video-title').css({
-              opacity: 1
-            });
-          }
-
-          //VIDEO RIGHT
-          if (vidIndexMax>0) {
-            element.find('li:nth-child('+(vidIndex+1)+')').css({
-              zIndex: 1,
-              transform: 'perspective(600px) scale(0.7,0.7) rotateY(-30deg) translate3d(190px,0,-50px)'
-            }).show();
-          }
-
-          element.css({
-            height: element.find('li').height()
-          });
-          //END CSS
-
-          var speed = 5,
-              steps = 5;
-
-          //SLIDE LEFT
-          vleft.click(function() {
-
-            var v0 = element.find('li:nth-child('+bmmIndex.prev(vidIndex,vidIndexMax,2,1)+')'),
-                v1 = element.find('li:nth-child('+bmmIndex.prev(vidIndex,vidIndexMax,1,1)+')'),
-                v2 = element.find('li:nth-child('+vidIndex+')'),
-                v3 = element.find('li:nth-child('+bmmIndex.next(vidIndex,vidIndexMax,1)+')');
-
-            vidIndex = bmmIndex.prev(vidIndex,vidIndexMax,1,1);
-
-            //Hack because transform animation is not suported
-            v2.css('textIndent', 0);
-            v2.animate({textIndent: steps}, {
-              step: function(now) {
-
-                var scale = 1-now*(0.3/steps),
-                    deg = -now*(30/steps),
-                    x = now*(190/steps),
-                    z = -now*(50/steps),
-                    alpha = 1-now*(1/steps);
-
-                $(this).css('transform', 'perspective(600px) scale('+scale+','+scale+') rotateY('+deg+'deg) translate3d('+x+'px,0,'+z+'px)');
-                $(this).find('.video-title').css({
-                  opacity: alpha
-                });
-
-              },
-              complete: function() {
-                v3.fadeOut();
-                $(this).css('zIndex', '1');
-              }
-            }, speed);
-
-            v1.css('textIndent', 0);
-            v1.animate({textIndent: steps}, {
-              start: function() {
-                v0.css({
-                  transform: 'perspective(600px) scale(0.7,0.7) rotateY(30deg) translate3d(-190px,0,-50px)'
-                }).show();
-                $(this).css('zIndex', '3');
-              },
-              step: function(now) {
-
-                var scale = 0.7+now*(0.3/steps),
-                    deg = 30-now*(30/steps),
-                    x = -190+now*(190/steps),
-                    z = -50+now*(50/steps),
-                    alpha = now*(1/steps);
-
-                $(this).css('transform', 'perspective(600px) scale('+scale+','+scale+') rotateY('+deg+'deg) translate3d('+x+'px,0,'+z+'px)');
-                $(this).find('.video-title').css({
-                  opacity: alpha
-                });
-
-              },
-              complete: function() {
-                v0.css('zIndex', '1');
-                $(this).css('zIndex', '2');
-              }
-            }, speed);
+            if ($(this).zIndex()<=1) {
+              $(this).zIndex(0);
+            }
 
           });
 
-          //SLIDE RIGHT
-          vright.click(function() {
+          if (videos.children().length>=3) {
 
-            var v1 = element.find('li:nth-child('+bmmIndex.prev(vidIndex,vidIndexMax,1,1)+')'),
-                v2 = element.find('li:nth-child('+vidIndex+')'),
-                v3 = element.find('li:nth-child('+bmmIndex.next(vidIndex,vidIndexMax,1)+')'),
-                v4 = element.find('li:nth-child('+bmmIndex.next(vidIndex,vidIndexMax,2)+')');
+            if (active.is(':first-child')) {
+              
+              newActive = videos.find('> div:last-child');
+              newNext = newActive.prev();
+              prev = active.next();
+              
+            } else if (active.prev().is(':first-child')) {
+              
+              newActive = active.prev();
+              newNext = videos.find('> div:last-child');
+              prev = active.next();
 
-            vidIndex = bmmIndex.next(vidIndex,vidIndexMax,1,1);
+            } else if (active.is(':last-child')) {
 
-            //Hack because transform animation is not suported
-            v2.css('textIndent', 0);
-            v2.animate({textIndent: steps}, {
-              step: function(now) {
+              newActive = active.prev();
+              newNext = newActive.prev();
+              prev = videos.find('> div:first-child');
 
-                var scale = 1-now*(0.3/steps),
-                    deg = now*(30/steps),
-                    x = -now*(190/steps),
-                    z = -now*(50/steps),
-                    alpha = 1-now*(1/steps);
+            } else {
+              newActive = active.prev();
+              newNext = newActive.prev();
+              prev = active.next();
+            }
 
-                $(this).css('transform', 'perspective(600px) scale('+scale+','+scale+') rotateY('+deg+'deg) translate3d('+x+'px,0,'+z+'px)');
-                $(this).find('.video-title').css({
-                  opacity: alpha
-                });
+            //Update z-index
+            prev.zIndex(1);
+            active.zIndex(2);
+            newActive.zIndex(3);
+            newNext.zIndex(2);
 
-              },
-              complete: function() {
-                v1.fadeOut();
-                $(this).css('zIndex', '1');
-              }
-            }, speed);
+            //Remove old classes
+            prev.removeClass('right');
+            active.removeClass('middle');
+            newActive.removeClass('left');
 
-            v3.css('textIndent', 0);
-            v3.animate({textIndent: steps}, {
-              start: function() {
-                v4.css({
-                  transform: 'perspective(600px) scale(0.7,0.7) rotateY(-30deg) translate3d(190px,0,-50px)'
-                }).show();
-                $(this).css('zIndex', '3');
-              },
-              step: function(now) {
+            //Add new classes
+            active.addClass('right');
+            newActive.addClass('middle');
+            newNext.addClass('left');
 
-                var scale = 0.7+now*(0.3/steps),
-                    deg = -30+now*(30/steps),
-                    x = 190-now*(190/steps),
-                    z = -50+now*(50/steps),
-                    alpha = now*(1/steps);
+            //Switch variables to new divs
+            active = newActive;
 
-                $(this).css('transform', 'perspective(600px) scale('+scale+','+scale+') rotateY('+deg+'deg) translate3d('+x+'px,0,'+z+'px)');
-                $(this).find('.video-title').css({
-                  opacity: alpha
-                });
+          } else if (!active.is(':first-child')) {
 
-              },
-              complete: function() {
-                v4.css('zIndex', '1');
-                $(this).css('zIndex', '2');
-              }
-            }, speed);
+            active.zIndex(2).removeClass('middle').addClass('right');
+            active.prev().zIndex(3).removeClass('left').addClass('middle');
+            active = active.prev();
 
+          }
+
+        });
+
+        //RESIZE FUNCTIONALITY
+        $timeout(function() {
+
+          element.height(element.width()/2.8);
+          btnLeft.css({
+            top: (element.height()/2)-(btnLeft.height()/1.3)
+          });
+          btnRight.css({
+            top: (element.height()/2)-(btnRight.height()/1.3)
+          });
+          
+        });
+
+        $(window).resize( function() {
+
+          element.height(element.width()/2.8);
+          btnLeft.css({
+            top: (element.height()/2)-(btnLeft.height()/1.3)
+          });
+          btnRight.css({
+            top: (element.height()/2)-(btnRight.height()/1.3)
           });
 
-        };
+        });
 
       }
     };

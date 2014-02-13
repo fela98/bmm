@@ -7,4 +7,15 @@ angular.module('bmmDebug')
       'AngularJS',
       'Karma'
     ];
+    
+    $scope.go = function () {
+      console.log('click');
+    };
+
+    $scope.videoSlider = [
+      {title: ''},
+      {title: ''},
+      {title: ''}
+    ];
+
   });

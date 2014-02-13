@@ -21,6 +21,10 @@ angular.module('bmmDebug', [
       .when('/bmm_main', {
         templateUrl: 'views/previews/bmm_main.html',
       })
+      .when('/bmm_sliders', {
+        templateUrl: 'views/previews/bmm_sliders.html',
+        controller: 'MainCtrl'
+      })
       .when('/bmm_api', {
         templateUrl: 'views/previews/bmm_api.html',
         controller: 'ApiCtrl'
