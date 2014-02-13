@@ -4,7 +4,12 @@ angular.module('bmmLibApp')
   .factory('bmmApi', [function () {
   
   var factory = {},
-      serverUrl = 'https://'+window.location.hostname+'/bmm/apinew/web/app_dev.php/';
+      serverUrl = 'localhost';
+
+  /** Set custom serverUrl **/
+  factory.serverUrl = function(url) {
+    serverUrl = url;
+  };
 
   /** Get the basic information about the API **/
   factory.root = function() {
