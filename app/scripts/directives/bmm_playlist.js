@@ -13,7 +13,7 @@ angular.module('bmmLibApp')
                     '<th>Innhold</th>'+
                     '<th>Språk</th>'+
                     '<th></th>'+
-                  '</tr></thead><tbody ui-sortable="sortableOptions" ng-model="playlist">'+
+                  '</tr></thead><tbody ui-sortable="sortableOptions" ng-model="thisPlaylist">'+
                   '<tr ng-repeat="track in thisPlaylist"'+
                   '    ng-class="{even: $even, odd: $odd}">'+
                     '<td class="drag">=</td>'+
