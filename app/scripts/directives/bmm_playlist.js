@@ -31,20 +31,20 @@ angular.module('bmmLibApp')
         scope.thisPlaylist = attrs.playlist;
 
         scope.$watch(function() {
-          return element.attr('playlist');
+          return element.attr('thisPlaylist');
         }, function(newValue){
           scope.thisPlaylist = newValue;
         });
 
         scope.sortableOptions = {
           update: function() {
-            scope.$apply('playlist');
+            scope.$apply('thisPlaylist');
           },
           handle: '.sort',
           axis: 'y'
         };
 
-        scope.$watch('playlist', function() {
+        scope.$watch('thisPlaylist', function() {
 
           element.find('tbody').find('tr').each(function() {
             $(this).draggable({
