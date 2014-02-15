@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmDebug')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, $timeout) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -17,5 +17,18 @@ angular.module('bmmDebug')
       {title: ''},
       {title: ''}
     ];
+
+    $timeout(function() {
+
+      $scope.vid = [
+        {title: ''},
+        {title: ''},
+        {title: ''},
+        {title: ''},
+        {title: ''}
+      ];
+
+    },1500);
+
 
   });

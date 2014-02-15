@@ -14,22 +14,40 @@ angular.module('bmmLibApp')
             btnLeft = element.find('.bmm-slider-video-prev'),
             btnRight = element.find('.bmm-slider-video-next');
 
-        var active = videos.find('>:nth-child(1)');
+        var active;
 
-        videos.children().each(function() {
-          $(this).zIndex(0);
-        });
+        var initialize = function() {
 
-        //APPLY POSITION TO VIDEOS IN DIRECTIVE
-        if (videos.children().length>2) {
-          videos.children().last().zIndex(2).addClass('left');
-        }
+          if (videos.children().length) {
 
-        active.zIndex(3).addClass('middle');
+            active = videos.find('>:nth-child(1)');
 
-        if (videos.children().length>1) {
-          active.next().zIndex(2).addClass('right');
-        }
+            videos.children().each(function() {
+              $(this).zIndex(0);
+            });
+
+            //APPLY POSITION TO VIDEOS IN DIRECTIVE
+            if (videos.children().length>2) {
+              videos.children().last().zIndex(2).addClass('left');
+            }
+
+            active.zIndex(3).addClass('middle');
+
+            if (videos.children().length>1) {
+              active.next().zIndex(2).addClass('right');
+            }
+
+          } else {
+
+            $timeout(function() {
+              initialize();
+            }, 500);
+
+          }
+
+        };
+
+        initialize();
 
         //SLIDE FUNCTIONALITY
         btnLeft.click(function() {

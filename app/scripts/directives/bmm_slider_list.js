@@ -31,6 +31,12 @@ angular.module('bmmLibApp')
 
         });
 
+        if (element.parent().width()<500) {
+          element.width('100%');
+        } else {
+          element.width('');
+        }
+
         $(window).resize( function() {
 
           if (element.parent().width()<500) {

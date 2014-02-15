@@ -11,7 +11,7 @@ angular.module('bmmLibApp')
 
         var btnLeft = element.find('.bmm-slider-image-prev'),
             btnRight = element.find('.bmm-slider-image-next'),
-            page = 0, margin;
+            page = 0;
 
         //SLIDE FUNCTIONALITY
         btnLeft.click(function() {

@@ -26,17 +26,9 @@ angular.module('bmmLibApp')
                     '<td><div bmm-track-tools></div></td>'+
                   '</tr>'+
                 '</table></tbody>',
-      link: function postLink(scope, element) {
+      link: function postLink(scope, element, attrs) {
         
-        scope.playlist = [
-          {nr: 1, name: 'Navn Navnesen', duration: '00:00', content: 'Lorem ipsum dolor sit amet'},
-          {nr: 2, name: 'Navn Navnesen', duration: '00:00', content: 'Lorem ipsum dolor sit amet'},
-          {nr: 3, name: 'Navn Navnesen', duration: '00:00', content: 'Lorem ipsum dolor sit amet'},
-          {nr: 4, name: 'Navn Navnesen', duration: '00:00', content: 'Lorem ipsum dolor sit amet'},
-          {nr: 5, name: 'Navn Navnesen', duration: '00:00', content: 'Lorem ipsum dolor sit amet'},
-          {nr: 6, name: 'Navn Navnesen', duration: '00:00', content: 'Lorem ipsum dolor sit amet'},
-          {nr: 7, name: 'Navn Navnesen', duration: '00:00', content: 'Lorem ipsum dolor sit amet'}
-        ];
+        scope.playlist = attrs.playlist;
 
         scope.sortableOptions = {
           update: function() {

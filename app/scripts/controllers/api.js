@@ -3,6 +3,8 @@
 angular.module('bmmLibApp')
   .controller('ApiCtrl', function ($scope, bmmApi) {
     
+    bmmApi.serverUrl('https://'+window.location.hostname+'/bmm/api/web/app_dev.php/');
+
     //bmmApi.loginRedirect();
 
     bmmApi.root().done(function(data) {

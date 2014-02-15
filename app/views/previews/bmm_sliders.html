@@ -84,36 +84,12 @@
 
 	<div bmm-slider-video>
 		<div class="bmm-videos">
-			<div>
+			<div ng-repeat="v in vid">
 				<div ng-click="go('/home')" style="background: red">
 					<div class="bmm-slider-video-play"></div>
 				</div>
 				<p>
 					<a ng-href="#test">t1</a>
-				</p>
-			</div>
-			<div>
-				<div ng-click="go('/home')" style="background: white">
-					<div class="bmm-slider-video-play"></div>
-				</div>
-				<p>
-					<a ng-href="#test">t2</a>
-				</p>
-			</div>
-			<div>
-				<div ng-click="go('/home')" style="background: green">
-					<div class="bmm-slider-video-play"></div>
-				</div>
-				<p>
-					<a ng-href="#test">t3</a>
-				</p>
-			</div>
-			<div>
-				<div ng-click="go('/home')" style="background: silver">
-					<div class="bmm-slider-video-play"></div>
-				</div>
-				<p>
-					<a ng-href="#test">t4</a>
 				</p>
 			</div>
 		</div>
