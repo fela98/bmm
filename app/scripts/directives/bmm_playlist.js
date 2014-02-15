@@ -14,7 +14,7 @@ angular.module('bmmLibApp')
                     '<th>Språk</th>'+
                     '<th></th>'+
                   '</tr></thead><tbody ui-sortable="sortableOptions" ng-model="playlist">'+
-                  '<tr ng-repeat="track in playlist"'+
+                  '<tr ng-repeat="track in thisPlaylist"'+
                   '    ng-class="{even: $even, odd: $odd}">'+
                     '<td class="drag">=</td>'+
                     '<td class="sort">^ᵥ</td>'+
@@ -28,7 +28,13 @@ angular.module('bmmLibApp')
                 '</table></tbody>',
       link: function postLink(scope, element, attrs) {
         
-        scope.playlist = attrs.playlist;
+        scope.thisPlaylist = attrs.playlist;
+
+        scope.$watch(function() {
+          return element.attr('playlist');
+        }, function(newValue){
+          scope.thisPlaylist = newValue;
+        });
 
         scope.sortableOptions = {
           update: function() {
