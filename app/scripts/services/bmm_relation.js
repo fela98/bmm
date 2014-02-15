@@ -12,7 +12,7 @@ angular.module('bmmLibApp')
         return false;
       } else {
 
-        var newArray, relation = [];
+        var newArray = [], relation = [];
 
         //Search trough all relations
         $.each(array, function() {
