@@ -540,8 +540,6 @@ angular.module('bmmLibApp')
      *    'Link':                   <url2> <- last will be used
      */
 
-    playlist = 'Min spilleliste';
-
     return $.ajax({
       method: 'LINK',
       url: serverUrl+'user/track_collection/'+playlist,
