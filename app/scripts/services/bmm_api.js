@@ -4,7 +4,7 @@ angular.module('bmmLibApp')
   .factory('bmmApi', [function () {
   
   var factory = {},
-      serverUrl = 'localhost';
+      serverUrl = 'localhost/';
 
   /** Set custom serverUrl **/
   factory.serverUrl = function(url) {
@@ -530,20 +530,27 @@ angular.module('bmmLibApp')
   };
 
   /** Add a track, and PUT it again **/
-  factory.userTrackCollectionLink = function(id, headers) {
+  factory.userTrackCollectionLink = function(playlist, tracks) {
 
-    if (typeof headers === 'undefined') { headers = {}; }
+    if (typeof tracks === 'undefined') { tracks = {}; }
 
     /** headers
      *    'Accept-Language':        String          ISO 639-1 || ISO 639-3
-     *    'Link':                   <url1>
-     *    'Link':                   <url2>
+     *    'Link':                   <url1> <- Currently not working with multiple
+     *    'Link':                   <url2> <- last will be used
      */
+
+    playlist = 'Min spilleliste';
 
     return $.ajax({
       method: 'LINK',
-      url: serverUrl+'user/track_collection/'+id,
-      headers: $.param(headers)
+      url: serverUrl+'user/track_collection/'+playlist,
+      beforeSend: function (xhr) {
+        $.each(tracks, function() {
+          //@todo - Find a solution for multiple Link requests
+          xhr.setRequestHeader('Link', '<'+serverUrl+'track/'+this+'>');
+        });
+      }
     }).fail( function() {
 
       //console.log(xhr);

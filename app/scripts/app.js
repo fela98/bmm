@@ -7,8 +7,15 @@ angular.module('bmmDebug', [
   'bmmLibApp',
   'ui.sortable',
   'angularTreeview'
-]).run(['$route', function($route)  {
+]).run(['$route', 'bmmApi', function($route, bmmApi)  {
     
+    bmmApi.serverUrl('https://'+window.location.hostname+'/bmm/api/web/app_dev.php/');
+    
+    bmmApi.user().done(function() {
+    }).fail(function() {
+      bmmApi.loginRedirect();
+    });
+
     $route.reload();
 
   }])

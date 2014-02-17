@@ -49,10 +49,10 @@ angular.module('bmmLibApp')
             tolerance: 'pointer',
             drop: function(ev, ui) {
 
-              bmmApi.userTrackCollectionLink($(this).attr('id'), {
-                'Link': ui.draggable.attr('id')
-              });
-              
+              bmmApi.userTrackCollectionLink($(this).attr('id'), [
+                ui.draggable.attr('id') //@todo - make possible for multiple ids
+              ]);
+
             }
           });
         };
