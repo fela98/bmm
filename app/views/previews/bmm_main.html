@@ -122,11 +122,11 @@
 
 				<ul>
 
-					<li class="bmm-playlist-private">Min1</li>
-					<li class="bmm-playlist-private">Min2</li>
-					<li class="bmm-playlist-private">Min3</li>
-					<li class="bmm-playlist-private">Min4</li>
-					<li class="bmm-playlist-private">Min5</li>
+					<li id="Min1" class="bmm-playlist-private">Min1</li>
+					<li id="Min2" class="bmm-playlist-private">Min2</li>
+					<li id="Min3" class="bmm-playlist-private">Min3</li>
+					<li id="Min4" class="bmm-playlist-private">Min4</li>
+					<li id="Min5" class="bmm-playlist-private">Min5</li>
 
 				</ul>
 
@@ -154,7 +154,7 @@
 							</tr>
 						</thead>
 						<tbody ui-sortable="sortableOptions" ng-model="playlist">
-							<tr ng-repeat="track in playlist"
+							<tr id="{{$index}}" ng-repeat="track in playlist"
 							  ng-class="{even: $even, odd: $odd}">
 								<td class="drag">=</td>
 								<td class="sort">^ᵥ</td>

@@ -543,8 +543,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'LINK',
       url: serverUrl+'user/track_collection/'+id,
-      headers: headers
-    }).fail( function(xhr) {
+      headers: $.param(headers)
+    }).fail( function() {
 
       //console.log(xhr);
 
@@ -582,7 +582,7 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'PUT',
       url: serverUrl+'user/track_collection/'+id
-    }).fail( function(xhr) {
+    }).fail( function() {
 
       //console.log(xhr);
 
@@ -596,7 +596,7 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'DELETE',
       url: serverUrl+'user/track_collection/'+id
-    }).fail( function(xhr) {
+    }).fail( function() {
 
       //console.log(xhr);
 

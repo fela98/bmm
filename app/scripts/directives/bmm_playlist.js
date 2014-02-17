@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmPlaylist', [function () {
+  .directive('bmmPlaylist', ['bmmApi', function (bmmApi) {
     return {
       link: function postLink(scope, element) {
 
@@ -46,7 +46,14 @@ angular.module('bmmLibApp')
             scope: 'move',
             activeClass: 'active',
             hoverClass: 'hover',
-            tolerance: 'pointer'
+            tolerance: 'pointer',
+            drop: function(ev, ui) {
+
+              bmmApi.userTrackCollectionLink($(this).attr('id'), {
+                'Link': ui.draggable.attr('id')
+              });
+              
+            }
           });
         };
 
