@@ -239,15 +239,17 @@ $gray: #858585;
         0px,
         5px
       );
+      position: relative;
       list-style: none;
       padding: .5em 0 .5em 1.8em;
       margin: 0 1.1em;
       background-repeat: no-repeat;
     }
 
-    li:hover {
+    li:hover, a {
       background-color: rgba(255,255,255,0.3);
-      cursor: pointer;
+      cursor: default;
+      text-decoration: none;
     }
 
   }
@@ -271,7 +273,6 @@ $gray: #858585;
 
     li:hover {
       background-color: rgba(255,255,255,0.3);
-      cursor: pointer;
     }
 
     li.active {

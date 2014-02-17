@@ -594,7 +594,7 @@ angular.module('bmmLibApp')
   factory.userTrackCollectionDelete = function(id) {
 
     return $.ajax({
-      method: 'PUT',
+      method: 'DELETE',
       url: serverUrl+'user/track_collection/'+id
     }).fail( function(xhr) {
 
