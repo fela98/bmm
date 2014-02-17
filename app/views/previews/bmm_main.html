@@ -138,7 +138,37 @@
 
 				<div bmm-path></div>
 
-				<div bmm-playlist></div>
+				<div bmm-playlist>
+
+					<table>
+						<thead>
+							<tr>
+								<th></th>
+								<th></th>
+								<th>Nr.</th>
+								<th>Navn</th>
+								<th>Varighet</th>
+								<th>Innhold</th>
+								<th>Språk</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody ui-sortable="sortableOptions" ng-model="playlist">
+							<tr ng-repeat="track in playlist"
+							  ng-class="{even: $even, odd: $odd}">
+								<td class="drag">=</td>
+								<td class="sort">^ᵥ</td>
+								<td>{{track.nr}}</td>
+								<td>{{track.name}}</td>
+								<td>{{track.duration}}</td>
+								<td>{{track.content}}</td>
+								<td>{{track.language}}</td>
+								<td><div bmm-track-tools></div></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
 
 			</div>
 
