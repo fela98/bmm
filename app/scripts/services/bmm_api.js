@@ -546,7 +546,7 @@ angular.module('bmmLibApp')
       headers: headers
     }).fail( function(xhr) {
 
-      console.log(xhr);
+      //console.log(xhr);
 
     });
 
@@ -584,7 +584,7 @@ angular.module('bmmLibApp')
       url: serverUrl+'user/track_collection/'+id
     }).fail( function(xhr) {
 
-      console.log(xhr);
+      //console.log(xhr);
 
     });
 
@@ -598,7 +598,7 @@ angular.module('bmmLibApp')
       url: serverUrl+'user/track_collection/'+id
     }).fail( function(xhr) {
 
-      console.log(xhr);
+      //console.log(xhr);
 
     });
 

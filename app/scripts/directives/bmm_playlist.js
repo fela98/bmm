@@ -13,8 +13,25 @@ angular.module('bmmLibApp')
           axis: 'y'
         };
 
+        element.addClass('bmm-playlist');
+
+        $('.bmm-playlist').on('dragdrop', function() {
+
+          appendDragDrop();
+
+        });
+
         scope.$watch('playlist', function() {
 
+          appendDragDrop();
+
+        });
+
+        element.click(function() {
+          element.toggleClass('active');
+        });
+
+        var appendDragDrop = function() {
           element.find('tbody').find('tr').each(function() {
             $(this).draggable({
               handle: '.drag',
@@ -31,14 +48,7 @@ angular.module('bmmLibApp')
             hoverClass: 'hover',
             tolerance: 'pointer'
           });
-
-        });
-
-        element.addClass('bmm-playlist');
-
-        element.click(function() {
-          element.toggleClass('active');
-        });
+        };
 
       }
     };
