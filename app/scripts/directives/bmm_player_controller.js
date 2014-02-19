@@ -8,9 +8,9 @@ angular.module('bmmLibApp')
                   '<div bmm-player-about title=""></div>'+
                   '<div class="bmm-player-buttons">'+
                     '<div bmm-player-repeat></div>'+
-                    '<div bmm-player-clock id="clock1">00:00</div>'+
+                    '<div class="bmm-player-clock" id="clock1">{{clock1 | bmmTime}}</div>'+
                     '<div bmm-player-mediaslider></div>'+
-                    '<div bmm-player-clock id="clock2">00:00</div>'+
+                    '<div class="bmm-player-clock" id="clock2">{{clock2 | bmmTime}}</div>'+
                     '<div bmm-player-shuffle></div>'+
                     '<div bmm-player-maincontrollers></div>'+
                     '<div class="bmm-player-tools">'+
@@ -32,6 +32,8 @@ angular.module('bmmLibApp')
 
             //PRESET
             element.addClass('bmm-player-controller');
+            scope.clock1 = '00:00';
+            scope.clock2 = '00:00';
 
             //INITIALIZE
             $timeout(function() {
@@ -68,8 +70,8 @@ angular.module('bmmLibApp')
                   if (!mediaslider.children('.ui-slider-handle').hasClass('ui-state-active')) {
                     mediaslider.slider('value', time);
                   }
-                  element.find('#clock1').attr('time', bmmPlayer.getCurrentTime);
-                  element.find('#clock2').attr('time', bmmPlayer.getDuration()-bmmPlayer.getCurrentTime);
+                  scope.clock1 = bmmPlayer.getCurrentTime;
+                  scope.clock2 = (bmmPlayer.getDuration()-bmmPlayer.getCurrentTime);
                   checkForChanges();
                 });
 

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmPlaylist', ['bmmApi', function (bmmApi) {
+  .directive('bmmPlaylist', ['bmmApi', function ($rootScope, bmmApi) {
     return {
       link: function postLink(scope, element) {
 
@@ -51,7 +51,11 @@ angular.module('bmmLibApp')
 
               bmmApi.userTrackCollectionLink($(this).attr('id'), [
                 ui.draggable.attr('id') //@todo - make possible for multiple ids
-              ]);
+              ]).fail(function() {
+
+                 $rootScope.$apply();
+
+              });
 
             }
           });

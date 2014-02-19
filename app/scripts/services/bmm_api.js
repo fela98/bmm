@@ -586,7 +586,8 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'PUT',
-      url: serverUrl+'user/track_collection/'+id
+      url: serverUrl+'user/track_collection/'+id,
+      data: $.param(options)
     }).fail( function() {
 
       //console.log(xhr);

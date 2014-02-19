@@ -1,18 +1,10 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmPlayerClock', [function () {
-    return {
-      link: function preLink(scope, element) {
-        
-        element.addClass('bmm-player-clock');
-        scope.$watch(function() {
-          return element.attr('time');
-        }, function(newValue) {
-          element.html(convertTime(newValue));
-        });
+  .filter('bmmTime', function () {
+    return function (input) {
 
-        var convertTime = function(ss) {
+      var convertTime = function(ss) {
 
           var hh=0,
               mm=0;
@@ -47,6 +39,7 @@ angular.module('bmmLibApp')
             
         };
 
-      }
+      return convertTime(input);
+      
     };
-  }]);
+  });
