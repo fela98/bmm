@@ -1,10 +1,12 @@
 $bmm-spacing: 20px;
+$flags-spacing: 20px;
 @import "compass/utilities";
 @import "compass/css3";
 @import "bmm/*.png";
 @import "flags/*.png";
 
 @include  all-bmm-sprites;
+@include  all-flags-sprites;
 
 @mixin sprite-size($map, $sprite, $width2, $height2, $oX, $oY) {
 
