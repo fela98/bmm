@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmVideoScreen', [ 'bmmPlayer', function (bmmPlayer) {
+  .directive('bmmVideoScreen', [ '$compile', 'bmmPlayer', function ($compile, bmmPlayer) {
     return {
       template: '<div class="bmm-video-target">'+
-                  '<div bmm-video-fullscreen></div>'+
                 '</div>',
       compile : function() {
         return {
@@ -13,16 +12,14 @@ angular.module('bmmLibApp')
             //PRESET
             element.addClass('bmm-video-screen');
 
-            element.click(function() {
-
-              bmmPlayer.setFullscreen();
-
-            });
-
           },
-          post : function() {
+          post : function(scope, element) {
 
             bmmPlayer.initialize('.bmm-video-target');
+
+            element.find('.bmm-video-target').append(
+              $compile('<div bmm-video-fullscreen></div><div bmm-player-fullscreen></div>')
+            (scope));
 
           }
         };

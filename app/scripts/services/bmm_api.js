@@ -26,7 +26,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       crossDomain: true,
-      url: serverUrl
+      url: serverUrl,
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -59,7 +60,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'POST',
       url: serverUrl+'album',
-      data: $.param(options)
+      data: $.param(options),
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -84,7 +86,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrl+'album/latest',
-      data: $.param(options)
+      data: $.param(options),
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -122,7 +125,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrl+'album/'+id,
-      data: $.param(options)
+      data: $.param(options),
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -155,7 +159,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'PUT',
       url: serverUrl+'album/'+id,
-      data: $.param(options)
+      data: $.param(options),
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -169,7 +174,8 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'DELETE',
-      url: serverUrl+'album/'+id
+      url: serverUrl+'album/'+id,
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -192,7 +198,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrl+'facets/published/years',
-      data: $.param(options)
+      data: $.param(options),
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -214,7 +221,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'POST',
       url: serverUrl+'login/authentication',
-      data: $.param(options)
+      data: $.param(options),
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -247,7 +255,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrl+'search/'+term,
-      data: $.param(options)
+      data: $.param(options),
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -261,7 +270,8 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'suggest/'+term
+      url: serverUrl+'suggest/'+term,
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -321,7 +331,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'POST',
       url: serverUrl+'track',
-      data: $.param(options)
+      data: $.param(options),
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -347,7 +358,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrl+'track/latest',
-      data: $.param(options)
+      data: $.param(options),
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -372,7 +384,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrl+'track/rel/'+name,
-      data: $.param(options)
+      data: $.param(options),
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -390,7 +403,8 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'track/'+id
+      url: serverUrl+'track/'+id,
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -450,7 +464,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'PUT',
       url: serverUrl+'track/'+id,
-      data: $.param(options)
+      data: $.param(options),
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -464,7 +479,8 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'DELETE',
-      url: serverUrl+'track/'+id
+      url: serverUrl+'track/'+id,
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -485,7 +501,8 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'POST',
-      url: serverUrl+'track/'+id+'/files'
+      url: serverUrl+'track/'+id+'/files',
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -520,7 +537,8 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'user'
+      url: serverUrl+'user',
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -548,7 +566,8 @@ angular.module('bmmLibApp')
           //@todo - Find a solution for multiple Link requests
           xhr.setRequestHeader('Link', '<'+serverUrl+'track/'+this+'>');
         });
-      }
+      },
+      dataType: 'json'
     }).fail( function() {
 
       //console.log(xhr);
@@ -562,7 +581,8 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'user/track_collection/'+id
+      url: serverUrl+'user/track_collection/'+id,
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -584,10 +604,13 @@ angular.module('bmmLibApp')
      *    }]
      */
 
+    options.type = 'track_collection';
+
     return $.ajax({
       method: 'PUT',
       url: serverUrl+'user/track_collection/'+id,
-      data: $.param(options)
+      data: $.param(options),
+      dataType: 'json'
     }).fail( function() {
 
       //console.log(xhr);
@@ -601,7 +624,8 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'DELETE',
-      url: serverUrl+'user/track_collection/'+id
+      url: serverUrl+'user/track_collection/'+id,
+      dataType: 'json'
     }).fail( function() {
 
       //console.log(xhr);

@@ -23,6 +23,8 @@ angular.module('bmmLibApp')
               checkWidth();
             });
             
+            /* WARNING!!, THE CODE BELOW IS HARD TO READ @todo - rewrite */
+
             var navController = function() {
 
               btnToggle.bind('click', function() {
@@ -33,6 +35,7 @@ angular.module('bmmLibApp')
                   if (state==='medium') {
                     bmmUser.displayNavigator(true);
                   }
+                  btnToggle.addClass('close');
 
                   if (bmmUser.getCurrentNavigator()==='main') {
 
@@ -59,6 +62,7 @@ angular.module('bmmLibApp')
                   if (state==='medium') {
                     bmmUser.displayNavigator(false);
                   }
+                  btnToggle.removeClass('close');
 
                   if (bmmUser.getCurrentNavigator()==='main') {
 
@@ -144,10 +148,12 @@ angular.module('bmmLibApp')
 
                 if (state!=='small') {
 
-                  element.parent().css({
+                  btnToggle.removeClass('close');
+
+                  element.parent().animate({
                     margin: 0,
                     height: '100%'
-                  });
+                  }, 'fast');
                   btnToggle.show();
                   btnSwitch.show();
                   element.addClass('minified');
@@ -181,6 +187,12 @@ angular.module('bmmLibApp')
                 }
  
               } else if (parentWidth<800&&state!=='medium') {
+
+                if (bmmUser.displayNavigator()) {
+                  btnToggle.addClass('close');
+                } else {
+                  btnToggle.removeClass('close');
+                }
 
                 view.width('');
                 element.parent().css({

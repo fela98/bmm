@@ -48,6 +48,13 @@ angular.module('bmmLibApp')
         },
         resize: function() {
           //Fullscreen was toggled
+          $rootScope.$apply(function() {
+            if (factory.getFullscreen==='off') {
+              factory.getFullscreen='on';
+            } else {
+              factory.getFullscreen='off';
+            }
+          });
         },
         size: {
           width: '100%',
@@ -61,14 +68,23 @@ angular.module('bmmLibApp')
 
   factory.setPlay = function() {
     $(videoTarget).jPlayer('play');
+    $rootScope.$apply(function() {
+      factory.getPlaying = true;
+    });
   };
 
   factory.setPause = function() {
     $(videoTarget).jPlayer('pause');
+    $rootScope.$apply(function() {
+      factory.getPlaying = false;
+    });
   };
 
   factory.setStop = function() {
     $(videoTarget).jPlayer('stop');
+    $rootScope.$apply(function() {
+      factory.getPlaying = false;
+    });
   };
 
   factory.setNext = function() {
@@ -106,13 +122,21 @@ angular.module('bmmLibApp')
     if (typeof bool!=='undefined') {
       $(videoTarget).jPlayer({ fullScreen: bool });
     } else {
-      $(videoTarget).jPlayer({ fullScreen: true });
+
+      if (factory.getFullscreen==='off') {
+        $(videoTarget).jPlayer({ fullScreen: true });
+      } else {
+        $(videoTarget).jPlayer({ fullScreen: false });
+      }
+      
     }
   };
 
   factory.setVolume = function(volume) {
-    $(videoTarget).jPlayer('volume', volume);
-    factory.getVolume = volume;
+    $rootScope.$apply(function() {
+      $(videoTarget).jPlayer('volume', volume);
+      factory.getVolume = volume;
+    });
   };
 
   factory.setSource = function(track) {
@@ -156,6 +180,8 @@ angular.module('bmmLibApp')
   factory.getTitle = '';
   factory.getSubtitle = '';
   factory.getExtra = '';
+  factory.getFullscreen = 'off';
+  factory.getPlaying = false;
 
   return factory;
 

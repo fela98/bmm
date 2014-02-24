@@ -7,10 +7,6 @@ angular.module('bmmLibApp')
         
         element.addClass('bmm-player-video');
 
-        element.click(function() {
-          element.toggleClass('active');
-        });
-
       }
     };
   }]);

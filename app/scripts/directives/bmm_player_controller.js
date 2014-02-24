@@ -27,7 +27,7 @@ angular.module('bmmLibApp')
             //DEFINITIONS
             var width, aboutWidth, clock1, clock2, target, buttons, repeat,
                 mediaslider, shuffle, mainControllers, tools, about, volume,
-                video, videoContainer, toolsPos='', defaultVideoPos = true,
+                video, videoContainer, toolsPos='',
                 minified = false;
 
             //PRESET
@@ -59,7 +59,6 @@ angular.module('bmmLibApp')
               checkForChanges();
               $timeout(function() {
                 resizeTarget();
-                resizeVideoScreen();
               });
 
               //UPDATE MEDIASLIDER WHILE PLAYING
@@ -182,62 +181,10 @@ angular.module('bmmLibApp')
             //IF DIV DIMENSIONS CHANGE
             $(window).resize(function() {
               checkForChanges();
-              resizeVideoScreen();
               $timeout(function() {
                 resizeTarget();
               });
             });
-
-            //CHANGE VIDEOSCREEN POSITION AND DIMENSION
-            var resizeVideoScreen = function() {
-
-              if (toolsPos==='sideTools'&&defaultVideoPos) {
-
-                defaultVideoPos = false;
-                videoContainer.css({
-                  position: 'absolute',
-                  right: element.parent().find('.bmm-player-tools').width()-1,
-                  height: target.height()+1,
-                  top: -videoContainer.height(),
-                  width: 0
-                }).attr({
-                  direction: 'w'
-                });
-
-                if (videoContainer.attr('active')==='true') {
-                  videoContainer.css('width', bmmUser.getScreenWidth());
-                }
-
-              } else if (!defaultVideoPos&&(
-                          toolsPos==='normalTools'||
-                          toolsPos==='topTools'
-                        )) {
-
-                defaultVideoPos = true;
-                videoContainer.css({
-                  position: '',
-                  right: '',
-                  height: 0,
-                  top: '',
-                  width: ''
-                }).attr({
-                  direction: 'n'
-                });
-
-                if (videoContainer.attr('active')==='true') {
-                  videoContainer.css('height', bmmUser.getScreenHeight());
-                }
-
-              } else if (toolsPos==='sideTools') {
-
-                videoContainer.css({
-                  top: -videoContainer.height()+2,
-                  height: target.height()+4
-                });
-
-              }
-
-            };
 
             //CHANGE TARGET DIMENSIONS
             var resizeTarget = function() {
@@ -261,17 +208,6 @@ angular.module('bmmLibApp')
                   height: element.parent().outerHeight()-
                           element.outerHeight()-
                           tools.outerHeight()+1
-                });
-
-              } else if (toolsPos==='sideTools') {
-
-                target.css({
-                  position: 'absolute',
-                  top: '0',
-                  width: element.parent().outerWidth()-
-                         tools.outerWidth(),
-                  height: element.parent().outerHeight()-
-                          element.outerHeight()+1
                 });
 
               }
@@ -303,15 +239,8 @@ angular.module('bmmLibApp')
               //Find a position for the toolset
               if (element.width()<450&&toolsPos!=='topTools') {
                 reorganizePlayer('topTools');
-              } else if (element.parent().height()<350&&
-                        toolsPos!=='sideTools'&&
-                        element.width()>=450&&
-                        minified===true) {
-                reorganizePlayer('sideTools');
               } else if (toolsPos!=='normalTools'&&
-                        element.width()>=450&&
-                        element.parent().height()>=350||
-                        (minified===false&&toolsPos==='sideTools')) {
+                        element.width()>=450) {
                 reorganizePlayer('normalTools');
               }
 
@@ -413,36 +342,6 @@ angular.module('bmmLibApp')
                   }).children().css('float', '');
 
                   video.detach().appendTo(tools).css('float', '');
-
-                  break;
-
-                case 'sideTools':
-
-                  element.css('paddingTop', '.3em');
-    
-                  volume.attr({
-                    length: '2.5em',
-                    orientation: 'vertical'
-                  });
-                  
-                  tools.detach().prependTo(element.parent())
-                  .css({
-                    position: 'absolute',
-                    top: '0',
-                    left: '',
-                    right: '0',
-                    width: '2em',
-                    background: '#1c1c1c',
-                    height: '100%',
-                  }).children().css('float', 'left');
-
-                  mainControllers.insertAfter(videoContainer);
-
-                  video.detach().insertBefore(mainControllers)
-                  .css({
-                    height: '1.8em',
-                    float: 'left'
-                  });
 
                   break;
 
