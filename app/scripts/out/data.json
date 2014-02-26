@@ -1,0 +1,469 @@
+{
+    "project": {},
+    "files": {
+        "directives/bmm_container_header.js": {
+            "name": "directives/bmm_container_header.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "services/bmm_api.js": {
+            "name": "services/bmm_api.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "app.js": {
+            "name": "app.js",
+            "modules": {
+                "bmmDebug": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "bmmDebug": {
+            "name": "bmmDebug",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "app.js",
+            "line": 3,
+            "description": "This modul is used for debugging the bmm Library",
+            "requires": [
+                "ngResource",
+                "ngSanitize",
+                "ngRoute",
+                "bmmLibApp",
+                "ui.sortable",
+                "angularTreeview"
+            ]
+        }
+    },
+    "classes": {},
+    "classitems": [
+        {
+            "file": "directives/bmm_container_header.js",
+            "line": 18,
+            "description": "Require 3 timeouts to ensure bmm_container_main\nhas set element.parent.height() correctly",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 9,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 14,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 17,
+            "description": "name                      String\ndocumentation             Url\nsystem_status             Object\n  database                Boolean\n  search                  Boolean\nlanguages                 Array(String)",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 39,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 44,
+            "description": "parent_id *               Integer         Can also be NULL\nstarted_at *              datetime        ISO 8601\nended_at *                datetime        ISO 8601\noriginal_language *       String          ISO 639-1 || ISO 639-3\ntranslations [{           Array(objects)\n  language: '',           string          ISO 639-1 || ISO 639-3\n  title: ''               String\n}]\ncover *                   String\nshow_in_listing *         Boolean\nshow_in_library *         Boolean\ntype                      String          Always 'album'\ndescription               String",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 73,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 78,
+            "description": "size                      Integer         \\d+\nfrom                      Integer         \\d+\ncontent-type              Array(string)   song|speech|audiobook|singsong|video\nmedia-type                Array(string)   audio|video\nunpublished               string          hide|show|only",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 99,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 104,
+            "description": "raw                       Boolean         Role: ROLE_ALBUM_MANAGER",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 108,
+            "description": "id                        Integer\nparent_id                 Integer\ntype                      String\ndescription               String\ncreated_at                datetime        ISO 8601\nended_at                  datetime        ISO 8601\nstarted_at                datetime        ISO 8601\noriginal_languages        String          ISO 639-1 || ISO 639-3\ntranslations [{           Array(objects)\n  language: '',           string          ISO 639-1 || ISO 639-3\n  title: ''               String\n}]\nshow_in_listing *         Boolean\nshow_in_library *         Boolean",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 138,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 143,
+            "description": "parent_id *               Integer         Can also be NULL\nstarted_at *              datetime        ISO 8601\nended_at *                datetime        ISO 8601\noriginal_language *       String          ISO 639-1 || ISO 639-3\ntranslations [{           Array(objects)\n  language: '',           string          ISO 639-1 || ISO 639-3\n  title: ''               String\n}]\ncover *                   String\nshow_in_listing *         Boolean\nshow_in_library *         Boolean\ntype                      String          Always 'album'\ndescription               String",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 172,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 187,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 192,
+            "description": "content-type              Array(String)   song|speech|audiobook|singsong|video\nmedia-type                Array(String)   audio|video\nunpublished               String          hide|show|only",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 211,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 216,
+            "description": "username *                String\npassword *                String",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 234,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 241,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 246,
+            "description": "size                      Integer         \\d+ Def = 20\nfrom                      Integer         \\d+ Def = 0\nresource-type             Array(String)   album|track\nmedia-type                Array(String)   audio|video\ncontent-type              Array(String)   song|speech|audiobook|singsong|video\nunpublished               String          hide|show|only Role: ROLE_CONTENT_UNPUBLISHED",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 268,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 283,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 288,
+            "description": "parent_id *               Integer\nlisting_parent *          Integer\norder *                   Integer\ntype                      String\ndescription               String\nsubtype *                 String          speech|audiobook|singsong|video\ntags *                    Array(String)\npublished_at *            datetime        ISO 8601\noriginal_language *       String          ISO 639-1 || ISO 639-3 zxx\ntranslations [{ *         Array(objects)\n  language: '', *         String          ISO 639-1 || ISO 639-3 zxx\n  title: '', *            String\n  rel [{ *                Array(objects)\n    type: '', *           String          bible|composer|lyrics|interpret|songbook\n    id: int, *            Integer         type: songbook\n    name: '',             String          type: composer|lyrics|interpret|songbook\n    timestamp: int, *     Integer         type: bible|songbook\n    book: '',             String          type: bible\n    chapter: int, *       Integer         type: bible\n    verse: int, *         Integer         type: bible\n  }],\n  media [{ *              Array(Objects)\n    type: '',             String          audio|video\n    files: [{ *\n      mime_type: '', *    String\n      length: int, *      Integer\n      size: int, *        Integer\n      path: '' *          String\n    }],\n  }],\n}]\nrel[{\n  type: '', *             String\n  id: int, *              Integer         type: songbook\n  name: '',               String          type: composer|lyrics|interpret|songbook\n  timestamp: int, *       Integer         type: bible|songbook\n  book: '',               String          type: bible\n  chapter: int, *         Integer         type: bible\n  verse: int, *           Integer         type: bible\n}]",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 344,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 349,
+            "description": "size                      Integer         \\d+ Def = 20\nfrom                      Integer         \\d+ Def = 0\ncontent-type              Array(String)   song|speech|audiobook|singsong|video\nmedia-type                Array(String)   audio|video\nunpublished               String          hide|show|only Role: ROLE_CONTENT_UNPUBLISHED\ntags                      Array(String)",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 371,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 376,
+            "description": "size                      Integer         \\d+ Def = 20\nfrom                      Integer         \\d+ Def = 0\ncontent-type              Array(String)   song|speech|audiobook|singsong|video\nmedia-type                Array(String)   audio|video\nunpublished               String          hide|show|only Role: ROLE_CONTENT_UNPUBLISHED",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 397,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 400,
+            "description": "Absolute file path",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 416,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 421,
+            "description": "parent_id *               Integer\nlisting_parent *          Integer\norder *                   Integer\ntype                      String\ndescription               String\nsubtype *                 String          speech|audiobook|singsong|video\ntags *                    Array(String)\npublished_at *            datetime        ISO 8601\noriginal_language *       String          ISO 639-1 || ISO 639-3 zxx\ntranslations [{ *         Array(objects)\n  language: '', *         String          ISO 639-1 || ISO 639-3 zxx\n  title: '', *            String\n  rel [{ *                Array(objects)\n    type: '', *           String          bible|composer|lyrics|interpret|songbook\n    id: int, *            Integer         type: songbook\n    name: '',             String          type: composer|lyrics|interpret|songbook\n    timestamp: int, *     Integer         type: bible|songbook\n    book: '',             String          type: bible\n    chapter: int, *       Integer         type: bible\n    verse: int, *         Integer         type: bible\n  }],\n  media [{ *              Array(Objects)\n    type: '',             String          audio|video\n    files: [{ *\n      mime_type: '', *    String\n      length: int, *      Integer\n      size: int, *        Integer\n      path: '' *          String\n    }],\n  }],\n}]\nrel[{\n  type: '', *             String\n  id: int, *              Integer         type: songbook\n  name: '',               String          type: composer|lyrics|interpret|songbook\n  timestamp: int, *       Integer         type: bible|songbook\n  book: '',               String          type: bible\n  chapter: int, *         Integer         type: bible\n  verse: int, *           Integer         type: bible\n}]",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 477,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 492,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 497,
+            "description": "type *                    String          audio|video\nfile *                    file",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 514,
+            "description": "factory.trackFetch = function(absPath) {\n\n  /** OPTIONS (Stars = Required)\n   *    absPath: *               serverUrl/track/{id}/{lang}/track.{format}\n   *    {id}: *                  Integer\n   *    {lang}: *                String          ISO 639-1 || ISO 639-3\n   *    {format}: *              String          mp3|opus|mp4\n   *//*\n\n  return $.ajax({\n    method: 'GET',\n    url: absPath\n  }).fail( function(xhr) {\n\n    console.log(xhr);\n\n  });",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 535,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 550,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 555,
+            "description": "'Accept-Language':        String          ISO 639-1 || ISO 639-3\n'Link':                   <url1> <- Currently not working with multiple\n'Link':                   <url2> <- last will be used",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 579,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 594,
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 599,
+            "description": "type                      String          Always 'track_collection'\ntrack_references [{ *\n  id: int, *              Integer\n  language: '', *         String          ISO 639-1 || ISO 639-3\n}]",
+            "class": ""
+        },
+        {
+            "file": "services/bmm_api.js",
+            "line": 622,
+            "class": ""
+        },
+        {
+            "file": "app.js",
+            "line": 24,
+            "description": "Fires at startup and sets the serverUrl. Will also attempt to connect to server, otherwise redirect to server loginpage",
+            "itemtype": "event",
+            "name": "run",
+            "class": "",
+            "module": "bmmDebug"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nRequire 3 timeouts to ensure bmm_container_main\nhas set element.parent.height() correctly",
+            "line": " directives/bmm_container_header.js:18"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:9"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:14"
+        },
+        {
+            "message": "Missing item type\nname                      String\ndocumentation             Url\nsystem_status             Object\n  database                Boolean\n  search                  Boolean\nlanguages                 Array(String)",
+            "line": " services/bmm_api.js:17"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:39"
+        },
+        {
+            "message": "Missing item type\nparent_id *               Integer         Can also be NULL\nstarted_at *              datetime        ISO 8601\nended_at *                datetime        ISO 8601\noriginal_language *       String          ISO 639-1 || ISO 639-3\ntranslations [{           Array(objects)\n  language: '',           string          ISO 639-1 || ISO 639-3\n  title: ''               String\n}]\ncover *                   String\nshow_in_listing *         Boolean\nshow_in_library *         Boolean\ntype                      String          Always 'album'\ndescription               String",
+            "line": " services/bmm_api.js:44"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:73"
+        },
+        {
+            "message": "Missing item type\nsize                      Integer         \\d+\nfrom                      Integer         \\d+\ncontent-type              Array(string)   song|speech|audiobook|singsong|video\nmedia-type                Array(string)   audio|video\nunpublished               string          hide|show|only",
+            "line": " services/bmm_api.js:78"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:99"
+        },
+        {
+            "message": "Missing item type\nraw                       Boolean         Role: ROLE_ALBUM_MANAGER",
+            "line": " services/bmm_api.js:104"
+        },
+        {
+            "message": "Missing item type\nid                        Integer\nparent_id                 Integer\ntype                      String\ndescription               String\ncreated_at                datetime        ISO 8601\nended_at                  datetime        ISO 8601\nstarted_at                datetime        ISO 8601\noriginal_languages        String          ISO 639-1 || ISO 639-3\ntranslations [{           Array(objects)\n  language: '',           string          ISO 639-1 || ISO 639-3\n  title: ''               String\n}]\nshow_in_listing *         Boolean\nshow_in_library *         Boolean",
+            "line": " services/bmm_api.js:108"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:138"
+        },
+        {
+            "message": "Missing item type\nparent_id *               Integer         Can also be NULL\nstarted_at *              datetime        ISO 8601\nended_at *                datetime        ISO 8601\noriginal_language *       String          ISO 639-1 || ISO 639-3\ntranslations [{           Array(objects)\n  language: '',           string          ISO 639-1 || ISO 639-3\n  title: ''               String\n}]\ncover *                   String\nshow_in_listing *         Boolean\nshow_in_library *         Boolean\ntype                      String          Always 'album'\ndescription               String",
+            "line": " services/bmm_api.js:143"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:172"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:187"
+        },
+        {
+            "message": "Missing item type\ncontent-type              Array(String)   song|speech|audiobook|singsong|video\nmedia-type                Array(String)   audio|video\nunpublished               String          hide|show|only",
+            "line": " services/bmm_api.js:192"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:211"
+        },
+        {
+            "message": "Missing item type\nusername *                String\npassword *                String",
+            "line": " services/bmm_api.js:216"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:234"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:241"
+        },
+        {
+            "message": "Missing item type\nsize                      Integer         \\d+ Def = 20\nfrom                      Integer         \\d+ Def = 0\nresource-type             Array(String)   album|track\nmedia-type                Array(String)   audio|video\ncontent-type              Array(String)   song|speech|audiobook|singsong|video\nunpublished               String          hide|show|only Role: ROLE_CONTENT_UNPUBLISHED",
+            "line": " services/bmm_api.js:246"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:268"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:283"
+        },
+        {
+            "message": "Missing item type\nparent_id *               Integer\nlisting_parent *          Integer\norder *                   Integer\ntype                      String\ndescription               String\nsubtype *                 String          speech|audiobook|singsong|video\ntags *                    Array(String)\npublished_at *            datetime        ISO 8601\noriginal_language *       String          ISO 639-1 || ISO 639-3 zxx\ntranslations [{ *         Array(objects)\n  language: '', *         String          ISO 639-1 || ISO 639-3 zxx\n  title: '', *            String\n  rel [{ *                Array(objects)\n    type: '', *           String          bible|composer|lyrics|interpret|songbook\n    id: int, *            Integer         type: songbook\n    name: '',             String          type: composer|lyrics|interpret|songbook\n    timestamp: int, *     Integer         type: bible|songbook\n    book: '',             String          type: bible\n    chapter: int, *       Integer         type: bible\n    verse: int, *         Integer         type: bible\n  }],\n  media [{ *              Array(Objects)\n    type: '',             String          audio|video\n    files: [{ *\n      mime_type: '', *    String\n      length: int, *      Integer\n      size: int, *        Integer\n      path: '' *          String\n    }],\n  }],\n}]\nrel[{\n  type: '', *             String\n  id: int, *              Integer         type: songbook\n  name: '',               String          type: composer|lyrics|interpret|songbook\n  timestamp: int, *       Integer         type: bible|songbook\n  book: '',               String          type: bible\n  chapter: int, *         Integer         type: bible\n  verse: int, *           Integer         type: bible\n}]",
+            "line": " services/bmm_api.js:288"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:344"
+        },
+        {
+            "message": "Missing item type\nsize                      Integer         \\d+ Def = 20\nfrom                      Integer         \\d+ Def = 0\ncontent-type              Array(String)   song|speech|audiobook|singsong|video\nmedia-type                Array(String)   audio|video\nunpublished               String          hide|show|only Role: ROLE_CONTENT_UNPUBLISHED\ntags                      Array(String)",
+            "line": " services/bmm_api.js:349"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:371"
+        },
+        {
+            "message": "Missing item type\nsize                      Integer         \\d+ Def = 20\nfrom                      Integer         \\d+ Def = 0\ncontent-type              Array(String)   song|speech|audiobook|singsong|video\nmedia-type                Array(String)   audio|video\nunpublished               String          hide|show|only Role: ROLE_CONTENT_UNPUBLISHED",
+            "line": " services/bmm_api.js:376"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:397"
+        },
+        {
+            "message": "Missing item type\nAbsolute file path",
+            "line": " services/bmm_api.js:400"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:416"
+        },
+        {
+            "message": "Missing item type\nparent_id *               Integer\nlisting_parent *          Integer\norder *                   Integer\ntype                      String\ndescription               String\nsubtype *                 String          speech|audiobook|singsong|video\ntags *                    Array(String)\npublished_at *            datetime        ISO 8601\noriginal_language *       String          ISO 639-1 || ISO 639-3 zxx\ntranslations [{ *         Array(objects)\n  language: '', *         String          ISO 639-1 || ISO 639-3 zxx\n  title: '', *            String\n  rel [{ *                Array(objects)\n    type: '', *           String          bible|composer|lyrics|interpret|songbook\n    id: int, *            Integer         type: songbook\n    name: '',             String          type: composer|lyrics|interpret|songbook\n    timestamp: int, *     Integer         type: bible|songbook\n    book: '',             String          type: bible\n    chapter: int, *       Integer         type: bible\n    verse: int, *         Integer         type: bible\n  }],\n  media [{ *              Array(Objects)\n    type: '',             String          audio|video\n    files: [{ *\n      mime_type: '', *    String\n      length: int, *      Integer\n      size: int, *        Integer\n      path: '' *          String\n    }],\n  }],\n}]\nrel[{\n  type: '', *             String\n  id: int, *              Integer         type: songbook\n  name: '',               String          type: composer|lyrics|interpret|songbook\n  timestamp: int, *       Integer         type: bible|songbook\n  book: '',               String          type: bible\n  chapter: int, *         Integer         type: bible\n  verse: int, *           Integer         type: bible\n}]",
+            "line": " services/bmm_api.js:421"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:477"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:492"
+        },
+        {
+            "message": "Missing item type\ntype *                    String          audio|video\nfile *                    file",
+            "line": " services/bmm_api.js:497"
+        },
+        {
+            "message": "Missing item type\nfactory.trackFetch = function(absPath) {\n\n  /** OPTIONS (Stars = Required)\n   *    absPath: *               serverUrl/track/{id}/{lang}/track.{format}\n   *    {id}: *                  Integer\n   *    {lang}: *                String          ISO 639-1 || ISO 639-3\n   *    {format}: *              String          mp3|opus|mp4\n   *//*\n\n  return $.ajax({\n    method: 'GET',\n    url: absPath\n  }).fail( function(xhr) {\n\n    console.log(xhr);\n\n  });",
+            "line": " services/bmm_api.js:514"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:535"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:550"
+        },
+        {
+            "message": "Missing item type\n'Accept-Language':        String          ISO 639-1 || ISO 639-3\n'Link':                   <url1> <- Currently not working with multiple\n'Link':                   <url2> <- last will be used",
+            "line": " services/bmm_api.js:555"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:579"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:594"
+        },
+        {
+            "message": "Missing item type\ntype                      String          Always 'track_collection'\ntrack_references [{ *\n  id: int, *              Integer\n  language: '', *         String          ISO 639-1 || ISO 639-3\n}]",
+            "line": " services/bmm_api.js:599"
+        },
+        {
+            "message": "Missing item type",
+            "line": " services/bmm_api.js:622"
+        }
+    ]
+}
