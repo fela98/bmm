@@ -14,6 +14,7 @@
     "jplayer": "~2.5.4",
     "jqueryui": "~1.10.3",
     "jqueryui-touch-punch": "*",
+    "ng-file-upload": ">=1.2.8",
     "angular-ui-sortable": "~0.10.0",
     "angular-treeview": "*"
   },
