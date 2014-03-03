@@ -506,7 +506,7 @@ angular.module('bmmLibApp')
   /** Add a file to a track **/
   factory.trackFiles = function(id, type, file) {
 
-    if (typeof options === 'undefined') { options = {}; }
+    //if (typeof options === 'undefined') { options = {}; }
 
     /** OPTIONS (Stars = Required)
      *    type *                    String          audio|video
@@ -532,7 +532,11 @@ angular.module('bmmLibApp')
           // headers: {'headerKey': 'headerValue'},
           // withCredentials: true,
           file: file,
-          dataType: 'json'
+          data: $.param({
+            type: type,
+            file: file
+          })
+          //dataType: 'json'
           // file: $files, //upload multiple files, this feature only works in HTML5 FromData browsers
           /* set file formData name for 'Content-Desposition' header. Default: 'file' */
           //fileFormDataName: myFile, //OR for HTML5 multiple upload only a list: ['name1', 'name2', ...]
