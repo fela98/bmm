@@ -406,7 +406,9 @@ angular.module('bmmLibApp')
   };
 
   /** Get a translated version of a track **/
-  factory.trackGet = function(id) {
+  factory.trackGet = function(id, options) {
+
+    if (typeof options === 'undefined') { options = {}; }
 
     /** RETURNS
      *    Absolute file path
@@ -415,6 +417,7 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrl+'track/'+id,
+      data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
 
