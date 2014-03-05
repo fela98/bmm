@@ -1,7 +1,7 @@
 {
   "name": "bmmLib",
   "directory": "public",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "dependencies": {
     "angular": "1.2.6",
     "json3": "~3.2.6",
@@ -14,9 +14,7 @@
     "jplayer": "~2.5.4",
     "jqueryui": "~1.10.3",
     "jqueryui-touch-punch": "*",
-    "ng-file-upload": ">=1.2.8",
-    "angular-ui-sortable": "~0.10.0",
-    "angular-treeview": "*"
+    "angular-ui-sortable": "~0.10.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

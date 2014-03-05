@@ -4,17 +4,21 @@ angular.module('bmmLibApp')
   .factory('bmmApi', [function () {
   
   var factory = {},
-      serverUrl = 'localhost/';
+      serverUrli = 'localhost/';
 
   /**
-   *  Set custom serverUrl
+   *  Set custom serverUrli
    *  
-   *  @method serverUrl
+   *  @method serverUrli
    *  @requires url
    *  @final
    */
   factory.serverUrl = function(url) {
-    serverUrl = url;
+    serverUrli = url;
+  };
+
+  factory.getserverUrli = function(url) {
+    return serverUrli;
   };
 
   /** Get the basic information about the API **/
@@ -32,7 +36,7 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       crossDomain: true,
-      url: serverUrl,
+      url: serverUrli,
       dataType: 'json'
     }).fail( function(xhr) {
 
@@ -65,7 +69,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'POST',
-      url: serverUrl+'album',
+      url: serverUrli+'album',
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
@@ -91,7 +95,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'album/latest',
+      url: serverUrli+'album',
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
@@ -130,7 +134,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'album/'+id,
+      url: serverUrli+'album/'+id,
       data: $.param(options),
       dataType: 'json',
       beforeSend: function (xhr) {
@@ -169,7 +173,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'PUT',
-      url: serverUrl+'album/'+id,
+      url: serverUrli+'album/'+id,
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
@@ -185,7 +189,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'DELETE',
-      url: serverUrl+'album/'+id,
+      url: serverUrli+'album/'+id,
       dataType: 'json'
     }).fail( function(xhr) {
 
@@ -208,7 +212,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'facets/published/years',
+      url: serverUrli+'facets/published/years',
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
@@ -231,7 +235,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'POST',
-      url: serverUrl+'login/authentication',
+      url: serverUrli+'login/authentication',
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
@@ -245,7 +249,7 @@ angular.module('bmmLibApp')
   /** Authenticates the user by redirecting him to the Sherwood SignOn Server **/
   factory.loginRedirect = function() {
 
-    window.location = serverUrl+'login/redirect?redirect_to='+window.location;
+    window.location = serverUrli+'login/redirect?redirect_to='+window.location;
 
   };
 
@@ -265,7 +269,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'search/'+term,
+      url: serverUrli+'search/'+term,
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
@@ -281,7 +285,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'suggest/'+term,
+      url: serverUrli+'suggest/'+term,
       dataType: 'json'
     }).fail( function(xhr) {
 
@@ -341,7 +345,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'POST',
-      url: serverUrl+'track',
+      url: serverUrli+'track',
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
@@ -368,7 +372,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'track/latest',
+      url: serverUrli+'track/latest',
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
@@ -394,7 +398,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'track/rel/'+name,
+      url: serverUrli+'track/rel/'+name,
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
@@ -416,7 +420,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'track/'+id,
+      url: serverUrli+'track/'+id,
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
@@ -477,7 +481,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'PUT',
-      url: serverUrl+'track/'+id,
+      url: serverUrli+'track/'+id,
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
@@ -493,7 +497,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'DELETE',
-      url: serverUrl+'track/'+id,
+      url: serverUrli+'track/'+id,
       dataType: 'json'
     }).fail( function(xhr) {
 
@@ -513,21 +517,25 @@ angular.module('bmmLibApp')
      *    file *                    file
      */
 
-    /*return $.ajax({
+    return $.ajax({
       method: 'POST',
-      url: serverUrl+'track/'+id+'/files',
-      dataType: 'json'
+      url: serverUrli+'track/'+id+'/files',
+      file: file,
+      dataType: 'json',
+      data: $.param({
+        type: type
+      })
     }).fail( function(xhr) {
 
       console.log(xhr);
 
-    });*/
+    });
 
     //$.each($files, function() {
-
+/*
         //var file = this;
         return $scope.upload = $upload.upload({
-          url: serverUrl+'track/'+id+'/files', //upload.php script, node.js route, or servlet url
+          url: serverUrli+'track/'+id+'/files', //upload.php script, node.js route, or servlet url
           method: 'POST',
           // headers: {'headerKey': 'headerValue'},
           // withCredentials: true,
@@ -542,25 +550,25 @@ angular.module('bmmLibApp')
           //fileFormDataName: myFile, //OR for HTML5 multiple upload only a list: ['name1', 'name2', ...]
           /* customize how data is added to formData. See #40#issuecomment-28612000 for example */
           //formDataAppender: function(formData, key, val){} //#40#issuecomment-28612000
-        }).progress(function(evt) {
+        /*}).progress(function(evt) {
           console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-        }).success(function(data/*, status, headers, config*/) {
+        }).success(function(data/*, status, headers, config*//*) {
           // file is uploaded successfully
-          console.log(data);
+          /*console.log(data);
         });
         //.error(...)
         //.then(success, error, progress); 
       //});
       // $scope.upload = $upload.upload({...})
       //alternative way of uploading, sends the the file content directly with the same content-type of the file. Could be used to upload files to CouchDB, imgur, etc... for HTML5 FileReader browsers. 
-
+*/
   };
 
   /** Get a file you can play **//* | Doesnt require a function
   factory.trackFetch = function(absPath) {
 
     /** OPTIONS (Stars = Required)
-     *    absPath: *               serverUrl/track/{id}/{lang}/track.{format}
+     *    absPath: *               serverUrli/track/{id}/{lang}/track.{format}
      *    {id}: *                  Integer
      *    {lang}: *                String          ISO 639-1 || ISO 639-3
      *    {format}: *              String          mp3|opus|mp4
@@ -582,7 +590,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'user',
+      url: serverUrli+'user',
       dataType: 'json'
     }).fail( function(xhr) {
 
@@ -593,7 +601,7 @@ angular.module('bmmLibApp')
   };
 
   /** Add a track, and PUT it again **/
-  factory.userTrackCollectionLink = function(playlist, tracks) {
+  factory.userTrackCollectionLink = function(playlist, tracks, language) {
 
     if (typeof tracks === 'undefined') { tracks = {}; }
 
@@ -605,12 +613,13 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'LINK',
-      url: serverUrl+'user/track_collection/'+playlist,
+      url: serverUrli+'user/track_collection/'+playlist,
       beforeSend: function (xhr) {
         $.each(tracks, function() {
           //@todo - Find a solution for multiple Link requests
-          xhr.setRequestHeader('Link', '<'+serverUrl+'track/'+this+'>');
+          xhr.setRequestHeader('Link', '<'+serverUrli+'track/'+this+'>');
         });
+        xhr.setRequestHeader('Accept-Language', language);
       },
       dataType: 'json'
     }).fail( function() {
@@ -626,7 +635,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrl+'user/track_collection/'+id,
+      url: serverUrli+'user/track_collection/'+id,
       dataType: 'json'
     }).fail( function(xhr) {
 
@@ -653,7 +662,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'PUT',
-      url: serverUrl+'user/track_collection/'+id,
+      url: serverUrli+'user/track_collection/'+id,
       data: $.param(options),
       dataType: 'json'
     }).fail( function() {
@@ -669,7 +678,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'DELETE',
-      url: serverUrl+'user/track_collection/'+id,
+      url: serverUrli+'user/track_collection/'+id,
       dataType: 'json'
     }).fail( function() {
 

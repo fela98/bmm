@@ -34,7 +34,7 @@ angular.module('bmmLibApp')
         },
         timeupdate: function() {
           //Track step
-          $rootScope.$apply(function() {
+          $rootScope.safeApply(function() {
             factory.getCurrentTime = $(videoTarget).data('jPlayer').
                                      status.currentTime;
             factory.getCurrentTimePercent = $(videoTarget).data('jPlayer').
@@ -68,23 +68,23 @@ angular.module('bmmLibApp')
 
   factory.setPlay = function() {
     $(videoTarget).jPlayer('play');
-    $rootScope.$apply(function() {
+    //$rootScope.$apply(function() {
       factory.getPlaying = true;
-    });
+    //});
   };
 
   factory.setPause = function() {
     $(videoTarget).jPlayer('pause');
-    $rootScope.$apply(function() {
+    //$rootScope.$apply(function() {
       factory.getPlaying = false;
-    });
+    //});
   };
 
   factory.setStop = function() {
     $(videoTarget).jPlayer('stop');
-    $rootScope.$apply(function() {
+    //$rootScope.$apply(function() {
       factory.getPlaying = false;
-    });
+    //});
   };
 
   factory.setNext = function() {
@@ -133,10 +133,10 @@ angular.module('bmmLibApp')
   };
 
   factory.setVolume = function(volume) {
-    $rootScope.$apply(function() {
+    //$rootScope.$apply(function() {
       $(videoTarget).jPlayer('volume', volume);
       factory.getVolume = volume;
-    });
+    //});
   };
 
   factory.setSource = function(track) {
@@ -182,6 +182,17 @@ angular.module('bmmLibApp')
   factory.getExtra = '';
   factory.getFullscreen = 'off';
   factory.getPlaying = false;
+
+  $rootScope.safeApply = function(fn) {
+    var phase = this.$root.$$phase;
+    if(phase == '$apply' || phase == '$digest') {
+      if(fn && (typeof(fn) === 'function')) {
+        fn();
+      }
+    } else {
+      this.$apply(fn);
+    }
+  };
 
   return factory;
 
