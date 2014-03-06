@@ -7,28 +7,28 @@ angular.module('bmmLibApp')
                 '<div class="bmm-max-width">'+
                   '<div bmm-player-about title=""></div>'+
                   '<div class="bmm-player-buttons">'+
-                    '<div bmm-player-repeat></div>'+
                     '<div class="bmm-player-clock" id="clock1">{{clock1 | bmmTime}}</div>'+
                     '<div bmm-player-mediaslider></div>'+
                     '<div class="bmm-player-clock" id="clock2">{{clock2 | bmmTime}}</div>'+
-                    '<div bmm-player-shuffle></div>'+
                     '<div bmm-player-maincontrollers></div>'+
                     '<div class="bmm-player-tools">'+
                       '<div bmm-track-tools></div>'+
                       '<div bmm-volume-controller></div>'+
-                      '<div bmm-player-video></div>'+
                     '</div>'+
                   '</div>'+
+                  '<div class="bmm-copyright">{{copyright}}</div>'+
                 '</div>',
       compile : function() {
         return {
-          pre : function(scope, element) {
+          pre : function(scope, element, attrs) {
 
             //DEFINITIONS
             var width, aboutWidth, clock1, clock2, target, buttons, repeat,
                 mediaslider, shuffle, mainControllers, tools, about, volume,
                 video, videoContainer, toolsPos='',
                 minified = false;
+
+            scope.copyright = attrs.copyright;
 
             //PRESET
             element.addClass('bmm-player-controller');
@@ -192,22 +192,15 @@ angular.module('bmmLibApp')
               if (toolsPos===''||toolsPos==='normalTools') {
 
                 target.css({
-                  position: 'absolute',
-                  top: '0',
-                  width: '100%',
                   height: element.parent().outerHeight()-
-                          element.outerHeight()+1
+                          element.outerHeight()
                 });
 
               } else if (toolsPos==='topTools') {
 
                 target.css({
-                  position: 'absolute',
-                  top: tools.outerHeight(),
-                  width: '100%',
                   height: element.parent().outerHeight()-
-                          element.outerHeight()-
-                          tools.outerHeight()+1
+                          element.outerHeight()
                 });
 
               }
@@ -216,7 +209,7 @@ angular.module('bmmLibApp')
 
             //CHANGE MEDIASLIDER WIDTH
             var setSliderWidth = function() {
-              width=repeat.width()+clock1.width()+clock2.width()+shuffle.width();
+              width=clock1.width()+clock2.width();
               width=buttons.width()-(width+(width/1.8));
               mediaslider.width(width).attr('length',width);
             };
@@ -268,11 +261,11 @@ angular.module('bmmLibApp')
                   about.after('<div class="bmm-player-minitimer"></div>');
                   minitimer = element.find('.bmm-player-minitimer');
 
-                  repeat.detach().appendTo(minitimer);
+                  //repeat.detach().appendTo(minitimer);
                   clock1.remove().appendTo(minitimer);
                   minitimer.append('<div>&nbsp/&nbsp</div>');
                   clock2.remove().appendTo(minitimer);
-                  shuffle.detach().appendTo(minitimer);
+                  //shuffle.detach().appendTo(minitimer);
 
                   minitimer.children().css('float', 'left');
                   minitimer.css({
@@ -299,17 +292,11 @@ angular.module('bmmLibApp')
 
                   element.css('paddingTop', '');
                   mainControllers.insertAfter(mediaslider);
-                  video.detach().insertAfter(mainControllers).css('float', 'right');
+                  //video.detach().insertAfter(mainControllers).css('float', 'right');
 
-                  tools.detach().prependTo(element.parent())
+                  tools.detach().insertAfter(videoContainer)
                   .css({
-                    position: 'absolute',
-                    top: '0',
-                    left: '0',
-                    right: '',
-                    width: '100%',
-                    height: '',
-                    background: '#1c1c1c'
+                    width: '100%'
                   });
 
                   break;
@@ -326,30 +313,25 @@ angular.module('bmmLibApp')
                   if (element.find('.bmm-player-minitimer').length>0) {
                     mainControllers.insertAfter(mediaslider);
                   } else {
-                    mainControllers.insertAfter(shuffle);
+                    mainControllers.insertAfter(clock2);
                   }
 
-                  element.parent().find('.bmm-player-tools')
+                  element.find('.bmm-player-tools')
                   .detach().insertAfter(mainControllers)
                   .css({
-                    position: '',
-                    top: '',
-                    left: '',
-                    right: '',
                     width: '',
-                    height: '',
                     background: ''
                   }).children().css('float', '');
 
-                  video.detach().appendTo(tools).css('float', '');
+                  //video.detach().appendTo(tools).css('float', '');
 
                   break;
 
                 default:
 
-                  repeat.detach().insertBefore(mediaslider).css('float', '');
+                  //repeat.detach().insertBefore(mediaslider).css('float', '');
                   clock1.detach().insertBefore(mediaslider).css('float', '');
-                  shuffle.detach().insertAfter(mediaslider).css('float', '');
+                  //shuffle.detach().insertAfter(mediaslider).css('float', '');
                   clock2.detach().insertAfter(mediaslider).css('float', '');
 
                   element.find('.bmm-player-minitimer').remove();
@@ -362,7 +344,7 @@ angular.module('bmmLibApp')
                     float: ''
                   });
 
-                  mainControllers.detach().insertAfter(shuffle);
+                  mainControllers.detach().insertAfter(clock2);
 
                   break;
               }

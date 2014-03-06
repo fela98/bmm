@@ -64,12 +64,12 @@ module.exports = function (grunt) {
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: '127.0.0.1',
         livereload: 35729,
-        protocol: 'https'
+        //protocol: 'https'
       },
       livereload: {
         options: {
           open: true,
-          protocol: 'https',
+          //protocol: 'https',
           base: [
             '.tmp',
             '<%= yeoman.app %>'

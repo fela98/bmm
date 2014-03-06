@@ -21,6 +21,28 @@ angular.module('bmmLibApp')
                 $('.bmm-view').trigger('scrollBottom');
               }
             });
+
+            if($(window).width() <= 500) {
+              scope.miniScreen = true;
+            }
+
+            $(window).resize(function() {
+              if($(window).width() <= 500) {
+                scope.miniScreen = true;
+              } else {
+                scope.miniScreen = false;
+              }
+            });
+
+            $('.bmm-player-target').scroll(function() {
+              if (!$('.bmm-navigator-switch').hasClass('fixed')&&
+                  $('.bmm-player-target').scrollTop()>=$('.bmm-container-header').height()) {
+                $('.bmm-navigator-switch').addClass('fixed');
+              } else if ($('.bmm-navigator-switch').hasClass('fixed')&&
+                  $('.bmm-player-target').scrollTop()<$('.bmm-container-header').height()) {
+                $('.bmm-navigator-switch').removeClass('fixed');
+              }
+            });
             
           }
         };

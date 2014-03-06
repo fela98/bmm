@@ -1,36 +1,107 @@
-$bmm-spacing: 20px;
-$flags-spacing: 20px;
 @import "compass/utilities";
 @import "compass/css3";
-@import "bmm/*.png";
 @import "flags/*.png";
 
-@include  all-bmm-sprites;
 @include  all-flags-sprites;
 
-@mixin sprite-size($map, $sprite, $width2, $height2, $oX, $oY) {
+$bmm-main: #1F9C62;
+$bmm-background: #F6F2F2;
+$bmm-background-inverse: #282E33;
 
-  $spritePath:     sprite-path($map);
-  $spriteWidth1:   image-width($spritePath);
-  $spriteHeight1:  image-height($spritePath);
-  $width1:         image-width(sprite-file($map, $sprite));
-  $height1:        image-height(sprite-file($map, $sprite));
-  $x1:             nth(sprite-position($map, $sprite), 1);
-  $y1:             nth(sprite-position($map, $sprite), 2);
+$gray: #858585;
 
-  $relX: ($width2/$width1);
-  $relY: ($height2/$height1);
+@media screen and (max-width: 30em) {
+  .bmm-container-header {
+    max-width: 18em;
+    $animation-video-speed: .5s;
+    $animation-video-type: ease;
 
-  @include background-size($relX*$spriteWidth1 $relY*$spriteHeight1);
-  background-position: ($relX*$x1)+$oX ($relY*$y1)+$oY;
+    -webkit-transition: all $animation-video-speed $animation-video-type;
+    -moz-transition: all $animation-video-speed $animation-video-type;
+    -ms-transition: all $animation-video-speed $animation-video-type;
+    -o-transition: all $animation-video-speed $animation-video-type;
+    transition: all $animation-video-speed $animation-video-type;
 
+    ul {
+      float: none !important;
+      width: 100%;
+      margin-bottom: 1em !important;
+      li {
+        float: none !important;
+        padding: .5em 0 .5em 1.8em !important;
+        margin: 0 1.1em !important;
+      }
+    }
+
+  }
+  .bmm-container-header.bmm-small {
+    margin-left: -18em;
+  }
+  .bmm-view {
+    position: absolute !important;
+    left: 18em;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    $animation-video-speed: .5s;
+    $animation-video-type: ease;
+
+    -webkit-transition: all $animation-video-speed $animation-video-type;
+    -moz-transition: all $animation-video-speed $animation-video-type;
+    -ms-transition: all $animation-video-speed $animation-video-type;
+    -o-transition: all $animation-video-speed $animation-video-type;
+    transition: all $animation-video-speed $animation-video-type;
+  }
+  .bmm-view.bmm-small {
+    position: absolute !important;
+    left: 0;
+  }
+  .bmm-navigator-switch {
+    position: fixed !important;
+    background-image: url(../images/svg/blacktoggle_hover.svg) !important;
+  }
+  .bmm-navigator-switch.bmm-small {
+    background-image: url(../images/svg/blacktoggle.svg) !important;
+  }
 }
 
-$orange: #F60;
-$gray: #858585;
+//***********************************//
+//*********bmm-player-target*********//
+.bmm-player-target {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
 
 //***********************************//
 //**********bmm-common-divs**********//
+
+.bmm-background-right {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: $bmm-background-inverse;
+}
+
+.bmm-background-left {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background-color: $bmm-background;
+}
+
+.bmm-background-left {
+  
+}
+
+body {
+  background-color: $bmm-background;
+}
 
 .bmm-max-width {
   margin: 0 auto;
@@ -39,19 +110,16 @@ $gray: #858585;
 
 .bmm-options {
 
-  position: absolute;
   top: 1em;
-  right: .4em;
-  display: inline-block;
-  float: left;
-  padding: .5em 1em;
+  float: right;
+  padding: 2.2em 1em 0 0;
   z-index: 10;
 
   select {
     font-size: .9em;
     border-radius: .4em;
     padding: .2em;
-    background: #333;
+    background-color: #006B3D;
     color: #fff;
     border: none;
     box-shadow: 0 0 .2em #999;
@@ -76,28 +144,21 @@ $gray: #858585;
 }
 
 .bmm-main-container {
-  border-top-left-radius: .2em;
-  border-top-right-radius: .2em;
-  background: #e7e7e7;
+  background-color: $bmm-background-inverse;
+  min-height: 100%;
 }
 
 .bmm-logo {
-  @include background-size(cover);
-  position: absolute;
+  float: left;
+  background-image: url(../images/svg/logo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 1.5em 0 0;
   width: 7.5em;
-  height: 3.3em;
-  margin: 1.8em 0 0;
+  height: 2.8em;
 }
 
 .bmm-logo.minified {
-  @include sprite-size(
-    $bmm-sprites,
-    logo,
-    49px,
-    23px,
-    0px,
-    0px
-  );
   position: relative;
   float: left;
   margin: .6em;
@@ -109,49 +170,40 @@ $gray: #858585;
 .bmm-search {
   position: relative;
   margin: auto;
-  padding-top: 3em;
   width: 15em;
-  white-space: nowrap;
   z-index: 1;
+
+  > div {
+    float: left;
+    padding-top: 1.5em;
+  }
 
   input {
     height: 1.7em;
     border: none;
+    float: left;
   }
 
   input:first-child {
     padding: .1em .5em;
     border-top-left-radius: .2em;
     border-bottom-left-radius: .2em;
-    float: left;
-    width: 15em;
+    width: 12em;
   }
 
   input:last-child {
-    @extend .bmm-search-btn;
-    @include sprite-size(
-      $bmm-sprites,
-      search-btn,
-      43px,
-      26px,
-      0px,
-      -2px
-    );
     border-top-right-radius: .4em;
     border-bottom-right-radius: .4em;
+    background-image: url(../images/svg/search.svg);
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #006B3D;
     width: 3em;
   }
 
   input:last-child:hover {
-    @extend .bmm-search-btn:hover;
-    @include sprite-size(
-      $bmm-sprites,
-      search-btn_hover,
-      43px,
-      26px,
-      0px,
-      -2px
-    );
+    background-image: url(../images/svg/search_hover.svg);
   }
 
 }
@@ -164,8 +216,7 @@ $gray: #858585;
 }
 
 .bmm-wrapper {
-  position: relative;
-  margin: 2em auto;
+  margin: auto;
   max-width: 70em;
   overflow: auto;
 }
@@ -174,8 +225,9 @@ $gray: #858585;
   position: relative;
   overflow: auto;
   padding: 2em 1em;
-  margin: 0 1em 1em 0;
-  background-color: white;
+  background-color: $bmm-background;
+  padding-bottom: 999em;
+  margin-bottom: -997em;
 }
 
 .bmm-view.minified {
@@ -218,18 +270,40 @@ $gray: #858585;
 }
 
 //***********************************//
-//******bmm-navigator-playlist*******//
+//*******bmm-video-fullscreen********//
 .bmm-video-fullscreen {
   position: absolute;
   bottom: 0;
   padding: .5em;
   width: 100%;
-  background: #333;
+  background: $bmm-background;
+  box-shadow: 0 0 .2em;
+
+  .bmm-volume-slider {
+    margin: .8em .4em;
+    margin-top: .85em !important;
+  }
+
+  .bmm-volume-controller {
+    margin: .6em .6em 0 0;
+  }
+
+  .bmm-video-fullscreen-slider {
+    margin: .7em 0 0 0;
+  }
+
+  .bmm-video-fullscreen-slider {
+    overflow: hidden;
+    padding: .85em;
+    max-height: 2em;
+    min-width: 15em;
+    margin-right: 3em;
+  }
+
   .bmm-video-fullscreen-buttons {
     overflow: auto;
     float: left;
     padding: .1em;
-    color: white;
     > div {
       float: left;
     }
@@ -237,7 +311,7 @@ $gray: #858585;
       margin-top: .1em;
     }
     > p {
-      padding: .2em 0 0 0;
+      padding: 1em 0 0 .5em;
       margin: 0;
       float: left;
     }
@@ -245,13 +319,6 @@ $gray: #858585;
       overflow: hidden;
       max-height: 2em;
     }
-  }
-  .bmm-video-fullscreen-slider {
-    overflow: hidden;
-    padding: .65em;
-    max-height: 2em;
-    min-width: 15em;
-    margin-right: 3em;
   }
 }
 
@@ -261,33 +328,39 @@ $gray: #858585;
 
 //***********************************//
 //******bmm-navigator-playlist*******//
+.bmm-navigator-playlist.bmm-small {
+  margin-left: -16em;
+}
 .bmm-navigator-playlist {
   position: relative;
   float: left;
   width: 18em;
   min-width: 18em;
-  overflow: auto;
+  min-height: 100%;
+  color: $bmm-background;
+
+  $animation-video-speed: .5s;
+  $animation-video-type: ease;
+
+  -webkit-transition: all $animation-video-speed $animation-video-type;
+  -moz-transition: all $animation-video-speed $animation-video-type;
+  -ms-transition: all $animation-video-speed $animation-video-type;
+  -o-transition: all $animation-video-speed $animation-video-type;
+  transition: all $animation-video-speed $animation-video-type;
 
   ul {
-    //@include pretty-bullets("/../images/bmm/navigator-playlist-static.png");
     margin: 0;
     padding: 0;
     width: 100%;
 
     li {
-      @extend .bmm-navigator-playlist-static;
-      @include sprite-size(
-        $bmm-sprites,
-        navigator-playlist-static,
-        18px,
-        18px,
-        0px,
-        5px
-      );
       position: relative;
       list-style: none;
       padding: .5em 0 .5em 1.8em;
       margin: 0 1.1em;
+      background-image: url(../images/svg/playliststatic.svg);
+      background-size: 1.6em 1.6em;
+      background-position-y: .43em;
       background-repeat: no-repeat;
     }
 
@@ -304,15 +377,9 @@ $gray: #858585;
     margin-bottom: 2em;
 
     li {
-      @extend .bmm-navigator-playlist-dynamic;
-      @include sprite-size(
-        $bmm-sprites,
-        navigator-playlist-dynamic,
-        18px,
-        18px,
-        0px,
-        5px
-      );
+      background-image: url(../images/svg/playlistprivate.svg);
+      background-size: 1.3em 1.5em;
+      background-position-x: .29em;
       margin-bottom: .2em;
     }
 
@@ -333,26 +400,21 @@ $gray: #858585;
   h1 {
     padding-left: .5em;
     font-size: 2.1em;
-    color: #adadad;
+    color: $bmm-main;
   }
 
   h3 {
-    @extend .bmm-navigator-playlist-pluss;
-    @include sprite-size(
-      $bmm-sprites,
-      navigator-playlist-pluss,
-      26px,
-      26px,
-      0px,
-      0px
-    );
+    background-image: url(../images/svg/pluss.svg);
+    background-size: 1.4em;
+    background-position: .19em .29em;
+    background-repeat: no-repeat;
     padding: .5em 0 .5em 1.8em;
     font-size: 1em;
     margin: 1em 1.1em;
   }
 
   h3:hover {
-    background-color: rgba(255,255,255,0.3);
+    background-color: $bmm-main;
     cursor: pointer;
   }
 
@@ -371,11 +433,6 @@ $gray: #858585;
 //********bmm-navigator-main*********//
 .bmm-navigator-main {
   position: relative;
-  background: #e4e4e4;
-  box-shadow: 0 .7em 2em #fff inset;
-  border-top-left-radius: .2em;
-  border-top-right-radius: .2em;
-  border-bottom: .1em solid #aaa;
   width: 100%;
   overflow: hidden;
 
@@ -383,20 +440,16 @@ $gray: #858585;
 
     float: right;
     display: inline-block;
-    right: 10em;
-    margin: 0 10em 0 0;
-
-    li:first-child {
-      border-left: none;
-    }
+    color: $bmm-background;
+    padding: 1em 0 0;
+    font-weight: bold;
+    margin: 0;
 
     li, a {
-      color: $gray;
       float: left;
       list-style: none;
-      padding: 0 1.3em;
+      padding: 0 1em;
       margin: .3em 0;
-      border-left: .1em solid #ccc;
     }
 
     li:hover {
@@ -407,135 +460,44 @@ $gray: #858585;
   }
 }
 
-.bmm-navigator-main.minified {
-  background: none;
-  box-shadow: none;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom: none;
-  float: left;
-  width: 18em;
-  height: 100%;
-  min-width: 18em;
-  margin: 0;
-  overflow: auto;
-
-  ul {
-
-    float: left;
-    right: auto;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-
-    li {
-      border-left: none;
-      list-style: none;
-      background: none;
-      color: #585858;
-      font-weight: bold;
-      width: 100%;
-      padding: .4em .2em .4em 2em;
-    }
-
-    li:hover {
-      background: rgba(255,255,255,0.3);
-    }
-
-  }
-}
-
-.bmm-navigator-toggle {
-  @extend .bmm-navigator-toggle-open;
-  @include sprite-size(
-    $bmm-sprites,
-    navigator-toggle-open,
-    30px,
-    30px,
-    0px,
-    0px
-  );
-  position: absolute;
-  top: 0;
-  width: 30px;
-  height: 30px;
-  z-index: 10;
-}
-
-.bmm-navigator-toggle:hover {
-  @extend .bmm-navigator-toggle-open:hover;
-  @include sprite-size(
-    $bmm-sprites,
-    navigator-toggle-open_hover,
-    30px,
-    30px,
-    0px,
-    0px
-  );
-}
-
-.bmm-navigator-toggle.close {
-  @extend .bmm-navigator-toggle-close;
-  @include sprite-size(
-    $bmm-sprites,
-    navigator-toggle-close,
-    30px,
-    30px,
-    0px,
-    0px
-  );
-}
-
-.bmm-navigator-toggle.close:hover {
-  @extend .bmm-navigator-toggle-close:hover;
-  @include sprite-size(
-    $bmm-sprites,
-    navigator-toggle-close_hover,
-    30px,
-    30px,
-    0px,
-    0px
-  );
-}
-
 .bmm-navigator-switch {
-  @include sprite-size(
-    $bmm-sprites,
-    navigator-switch,
-    30px,
-    30px,
-    0px,
-    0px
-  );
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 30px;
-  height: 30px;
-  z-index: 10;
+  top: .50em;
+  margin-left: 16.2em;
+  width: 1.7em;
+  height: 1.5em;
+  background-image: url(../images/svg/toggle_hover.svg);
+  background-size: contain;
+  background-position:  center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  z-index: 1;
+
+  $animation-video-speed: .5s;
+  $animation-video-type: ease;
+
+  -webkit-transition: margin-left $animation-video-speed $animation-video-type;
+  -moz-transition: margin-left $animation-video-speed $animation-video-type;
+  -ms-transition: margin-left $animation-video-speed $animation-video-type;
+  -o-transition: margin-left $animation-video-speed $animation-video-type;
+  transition: margin-left $animation-video-speed $animation-video-type;
+
 }
 
-.bmm-navigator-switch:hover {
-  @include sprite-size(
-    $bmm-sprites,
-    navigator-switch_hover,
-    30px,
-    30px,
-    0px,
-    0px
-  );
+.bmm-navigator-switch.bmm-small {
+  margin-left: 16.19em; //Fix bug in chrome, that doesnt render correctly on fixed
+  background-image: url(../images/svg/toggle.svg);
 }
 
-.bmm-navigator-toggle.load,
-.bmm-navigator-switch.load {
-  visibility: hidden;
+.bmm-navigator-switch.fixed {
+  position: fixed;
 }
 
 //***********************************//
 //**************bmm-path*************//
 .bmm-path {
   margin-bottom: 1.5em;
-  color: $orange;
+  color: $bmm-main;
   font-size: 1.2em;
   a {
     color: $gray;
@@ -583,20 +545,14 @@ $gray: #858585;
 //***********************************//
 //********bmm-container-main*********//
 .bmm-container-main {
-  background: url('../images/container-main.jpg');
-  background-position: top center;
-  background-repeat: no-repeat;
   overflow: auto;
 }
 
 //***********************************//
 //*******bmm-container-header********//
 .bmm-container-header {
-  background: url('../images/container-header.png');
-  background-size: contain;
-  background-repeat: repeat-x;
+  background-color: $bmm-main;
   width: 100%;
-  height: 6em;
 
   .bmm-wrapper {
     overflow: visible;
@@ -610,7 +566,6 @@ $gray: #858585;
   position: relative;
   width: 100%;
   height: 0;
-  background: #1c1c1c;
   z-index: 30;
 
   .bmm-video-screen {
@@ -636,8 +591,13 @@ $gray: #858585;
   position: absolute;
   width: 100%;
   bottom: 0;
-  background-color: #1c1c1c;
+  background-color: #e2e2e2;
+  color: #686868;
   z-index: 11;
+
+  .bmm-track-download {
+    margin: .2em .6em;
+  }
 
   .bmm-player-about {
     padding: 1em 0 1em 1em;
@@ -645,29 +605,30 @@ $gray: #858585;
     float: left;
   }
 
+  .bmm-copyright {
+    width: 100%;
+    text-align: center;
+  }
+
   .bmm-player-buttons {
     padding: 1em 0;
     overflow: auto;
-
-    .bmm-player-video {
-      margin-left: 1em;
-    }
 
     div {
       float: left;
     }
 
     .bmm-player-mediaslider {
-      margin: .3em 1em .5em;
+      margin: .55em 1em .5em;
     }
 
     .bmm-player-mediaslider.bmm-minified {
-      margin: 0 .2em 0;
+      margin: .15em .2em 0;
     }
 
     .bmm-player-tools {
+      margin-top: .1em;
       float: right;
-      padding-right: 2em;
     }
 
   }
@@ -679,13 +640,21 @@ $gray: #858585;
 }
 
 //***********************************//
+//**********bmm-player-tools*********//
+.bmm-player-tools {
+  padding: .5em;
+  position: relative;
+  display: inline-block;
+}
+
+//***********************************//
 //**********bmm-player-about*********//
 .bmm-player-thumbnail {
   width: 4.5em;
   height: 4.5em;
   margin-right: .5em;
-  background-color: black;
-  border: .2em #eee solid;
+  background-color: $bmm-background-inverse;
+  border: .2em $bmm-background solid;
   float: left;
 }
 
@@ -693,7 +662,6 @@ $gray: #858585;
   padding-top: 1em;
   font-weight: bold;
   white-space: nowrap;
-  color: #eee;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -702,7 +670,6 @@ $gray: #858585;
 .bmm-player-extra {
   font-size: 0.8em;
   white-space: nowrap;
-  color: #eee;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -720,7 +687,7 @@ $gray: #858585;
 //***********************************//
 //*******bmm-player-mediaslider******//
 .bmm-player-mediaslider-behind {
-  background-color: rgb(151, 205, 246);
+  background-color: $bmm-main;
   height: 100%;
 }
 
@@ -729,30 +696,18 @@ $gray: #858585;
 }
 
 .ui-slider .ui-slider-handle {
-  @extend .bmm-slider-handle;
+  background-image: url(../images/svg/sliderbutton.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
   background-color: transparent;
-  height: 1.8em;
-  width: 1.8em;
+  height: 1.3em;
+  width: 1.3em;
   top: -.6em;
 }
 
 .ui-slider-vertical.ui-slider .ui-slider-handle {
   top: auto;
   left: -.6em;
-}
-
-.bmm-minified.ui-slider .ui-slider-handle {
-  @include sprite-size(
-    $bmm-sprites,
-    slider-handle,
-    15px,
-    15px,
-    0px,
-    0px
-  );
-  height: 1.1em;
-  width: 1.1em;
-  top: -.35em;
 }
 
 .ui-slider-vertical.bmm-minified.ui-slider .ui-slider-handle {
@@ -774,17 +729,13 @@ $gray: #858585;
 }
 
 .ui-slider-horizontal {
-  height: .6em;
+  height: .2em;
 }
 
 .ui-slider-vertical {
   display: inline-block;
-  width: .6em;
+  width: .2em;
   height: 5em;
-}
-
-.bmm-minified.ui-slider-horizontal {
-  height: .35em;
 }
 
 .bmm-minified.ui-slider-vertical {
@@ -794,68 +745,86 @@ $gray: #858585;
 //***********************************//
 //*******bmm-player-fullscreen*******//
 .bmm-player-fullscreen {
-  @include sprite-size(
-    $bmm-sprites,
-    player-fullscreen,
-    25px,
-    25px,
-    0px,
-    0px
-  );
   position: absolute;
-  right: 1.1em;
-  width: 25px;
-  height: 25px;
   bottom: .7em;
-  cursor: pointer;
+  background-image: url(../images/svg/fullscreen.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 2em;
+  height: 1.7em;
+  right: .8em;
+  box-shadow: 0 0 1em rgba(132, 132, 132, 1);
+  opacity: .7;
 }
 
 .bmm-player-fullscreen:hover {
-  @include sprite-size(
-    $bmm-sprites,
-    player-fullscreen_hover,
-    25px,
-    25px,
-    0px,
-    0px
-  );
+  cursor: pointer;
+  opacity: 1;
+}
+
+.bmm-player-fullscreen.active {
+  background-image: url(../images/svg/normalscreen.svg);
+  box-shadow: none;
+  margin-bottom: .5em;
+  opacity: 0.6;
+}
+
+.bmm-player-fullscreen.active:hover {
+  opacity: 1;
 }
 
 //***********************************//
 //**********bmm-player-play**********//
 .bmm-player-play {
-  width: 1.5em;
-  height: 1.5em;
+  width: 3em;
+  height: 3em;
+  background-image: url(../images/svg/play.svg);
+  background-size:
+  contain; background-repeat: no-repeat;
   cursor: pointer;
 }
 
 .bmm-player-play.active {
-  @extend .bmm-player-pause;
-  width: 1.5em;
-  height: 1.5em;
-  cursor: pointer;
+  background-image: url(../images/svg/pause.svg);
 }
 
-.bmm-player-play:hover.active {
-  @extend .bmm-player-pause:hover;
-  width: 1.5em;
-  height: 1.5em;
-  cursor: pointer;
+.bmm-player-play.active:hover {
+  background-image: url(../images/svg/pause_hover.svg);
+}
+
+.bmm-player-play:hover {
+  background-image: url(../images/svg/play_hover.svg);
 }
 
 //***********************************//
 //********bmm-player-previous********//
 .bmm-player-previous {
-  width: 2.8em;
-  height: 1.8em;
+  margin: .5em .8em 0 0;
+  width: 2.1em;
+  height: 2.1em;
+  background-image: url(../images/svg/previous.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.bmm-player-previous:hover {
+  background-image: url(../images/svg/previous_hover.svg);
   cursor: pointer;
 }
 
 //***********************************//
 //**********bmm-player-next**********//
 .bmm-player-next {
-  width: 2.8em;
-  height: 1.8em;
+  margin: .5em 0 0 .8em;
+  width: 2.1em;
+  height: 2.1em;
+  background-image: url(../images/svg/next.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.bmm-player-next:hover {
+  background-image: url(../images/svg/next_hover.svg);
   cursor: pointer;
 }
 
@@ -872,58 +841,47 @@ $gray: #858585;
 
 //***********************************//
 //*********bmm-player-repeat*********//
-.bmm-player-repeat,
+.bmm-player-repeat {
+  width: 1.12em;
+  height: 1.2em;
+  margin: 1em .7em 0 0;
+  opacity: 0.6;
+  background-image: url(../images/svg/loop.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
 .bmm-player-repeat:hover {
-  @include sprite-size(
-    $bmm-sprites,
-    player-repeat,
-    30px,
-    24px,
-    -3px,
-    -3px
-  );
-  width: 1.9em;
-  height: 1.8em;
+  opacity: 1;
   cursor: pointer;
 }
 
 .bmm-player-repeat.active {
-  @include sprite-size(
-    $bmm-sprites,
-    player-repeat_hover,
-    30px,
-    24px,
-    -3px,
-    -3px
-  );
+  opacity: 1;
+  background-image: url(../images/svg/loop_hover.svg);
 }
 
 //***********************************//
 //*********bmm-player-shuffle********//
-.bmm-player-shuffle,
+.bmm-player-shuffle {
+  width: 1.2em;
+  height: 1.1em;
+  margin: 1em 0 0 .7em;
+  opacity: 0.6;
+  background-image: url(../images/svg/shuffle.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .bmm-player-shuffle:hover {
-  @include sprite-size(
-    $bmm-sprites,
-    player-shuffle,
-    30px,
-    20px,
-    0px,
-    0px
-  );
-  width: 1.9em;
-  height: 1.8em;
+  opacity: 1;
   cursor: pointer;
 }
 
 .bmm-player-shuffle.active {
-  @include sprite-size(
-    $bmm-sprites,
-    player-shuffle_hover,
-    30px,
-    20px,
-    0px,
-    0px
-  );
+  opacity: 1;
+  background-image: url(../images/svg/shuffle_hover.svg);
 }
 
 //***********************************//
@@ -931,30 +889,24 @@ $gray: #858585;
 
 //***********************************//
 //*****bmm-player-video****//
-.bmm-player-video,
-.bmm-player-video:hover {
-  @include sprite-size(
-    $bmm-sprites,
-    player-video,
-    35px,
-    25px,
-    0px,
-    0px
-  );
-  width: 3em;
-  height: 2em;
-  cursor: pointer;
+.bmm-player-video {
+  width: 1.7em;
+  height: 1.35em;
+  margin: .3em .3em 0 0;
+  opacity: 0.6;
+  background-image: url(../images/svg/video.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .bmm-player-video:hover {
-  @include sprite-size(
-    $bmm-sprites,
-    player-video_hover,
-    35px,
-    25px,
-    0px,
-    0px
-  );
+  opacity: 1;
+  cursor: pointer;
+}
+
+.bmm-player-video:active {
+  opacity: 1;
+  background-image: url(../images/svg/video_hover.svg);
 }
 
 //***********************************//
@@ -966,69 +918,64 @@ $gray: #858585;
 //***********************************//
 //*****bmm-volume-mute****//
 .bmm-volume-mute {
-  @include sprite-size(
-    $bmm-sprites,
-    volume-mute,
-    30px,
-    30px,
-    0px,
-    -3px
-  );
-  width: 1.8em;
-  height: 1.8em;
-  cursor: pointer;
+  opacity: 0.6;
+  width: .9em;
+  height: 1.4em;
+  margin: .3em 0 0 1em;
+  background-image: url(../images/svg/mute.svg);
+  background-size: contain;
   background-repeat: no-repeat;
 }
 
 .bmm-volume-mute:hover {
-  @include sprite-size(
-    $bmm-sprites,
-    volume-mute_hover,
-    30px,
-    30px,
-    0px,
-    -3px
-  );
+  opacity: 1;
+  background-image: url(../images/svg/mute_hover.svg);
+  cursor: pointer;
 }
 
 //***********************************//
 //*****bmm-volume-max****//
 .bmm-volume-max {
-  @include sprite-size(
-    $bmm-sprites,
-    volume-max,
-    30px,
-    30px,
-    0px,
-    -3px
-  );
+  opacity: 0.6;
   width: 1.8em;
-  height: 1.8em;
-  cursor: pointer;
+  height: 1.3em;
+  margin: .3em 0 0;
+  background-image: url(../images/svg/maxvolume.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .bmm-volume-max:hover {
-  @include sprite-size(
-    $bmm-sprites,
-    volume-max_hover,
-    30px,
-    30px,
-    0px,
-    -3px
-  );
+  opacity: 1;
+  background-image: url(../images/svg/maxvolume_hover.svg);
+  cursor: pointer;
 }
 
 //***********************************//
 //*********bmm-track-favorite********//
 .bmm-track-favorite {
-  width: 1.8em;
-  height: 1.8em;
+  width: 1.55em;
+  height: 1.5em;
+  opacity: 0.6;
+  background-image: url(../images/svg/favorite.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.bmm-track-favorite:hover {
+  opacity: 1;
   cursor: pointer;
+}
+
+.bmm-track-favorite:active {
+  opacity: 1;
+  background-image: url(../images/svg/favorite_hover.svg);
 }
 
 //***********************************//
 //***********bmm-track-timer*********//
 .bmm-track-timer {
+  display: none;
   width: 1.8em;
   height: 1.8em;
   cursor: pointer;
@@ -1037,6 +984,7 @@ $gray: #858585;
 //***********************************//
 //***********bmm-track-share*********//
 .bmm-track-share {
+  display: none;
   width: 1.8em;
   height: 1.8em;
   cursor: pointer;
@@ -1044,10 +992,24 @@ $gray: #858585;
 
 //***********************************//
 //*********bmm-track-download********//
-.bmm-track-download{
+.bmm-track-download {
   width: 1.8em;
-  height: 1.8em;
+  height: 1.35em;
+  margin: .2em 0;
+  opacity: 0.6;
+  background-image: url(../images/svg/download.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.bmm-track-download:hover {
+  opacity: 1;
   cursor: pointer;
+}
+
+.bmm-track-download:active {
+  opacity: 1;
+  background-image: url(../images/svg/download_hover.svg);
 }
 
 //***********************************//
@@ -1091,65 +1053,25 @@ $animation-video-type: ease;
   > div.bmm-slider-video-next {
     right: 0;
     left: auto;
-    @include sprite-size(
-      $bmm-sprites,
-      slider-video-next,
-      40px,
-      55px,
-      0px,
-      0px
-    );
     width: 40px;
     height: 55px;
   }
 
   > div.bmm-slider-video-prev {
-    @include sprite-size(
-      $bmm-sprites,
-      slider-video-prev,
-      40px,
-      55px,
-      0px,
-      0px
-    );
     width: 40px;
     height: 55px;
   }
 
   > div.bmm-slider-video-next:hover {
     cursor: pointer;
-    @include sprite-size(
-      $bmm-sprites,
-      slider-video-next-hover,
-      40px,
-      55px,
-      0px,
-      0px
-    );
   }
 
   > div.bmm-slider-video-prev:hover {
     cursor: pointer;
-    @include sprite-size(
-      $bmm-sprites,
-      slider-video-prev-hover,
-      40px,
-      55px,
-      0px,
-      0px
-    );
   }
 
   > div.bmm-videos > div:hover {
     > div .bmm-slider-video-play {
-      @include sprite-size(
-        $bmm-sprites,
-        slider-video-play-hover,
-        80px,
-        80px,
-        0px,
-        0px
-      );
       position: relative;
       margin: auto;
       margin-top: -40px;
@@ -1179,8 +1101,6 @@ $animation-video-type: ease;
       -o-transition: all $animation-video-speed $animation-video-type;
       transition: all $animation-video-speed $animation-video-type;
       
-      @include transform(perspective(600px) scale(1,1) rotateY(0deg) translate3d(0,0,0));
-      
       > img {
         position: absolute;
         width: 100%;
@@ -1198,14 +1118,6 @@ $animation-video-type: ease;
         width: 100%;
         height: 100%;
         .bmm-slider-video-play {
-          @include sprite-size(
-            $bmm-sprites,
-            slider-video-play,
-            80px,
-            80px,
-            0px,
-            0px
-          );
           position: relative;
           margin: auto;
           margin-top: -40px;
@@ -1221,7 +1133,6 @@ $animation-video-type: ease;
     > div.left {
       display: block;
       left: 6%;
-      @include transform(perspective(600px) scale(0.8,0.8) rotateY(20deg));
       -webkit-transform-origin: 0% 45%;
       -ms-transform-origin: 0% 45%;
       transform-origin: 0% 45%;
@@ -1250,7 +1161,6 @@ $animation-video-type: ease;
     > div.right {
       display: block;
       left: 44%;
-      @include transform(perspective(400px) scale(0.8,0.8) rotateY(-20deg));
       -webkit-transform-origin: 100% 45%;
       -ms-transform-origin: 100% 45%;
       transform-origin: 100% 45%;

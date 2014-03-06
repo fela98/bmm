@@ -2,19 +2,15 @@
 	bmm-resize
 	class="bmm-lib-preview">
 
+	<div class="bmm-background-right"></div>
+	<div class="bmm-background-left"></div>
+
 	<div bmm-container-main class="bmm-player-target">
 
-		<div bmm-container-header>
+		<div class="bmm-container-header" ng-class="{'bmm-small': miniScreen}">
 			<div class="bmm-wrapper">
 
 				<div class="bmm-logo"></div>
-
-				<div class="bmm-search">
-
-					<input type="text" placeholder="Søk..."/>
-					<input type="submit" value=""/>
-
-				</div>
 
 				<div class="bmm-options">
 
@@ -29,72 +25,34 @@
 
 				</div>
 
+				<div class="bmm-search">
+					<div>
+						<input type="text" placeholder="Søk..."/>
+						<input type="submit" value=""/>
+					</div>
+				</div>
+
+				<div class="bmm-navigator-main">
+					<ul>
+						<li>Button1</li>
+						<li>Button2</li>
+						<li>Button3</li>
+						<li>Button4</li>
+						<li>Button5</li>
+					</ul>
+				</div>
+
 			</div>
+
 		</div>
 
 		<div class="bmm-wrapper bmm-main-container">
 
-			<div bmm-navigator-main>
-				<div class="bmm-navigator-switch load"></div>
-				<div class="bmm-minified-header">
-
-					<div class="bmm-logo minified"></div>
-
-					<div class="bmm-options">
-
-						<form>
-							<select>
-								<option>[==] DE</option>
-								<option>[==] NB</option>
-								<option>[==] DK</option>
-								<option>[==] CH</option>
-							</select>
-						</form>
-
-					</div>
-
-					<div class="bmm-search">
-						<input type="text" placeholder="Søk..."/>
-						<input type="submit" value=""/>
-					</div>
-
-				</div>
-
-				<ul>
-
-					<li>Button1</li>
-					<li>Button2</li>
-					<li>Button3</li>
-					<li>Button4</li>
-					<li>Button5</li>
-
-				</ul>
-
-			</div>
-
-			<div bmm-navigator-playlist>
-				<div class="bmm-navigator-switch load"></div>
-				<div class="bmm-minified-header">
-
-					<div class="bmm-logo minified"></div>
-
-					<div class="bmm-options">
-
-						<form>
-							<select>
-								<option>[==] DE</option>
-								<option>[==] NB</option>
-								<option>[==] DK</option>
-								<option>[==] CH</option>
-							</select>
-						</form>
-
-					</div>
-
-					<div class="bmm-search">
-						<input type="text" placeholder="Søk..."/>
-						<input type="submit" value=""/>
-					</div>
+			<div class="bmm-navigator-playlist" ng-class="{'bmm-small': miniScreen}">
+				<div class="bmm-navigator-switch"
+					 ng-class="{'bmm-small': miniScreen}"
+					 ng-click="miniScreen=!miniScreen;"
+				>
 
 				</div>
 
@@ -132,7 +90,7 @@
 
 			</div>
 
-			<div class="bmm-view">
+			<div class="bmm-view" ng-class="{'bmm-small': miniScreen}">
 
 				<div class="bmm-navigator-toggle load"></div>
 
@@ -178,7 +136,8 @@
 
 	</div>
 
-	<div bmm-player-controller>
+	<div bmm-player-controller
+		 copyright="Stiftelsen skjulte skatters forlag">
 	</div>
 
 </div>

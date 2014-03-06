@@ -17,7 +17,7 @@ angular.module('bmmLibApp')
     serverUrli = url;
   };
 
-  factory.getserverUrli = function(url) {
+  factory.getserverUrli = function() {
     return serverUrli;
   };
 

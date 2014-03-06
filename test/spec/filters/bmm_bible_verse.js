@@ -12,7 +12,7 @@ describe('Filter: bmmBibleVerse', function () {
   }));
 
   it('should return the input prefixed with "bmmBibleVerse filter:"', function () {
-    var text = 'angularjs';
+    //var text = 'angularjs';
     //expect(bmmBibleVerse(text)).toBe('bmmBibleVerse filter: ' + text);
   });
 

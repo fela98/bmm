@@ -12,7 +12,7 @@ describe('Filter: bmmTime', function () {
   }));
 
   it('should return the input prefixed with "bmmTime filter:"', function () {
-    var text = 'angularjs';
+    //var text = 'angularjs';
     //expect(bmmTime(text)).toBe('bmmTime filter: ' + text);
   });
 

@@ -9,7 +9,13 @@ angular.module('bmmLibApp')
 
         element.click(function() {
 
-          bmmPlayer.setFullscreen();
+          var results = bmmPlayer.setFullscreen();
+
+          if (results) {
+            element.addClass('active');
+          } else {
+            element.removeClass('active');
+          }
 
         });
 

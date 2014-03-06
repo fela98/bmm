@@ -11,7 +11,7 @@ angular.module('bmmLibApp')
                   '<div bmm-volume-controller></div>'+
                 '</div>'+
                 '<div class="bmm-video-fullscreen-slider">'+
-                  '<div bmm-player-mediaslider></div>>'+
+                  '<div bmm-player-mediaslider></div>'+
                 '</div>',
       compile : function() {
         return {

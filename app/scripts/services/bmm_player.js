@@ -69,21 +69,21 @@ angular.module('bmmLibApp')
   factory.setPlay = function() {
     $(videoTarget).jPlayer('play');
     //$rootScope.$apply(function() {
-      factory.getPlaying = true;
+    factory.getPlaying = true;
     //});
   };
 
   factory.setPause = function() {
     $(videoTarget).jPlayer('pause');
     //$rootScope.$apply(function() {
-      factory.getPlaying = false;
+    factory.getPlaying = false;
     //});
   };
 
   factory.setStop = function() {
     $(videoTarget).jPlayer('stop');
     //$rootScope.$apply(function() {
-      factory.getPlaying = false;
+    factory.getPlaying = false;
     //});
   };
 
@@ -124,18 +124,20 @@ angular.module('bmmLibApp')
     } else {
 
       if (factory.getFullscreen==='off') {
-        $(videoTarget).jPlayer({ fullScreen: true });
+        var bool = true;
       } else {
-        $(videoTarget).jPlayer({ fullScreen: false });
+        var bool = false;
       }
       
     }
+    $(videoTarget).jPlayer({ fullScreen: bool });
+    return bool;
   };
 
   factory.setVolume = function(volume) {
     //$rootScope.$apply(function() {
-      $(videoTarget).jPlayer('volume', volume);
-      factory.getVolume = volume;
+    $(videoTarget).jPlayer('volume', volume);
+    factory.getVolume = volume;
     //});
   };
 
@@ -185,7 +187,7 @@ angular.module('bmmLibApp')
 
   $rootScope.safeApply = function(fn) {
     var phase = this.$root.$$phase;
-    if(phase == '$apply' || phase == '$digest') {
+    if(phase === '$apply' || phase === '$digest') {
       if(fn && (typeof(fn) === 'function')) {
         fn();
       }
