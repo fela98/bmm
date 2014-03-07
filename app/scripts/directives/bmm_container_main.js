@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .directive('bmmContainerMain', [function () {
+  .directive('bmmContainerMain', ['$timeout', function ($timeout) {
     return {
       compile : function() {
         return {
@@ -24,6 +24,11 @@ angular.module('bmmLibApp')
 
             if($(window).width() <= 500) {
               scope.miniScreen = true;
+              $timeout(function() {
+                $timeout(function() {
+                  $(window).trigger('resize');
+                });
+              });
             }
 
             $(window).resize(function() {

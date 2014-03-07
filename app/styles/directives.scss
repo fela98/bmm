@@ -10,6 +10,11 @@ $bmm-background-inverse: #282E33;
 
 $gray: #858585;
 
+@import url(http://fonts.googleapis.com/css?family=Lato);
+body {
+  font-family: 'Lato', sans-serif;
+}
+
 @media screen and (max-width: 30em) {
   .bmm-container-header {
     max-width: 18em;
@@ -37,6 +42,9 @@ $gray: #858585;
   .bmm-container-header.bmm-small {
     margin-left: -18em;
   }
+  .bmm-container-main {
+    overflow-x: hidden !important;
+  }
   .bmm-view {
     position: absolute !important;
     left: 18em;
@@ -55,6 +63,9 @@ $gray: #858585;
   }
   .bmm-view.bmm-small {
     position: absolute !important;
+    overflow-x: hidden !important;
+    padding: 2em 1em;
+    margin-bottom: 0;
     left: 0;
   }
   .bmm-navigator-switch {
@@ -64,6 +75,19 @@ $gray: #858585;
   .bmm-navigator-switch.bmm-small {
     background-image: url(../images/svg/blacktoggle.svg) !important;
   }
+
+  .bmm-main-container.bmm-small {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .bmm-main-container {
+    overflow: hidden !important;
+  }
+
 }
 
 //***********************************//
@@ -175,7 +199,7 @@ body {
 
   > * {
     float: left;
-    padding-top: 1.5em;
+    padding: 1.3em 0;
   }
 
   input {
@@ -443,8 +467,8 @@ body {
     float: right;
     display: inline-block;
     color: $bmm-background;
-    padding: 1em 0 0;
     font-weight: bold;
+    padding: 0;
     margin: 0;
 
     li, a {
@@ -706,6 +730,11 @@ body {
   height: 1.3em;
   width: 1.3em;
   top: -.6em;
+  cursor: pointer
+}
+
+.ui-slider .ui-slider-handle:hover {
+  background-image: url(../images/svg/sliderbutton_hover.svg);
 }
 
 .ui-slider-vertical.ui-slider .ui-slider-handle {
