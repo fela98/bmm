@@ -44,6 +44,14 @@ body {
   }
   .bmm-container-main {
     overflow-x: hidden !important;
+    $animation-video-speed: .5s;
+    $animation-video-type: ease;
+
+    -webkit-transition: all $animation-video-speed $animation-video-type;
+    -moz-transition: all $animation-video-speed $animation-video-type;
+    -ms-transition: all $animation-video-speed $animation-video-type;
+    -o-transition: all $animation-video-speed $animation-video-type;
+    transition: all $animation-video-speed $animation-video-type;
   }
   .bmm-view {
     position: absolute !important;
@@ -86,6 +94,14 @@ body {
 
   .bmm-main-container {
     overflow: hidden !important;
+    $animation-video-speed: .5s;
+    $animation-video-type: ease;
+
+    -webkit-transition: all $animation-video-speed $animation-video-type;
+    -moz-transition: all $animation-video-speed $animation-video-type;
+    -ms-transition: all $animation-video-speed $animation-video-type;
+    -o-transition: all $animation-video-speed $animation-video-type;
+    transition: all $animation-video-speed $animation-video-type;
   }
 
 }
@@ -243,7 +259,7 @@ body {
 .bmm-wrapper {
   margin: auto;
   max-width: 70em;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .bmm-view {
@@ -384,8 +400,8 @@ body {
       padding: .5em 0 .5em 1.8em;
       margin: 0 1.1em;
       background-image: url(../images/svg/playliststatic.svg);
-      background-size: 1.6em 1.6em;
-      background-position-y: .43em;
+      background-size: 1.6em 1.2em;
+      background-position: 0 .54em;
       background-repeat: no-repeat;
     }
 
@@ -405,8 +421,8 @@ body {
 
     li {
       background-image: url(../images/svg/playlistprivate.svg);
-      background-size: 1.3em 1.5em;
-      background-position-x: .29em;
+      background-size: 1.25em .9em;
+      background-position: .29em .7em;
       margin-bottom: .2em;
     }
 
@@ -432,8 +448,8 @@ body {
 
   h3 {
     background-image: url(../images/svg/pluss.svg);
-    background-size: 1.4em;
-    background-position: .19em .29em;
+    background-size: 1.4em 1.3em;
+    background-position: .19em .35em;
     background-repeat: no-repeat;
     padding: .5em 0 .5em 1.8em;
     font-size: 1em;
@@ -586,7 +602,6 @@ body {
   width: 100%;
 
   .bmm-wrapper {
-    overflow: visible;
     margin: 0 auto;
   }
 }
