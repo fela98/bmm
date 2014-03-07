@@ -224,6 +224,7 @@ body {
     background-position: center center;
     background-color: #006B3D;
     width: 3em;
+    padding: 0;
   }
 
   input:last-child:hover {
@@ -471,11 +472,14 @@ body {
     padding: 0;
     margin: 0;
 
-    li, a {
+    li {
       float: left;
       list-style: none;
       padding: 0 1em;
       margin: .3em 0;
+    }
+
+    a {
       color: $bmm-background;
     }
 
