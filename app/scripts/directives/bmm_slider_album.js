@@ -36,7 +36,6 @@ angular.module('bmmLibApp')
 
           redrawElements();
 
-          element.height(element.find('li').width());
           btnLeft.css({
             top: (element.height()/2)-(btnLeft.height()/2)
           });
@@ -50,7 +49,6 @@ angular.module('bmmLibApp')
 
           redrawElements();
 
-          element.height(element.find('li').width());
           btnLeft.css({
             top: (element.height()/2)-(btnLeft.height()/2)
           });
@@ -62,23 +60,32 @@ angular.module('bmmLibApp')
 
         var redrawElements = function(animate) {
 
-          //li width is set in CSS : 23%
-          //8% is left for margin
+          var width = (element.find('ul').width()*0.23);
+          var height = width;
 
           margin = (element.find('ul').width()*0.08)/5.0;
 
+          element.height(height+(width*0.1));
+
+          element.find('li').css({
+            width: width,
+            height: height
+          });
+
           element.find('li').each(function(i) {
+
+            if ($(this).find('shadow').length===0) {
+              $(this).append('<div class="shadow"></div>');
+            }
 
             if (typeof animate==='undefined'||!animate) {
               $(this).css({
-
                 left: (($(this).width()+margin)*i)-
                       (($(this).width()+margin)*(page*4))+margin
 
               });
             } else {
               $(this).animate({
-
                 left: (($(this).width()+margin)*i)-
                       (($(this).width()+margin)*(page*4))+margin
 

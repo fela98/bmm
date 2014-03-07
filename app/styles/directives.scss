@@ -414,11 +414,11 @@ body {
     }
 
     li.active {
-      background-color: rgba(56, 106, 233, .5);
+      border: rgba(255, 255, 255, 0.18) dashed .2em;
     }
 
     li.active.hover {
-      background-color: rgba(56, 106, 233, 1);
+      border: rgba(255, 255, 255, 1) dashed .2em;
     }
 
   }
@@ -1069,10 +1069,10 @@ $animation-video-type: ease;
     margin: auto;
     top: 86%;
     width: 45%;
-    height: 2%;
-    opacity: 0.5;
-    background-color: #afafaf;
-    box-shadow: 0 0 .9em .2em #777;
+    height: 8%;
+    background-image: url(../images/svg/videoshadow.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 
   > div.bmm-slider-video-prev,
@@ -1085,34 +1085,40 @@ $animation-video-type: ease;
   }
 
   > div.bmm-slider-video-next {
+    background-image: url(../images/svg/videonext.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.7;
     right: 0;
     left: auto;
-    width: 40px;
-    height: 55px;
+    width: 4em;
+    height: 5em;
   }
 
   > div.bmm-slider-video-prev {
-    width: 40px;
-    height: 55px;
+    background-image: url(../images/svg/videoprevious.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    width: 4em;
+    height: 5em;
   }
 
   > div.bmm-slider-video-next:hover {
+    opacity: 1;
     cursor: pointer;
   }
 
   > div.bmm-slider-video-prev:hover {
+    opacity: 1;
     cursor: pointer;
   }
 
   > div.bmm-videos > div:hover {
     > div .bmm-slider-video-play {
-      position: relative;
-      margin: auto;
-      margin-top: -40px;
-      top: 50%;
-      width: 80px;
-      height: 80px;
+      opacity: 1;
     }
+    cursor: pointer;
   }
 
   > div.bmm-videos {
@@ -1156,10 +1162,14 @@ $animation-video-type: ease;
         .bmm-slider-video-play {
           position: relative;
           margin: auto;
-          margin-top: -40px;
+          margin-top: -3em;
           top: 50%;
-          width: 80px;
-          height: 80px;
+          width: 6em;
+          height: 6em;
+          background-image: url(../images/svg/playsymbol.svg);
+          background-size: contain;
+          background-repeat: no-repeat;
+          opacity: 0.7;
         }
       }
 
@@ -1221,16 +1231,33 @@ $animation-video-type: ease;
     position: absolute;
     height: 50%;
     width: 6%;
-    background-color: silver;
     margin: 0;
   }
 
   > .bmm-slider-album-prev {
-    left: 0;
+    background-image: url(../images/svg/albumprevious.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    left: .2%;
+    opacity: 0.7;
+  }
+
+  > .bmm-slider-album-prev:hover {
+    opacity: 1;
+    cursor: pointer;
   }
 
   > .bmm-slider-album-next {
-    right: 0;
+    background-image: url(../images/svg/albumnext.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    right: .2%;
+    opacity: 0.7;
+  }
+
+  > .bmm-slider-album-next:hover {
+    opacity: 1;
+    cursor: pointer;
   }
 
   ul {
@@ -1240,10 +1267,17 @@ $animation-video-type: ease;
 
   li {
     position: absolute;
-    width: 23%;
-    height: 100%;
     display: inline-block;
     list-style-type: none;
+    .shadow {
+      position: absolute;
+      width: 100%;
+      bottom: -15%;
+      height: 15%;
+      background-image: url(../images/svg/albumshadow.svg);
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
   }
 
 }
