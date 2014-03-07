@@ -65,7 +65,7 @@ angular.module('bmmLibApp')
           //li width is set in CSS : 23%
           //8% is left for margin
 
-          margin = (element.find('ul').width()*.08)/5.0;
+          margin = (element.find('ul').width()*0.08)/5.0;
 
           element.find('li').each(function(i) {
 

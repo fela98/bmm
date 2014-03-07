@@ -124,9 +124,9 @@ angular.module('bmmLibApp')
     } else {
 
       if (factory.getFullscreen==='off') {
-        var bool = true;
+        bool = true;
       } else {
-        var bool = false;
+        bool = false;
       }
       
     }
