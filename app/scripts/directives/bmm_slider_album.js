@@ -62,8 +62,10 @@ angular.module('bmmLibApp')
 
         var redrawElements = function(animate) {
 
-          margin = (element.find('ul').width()-
-                   (element.find('li').width()*4))/2.5;
+          //li width is set in CSS : 23%
+          //8% is left for margin
+
+          margin = (element.find('ul').width()*.08)/5.0;
 
           element.find('li').each(function(i) {
 
@@ -71,16 +73,14 @@ angular.module('bmmLibApp')
               $(this).css({
 
                 left: (($(this).width()+margin)*i)-
-                      (($(this).width()+margin)*(page*4))+
-                      margin
+                      (($(this).width()+margin)*(page*4))+margin
 
               });
             } else {
               $(this).animate({
 
                 left: (($(this).width()+margin)*i)-
-                      (($(this).width()+margin)*(page*4))+
-                      margin
+                      (($(this).width()+margin)*(page*4))+margin
 
               },'fast');
             }

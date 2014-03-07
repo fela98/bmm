@@ -16,8 +16,12 @@ body {
 }
 
 @media screen and (max-width: 30em) {
-  .bmm-container-header {
-    max-width: 18em;
+
+  .bmm-container-header,
+  .bmm-container-main,
+  .bmm-view,
+  .bmm-main-container
+  {
     $animation-video-speed: .5s;
     $animation-video-type: ease;
 
@@ -26,6 +30,10 @@ body {
     -ms-transition: all $animation-video-speed $animation-video-type;
     -o-transition: all $animation-video-speed $animation-video-type;
     transition: all $animation-video-speed $animation-video-type;
+  }
+
+  .bmm-container-header {
+    max-width: 18em;
 
     ul {
       float: none !important;
@@ -44,14 +52,6 @@ body {
   }
   .bmm-container-main {
     overflow-x: hidden !important;
-    $animation-video-speed: .5s;
-    $animation-video-type: ease;
-
-    -webkit-transition: all $animation-video-speed $animation-video-type;
-    -moz-transition: all $animation-video-speed $animation-video-type;
-    -ms-transition: all $animation-video-speed $animation-video-type;
-    -o-transition: all $animation-video-speed $animation-video-type;
-    transition: all $animation-video-speed $animation-video-type;
   }
   .bmm-view {
     position: absolute !important;
@@ -59,15 +59,6 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-
-    $animation-video-speed: .5s;
-    $animation-video-type: ease;
-
-    -webkit-transition: all $animation-video-speed $animation-video-type;
-    -moz-transition: all $animation-video-speed $animation-video-type;
-    -ms-transition: all $animation-video-speed $animation-video-type;
-    -o-transition: all $animation-video-speed $animation-video-type;
-    transition: all $animation-video-speed $animation-video-type;
   }
   .bmm-view.bmm-small {
     position: absolute !important;
@@ -94,14 +85,6 @@ body {
 
   .bmm-main-container {
     overflow: hidden !important;
-    $animation-video-speed: .5s;
-    $animation-video-type: ease;
-
-    -webkit-transition: all $animation-video-speed $animation-video-type;
-    -moz-transition: all $animation-video-speed $animation-video-type;
-    -ms-transition: all $animation-video-speed $animation-video-type;
-    -o-transition: all $animation-video-speed $animation-video-type;
-    transition: all $animation-video-speed $animation-video-type;
   }
 
 }
@@ -1151,6 +1134,8 @@ $animation-video-type: ease;
       -ms-transition: all $animation-video-speed $animation-video-type;
       -o-transition: all $animation-video-speed $animation-video-type;
       transition: all $animation-video-speed $animation-video-type;
+
+      @include transform(perspective(600px) scale(1,1) rotateY(0deg) translate3d(0,0,0));
       
       > img {
         position: absolute;
@@ -1184,6 +1169,7 @@ $animation-video-type: ease;
     > div.left {
       display: block;
       left: 6%;
+      @include transform(perspective(600px) scale(0.8,0.8) rotateY(20deg));
       -webkit-transform-origin: 0% 45%;
       -ms-transform-origin: 0% 45%;
       transform-origin: 0% 45%;
@@ -1212,6 +1198,7 @@ $animation-video-type: ease;
     > div.right {
       display: block;
       left: 44%;
+      @include transform(perspective(400px) scale(0.8,0.8) rotateY(-20deg));
       -webkit-transform-origin: 100% 45%;
       -ms-transform-origin: 100% 45%;
       transform-origin: 100% 45%;
@@ -1247,7 +1234,7 @@ $animation-video-type: ease;
   }
 
   ul {
-    margin: 0 2%;
+    margin: 0;
     padding: 0;
   }
 
