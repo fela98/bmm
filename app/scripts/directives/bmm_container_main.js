@@ -23,7 +23,6 @@ angular.module('bmmLibApp')
             });
 
             if($(window).width() <= 500) {
-              scope.miniScreen = true;
               $timeout(function() {
                 $timeout(function() {
                   $(window).trigger('resize');
@@ -31,11 +30,18 @@ angular.module('bmmLibApp')
               });
             }
 
+            var minified = false;
             $(window).resize(function() {
-              if($(window).width() <= 500) {
+              if($(window).width()<=500&&!minified) {
+
+                minified = true;
                 scope.miniScreen = true;
-              } else {
+
+              } else if (minified&&$(window).width()>500) {
+
+                minified = false;
                 scope.miniScreen = false;
+
               }
             });
 

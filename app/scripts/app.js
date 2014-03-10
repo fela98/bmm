@@ -19,10 +19,11 @@ angular.module('bmmDebug', [
   'ngRoute',
   'bmmLibApp',
   'ui.sortable',
+  'ui.bootstrap',
   'angularTreeview'
 ]).run(['$route', 'bmmApi', function($route, bmmApi)  {
 
-    bmmApi.serverUrl('https://'+window.location.hostname+'/bmm/api/web/app_dev.php/');
+    bmmApi.serverUrl('https://'+window.location.hostname+'/bmm/api/web/app.php/');
     
     bmmApi.user().done(function() {
     }).fail(function() {
