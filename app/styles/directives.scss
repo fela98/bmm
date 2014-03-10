@@ -555,14 +555,6 @@ body {
       }
       th:last-child {
         border-right: none;
-        zoom: 75%;
-        .bmm-track-tools {
-          .bmm-track-download {
-            margin: 0 .1em;
-          }
-          margin-right: .1em;
-        }
-
       }
     }
     tbody {
@@ -573,8 +565,12 @@ body {
         padding: 0 0 0 .5em;
       }
       td:last-child {
+        zoom: 75%;
         padding: 0 .5em 0 0;
         float: right;
+        .bmm-track-download {
+          margin: 0 .1em;
+        }
       }
     }
     td > * {
