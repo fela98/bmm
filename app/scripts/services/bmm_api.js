@@ -372,7 +372,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrli+'track/latest',
+      url: serverUrli+'track',
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
