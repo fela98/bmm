@@ -93,6 +93,10 @@ body {
 
 }
 
+tr.ui-draggable-dragging {
+  background-color: $bmm-main;
+}
+
 tr.ui-draggable-dragging * {
   float: left;
   margin-right: .5em;
@@ -485,7 +489,9 @@ body {
   }
 
   form.bmm-private {
-     margin: 1.1em;
+    input {
+      width: 9em;
+    }
   }
 
 }
@@ -603,6 +609,7 @@ body {
       }
       td {
         padding: 0 0 0 .5em;
+        background-position-x: center;
       }
       td:last-child {
         zoom: 75%;
