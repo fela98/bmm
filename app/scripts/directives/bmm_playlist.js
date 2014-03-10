@@ -35,7 +35,7 @@ angular.module('bmmLibApp')
           element.find('tbody').find('tr').each(function() {
             $(this).draggable({
               handle: '.drag',
-              helper: 'clone',
+              //helper: 'clone',
               appendTo: 'body',
               revert: 'invalid',
               scope: 'move'

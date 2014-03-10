@@ -93,6 +93,15 @@ body {
 
 }
 
+tr.ui-draggable-dragging * {
+  float: left;
+  margin-right: .5em;
+}
+
+tr.ui-draggable-dragging div {
+  display: none;
+}
+
 //***********************************//
 //*********bmm-player-target*********//
 .bmm-player-target {
