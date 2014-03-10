@@ -10,9 +10,9 @@ $bmm-background-inverse: #282E33;
 
 $gray: #858585;
 
-@import url(http://fonts.googleapis.com/css?family=Lato);
+@import url(http://fonts.googleapis.com/css?family=Alegreya+Sans+SC);
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Alegreya Sans SC', sans-serif;
 }
 
 @media screen and (max-width: 30em) {
@@ -569,8 +569,13 @@ body {
         padding: 0 .5em 0 0;
         float: right;
         .bmm-track-download {
-          margin: 0 .1em;
+          margin: 0 .2em;
         }
+      }
+      tr:hover {
+        color: $bmm-background;
+        background-color: $bmm-background-inverse;
+        cursor: pointer;
       }
     }
     td > * {
