@@ -74,7 +74,7 @@ angular.module('bmmLibApp')
 
           element.find('li').each(function(i) {
 
-            if ($(this).find('shadow').length===0) {
+            if ($(this).find('.shadow').length===0) {
               $(this).append('<div class="shadow"></div>');
             }
 
