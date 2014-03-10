@@ -489,7 +489,7 @@ body {
   }
 
   form.bmm-private {
-    input {
+    input:first-child {
       width: 9em;
     }
   }
