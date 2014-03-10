@@ -17,6 +17,10 @@ body {
 
 @media screen and (max-width: 30em) {
 
+  .bmm-large-only {
+    display: none;
+  }
+
   .bmm-container-header,
   .bmm-container-main,
   .bmm-view,
