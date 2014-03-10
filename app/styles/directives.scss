@@ -407,6 +407,12 @@ body {
       background-size: 1.25em .9em;
       background-position: .29em .7em;
       margin-bottom: .2em;
+      .bmm-button-delete {
+        background-image: none;
+      }
+      .bmm-button-delete:hover {
+        background-image: url('../images/svg/trash.svg');
+      }
     }
 
     li:hover {
@@ -421,6 +427,22 @@ body {
       border: rgba(255, 255, 255, 1) dashed .2em;
     }
 
+  }
+
+  .bmm-button-delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 3em;
+    background-image: url('../images/svg/trash.svg');
+    background-position: center center;
+    background-size: 1.2em 1.2em;
+    background-repeat: no-repeat;
+  }
+
+  .bmm-button-delete:hover {
+    cursor: pointer;
   }
 
   h1 {
@@ -574,8 +596,8 @@ body {
       }
       tr:hover {
         color: $bmm-background;
-        background-color: $bmm-background-inverse;
-        cursor: pointer;
+        background-color: $bmm-main;
+        cursor: default;
       }
     }
     td > * {
