@@ -24,8 +24,8 @@ body {
   .bmm-container-header ul.dropdown-menu {
     width: auto;
     li {
-      padding: .1em .5em;
-      margin: 0;
+      padding: .1em .5em !important;
+      margin: 0 !important;
     }
   }
 
@@ -164,7 +164,7 @@ body {
   cursor: default;
   .dropdown-menu {
     min-width: 0 !important;
-    left: -6em;
+    left: -7em;
     li {
       padding: .1em .5em;
       margin: 0;
