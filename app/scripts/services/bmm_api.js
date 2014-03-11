@@ -81,9 +81,10 @@ angular.module('bmmLibApp')
   };
 
   /** Get the latest albums of a specific type (Default is all types) **/
-  factory.albumLatest = function(options) {
+  factory.albumLatest = function(options, language) {
     
     if (typeof options === 'undefined') { options = {}; }
+    if (typeof language === 'undefined') { language = ''; }
 
     /** OPTIONS (Stars = Required)
      *    size                      Integer         \d+
@@ -96,6 +97,9 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'album',
+      headers: {
+        'Accept-Language': language
+      },
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
@@ -110,6 +114,7 @@ angular.module('bmmLibApp')
   factory.albumGet = function(id, language, options) {
 
     if (typeof options === 'undefined') { options = {}; }
+    if (typeof language === 'undefined') { language = ''; }
 
     /** OPTIONS (Stars = Required)
      *    raw                       Boolean         Role: ROLE_ALBUM_MANAGER
@@ -135,13 +140,11 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'album/'+id,
+      headers: {
+        'Accept-Language': language
+      },
       data: $.param(options),
-      dataType: 'json',
-      beforeSend: function (xhr) {
-        if (typeof language !== 'undefined') {
-          xhr.setRequestHeader('Accept-Language', language);
-        }
-      }
+      dataType: 'json'
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -254,9 +257,10 @@ angular.module('bmmLibApp')
   };
 
   /** Get a list of the data **/
-  factory.search = function(term, options) {
+  factory.search = function(term, options, language) {
 
     if (typeof options === 'undefined') { options = {}; }
+    if (typeof language === 'undefined') { language = ''; }
 
     /** OPTIONS (Stars = Required)
      *    size                      Integer         \d+ Def = 20
@@ -270,6 +274,9 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'search/'+term,
+      headers: {
+        'Accept-Language': language
+      },
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
@@ -281,11 +288,16 @@ angular.module('bmmLibApp')
   };
 
   /** Get a list of suggestions based on a given term **/
-  factory.suggest = function(term) {
+  factory.suggest = function(term, language) {
+
+    if (typeof language === 'undefined') { language = ''; }
 
     return $.ajax({
       method: 'GET',
       url: serverUrli+'suggest/'+term,
+      headers: {
+        'Accept-Language': language
+      },
       dataType: 'json'
     }).fail( function(xhr) {
 
@@ -357,9 +369,10 @@ angular.module('bmmLibApp')
   };
 
   /** Get a list of the latest tracks in the library **/
-  factory.trackLatest = function(options) {
+  factory.trackLatest = function(options, language) {
 
     if (typeof options === 'undefined') { options = {}; }
+    if (typeof language === 'undefined') { language = ''; }
 
     /** OPTIONS (Stars = Required)
      *    size                      Integer         \d+ Def = 20
@@ -373,6 +386,9 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'track',
+      headers: {
+        'Accept-Language': language
+      },
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
@@ -384,9 +400,10 @@ angular.module('bmmLibApp')
   };
 
   /** Get a list of tracks related to what you asked for **/
-  factory.trackRel = function(name, options) {
+  factory.trackRel = function(name, options, language) {
 
     if (typeof options === 'undefined') { options = {}; }
+    if (typeof language === 'undefined') { language = ''; }
 
     /** OPTIONS (Stars = Required)
      *    size                      Integer         \d+ Def = 20
@@ -399,6 +416,9 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'track/rel/'+name,
+      headers: {
+        'Accept-Language': language
+      },
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
@@ -410,9 +430,10 @@ angular.module('bmmLibApp')
   };
 
   /** Get a translated version of a track **/
-  factory.trackGet = function(id, options) {
+  factory.trackGet = function(id, options, language) {
 
     if (typeof options === 'undefined') { options = {}; }
+    if (typeof language === 'undefined') { language = ''; }
 
     /** RETURNS
      *    Absolute file path
@@ -421,6 +442,9 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'track/'+id,
+      headers: {
+        'Accept-Language': language
+      },
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
