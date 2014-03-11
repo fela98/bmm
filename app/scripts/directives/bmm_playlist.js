@@ -61,6 +61,25 @@ angular.module('bmmLibApp')
           });
         };
 
+        //Scroll while dragging
+        var clicked = false, clickY;
+        $('.bmm-view').on({
+            'mousemove': function(e) {
+                clicked && updateScrollPos(e);
+            },
+            'mousedown': function(e) {
+                clicked = true;
+                clickY = e.pageY;
+            },
+            'mouseup': function() {
+                clicked = false;
+            }
+        });
+
+        var updateScrollPos = function(e) {
+            $('.bmm-view').scrollTop($('.bmm-view').scrollTop() + (clickY - e.pageY));
+        }
+
       }
     };
   }]);
