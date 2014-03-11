@@ -133,7 +133,7 @@ angular.module('bmmLibApp')
       if (shuffle) {
 
         if (shuffledList.length!==0) {
-          factory.index= shuffledList[shuffledList.length];
+          factory.index= shuffledList[(shuffledList.length-1)];
           shuffledList.pop();
           return factory.getCurrent();
         } else {
