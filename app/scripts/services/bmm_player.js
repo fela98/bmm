@@ -168,6 +168,8 @@ angular.module('bmmLibApp')
       factory.setPlay();
     }
 
+    factory.getTrackCount++;
+
   };
 
   factory.setCurrentTime = function(value) {
@@ -186,6 +188,7 @@ angular.module('bmmLibApp')
   factory.getExtra = '';
   factory.getFullscreen = 'off';
   factory.getPlaying = false;
+  factory.getTrackCount = 0; //Checked by playlists (updates current playing track)
 
   $rootScope.safeApply = function(fn) {
     var phase = this.$root.$$phase;
