@@ -43,8 +43,7 @@ angular.module('bmmLibApp')
         },
         ended: function() {
           //End of track
-          factory.setNext();
-          factory.setPlay();
+          factory.setNext(true);
         },
         resize: function() {
           //Fullscreen was toggled
@@ -87,10 +86,13 @@ angular.module('bmmLibApp')
     //});
   };
 
-  factory.setNext = function() {
+  factory.setNext = function(play) {
     var src = bmmPlaylist.getNext();
     if (src!==false) {
       factory.setSource(src);
+      if (typeof play!=='undefined'&&play) {
+        factory.setPlay();
+      }
     }
   };
 
