@@ -21,6 +21,14 @@ body {
     display: none;
   }
 
+  .bmm-container-header ul.dropdown-menu {
+    width: auto;
+    li {
+      padding: .1em .5em;
+      margin: 0;
+    }
+  }
+
   .bmm-container-header,
   .bmm-container-main,
   .bmm-view,
@@ -157,6 +165,10 @@ body {
   .dropdown-menu {
     min-width: 0 !important;
     left: -6em;
+    li {
+      padding: .1em .5em;
+      margin: 0;
+    }
   }
 
   > a {
