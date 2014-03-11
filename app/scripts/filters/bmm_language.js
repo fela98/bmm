@@ -7,20 +7,20 @@ angular.module('bmmLibApp')
       var languageNames = {
         nb: 'Norsk',
         af: 'Afrikaans',
-        bg: 'български език',
-        cs: 'čeština',
+        bg: 'Български език',
+        cs: 'Čeština',
         de: 'Deutsch',
         en: 'English',
-        es: 'español',
-        fi: 'suomi',
-        fr: 'français',
-        hr: 'hrvatski',
+        es: 'Español',
+        fi: 'Suomi',
+        fr: 'Français',
+        hr: 'Hrvatski',
         hu: 'Magyar',
         it: 'Italiano',
         nl: 'Nederlands',
-        pl: 'polski',
+        pl: 'Polski',
         pt: 'Português',
-        ro: 'română',
+        ro: 'Română',
         ru: 'Русский язык',
         tr: 'Türkçe',
         zh: '中文',
@@ -30,7 +30,7 @@ angular.module('bmmLibApp')
       if (typeof languageNames[lang]!=='undefined') {
         return languageNames[lang];
       } else {
-        return 'Unknown';
+        return lang;
       }
 
     };
