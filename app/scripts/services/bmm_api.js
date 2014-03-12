@@ -637,7 +637,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'POST',
-      url: serverUrli+'track_collection',
+      url: serverUrli+'track_collection/',
       data: $.param(options),
       dataType: 'json'
     }).fail( function() {
