@@ -38,10 +38,9 @@ angular.module('bmmLibApp')
             $(this).draggable({
               handle: '.drag',
               helper: 'clone',
-              appendTo: '.bmm-navigator-playlist',
+              appendTo: '.bmm-main-container',
               revert: 'invalid',
               scope: 'move',
-              containment: '.bmm-main-container',
               scroll: true,
               start: function(e,ui) {
                 a = ui.position.top;
