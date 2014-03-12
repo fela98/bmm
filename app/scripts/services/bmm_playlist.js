@@ -8,8 +8,7 @@ angular.module('bmmLibApp')
         shuffle=false,
         repeat=false,
         tracks=[],
-        shuffleList=[],
-        shuffledList=[];
+        shuffleList=[];
 
     factory.setTracks = function(options) {
 
@@ -50,7 +49,6 @@ angular.module('bmmLibApp')
       }
 
       shuffleList = [];
-      shuffledList = [];
       $.each(tracks, function(index) {
         shuffleList.push(index);
       });
@@ -111,7 +109,6 @@ angular.module('bmmLibApp')
 
         var index = Math.floor(Math.random() * shuffleList.length)
         factory.index = shuffleList[index];
-        shuffledList.push(index);
         shuffleList.splice(index,1);
 
         return factory.getCurrent();
@@ -132,13 +129,17 @@ angular.module('bmmLibApp')
 
       if (shuffle) {
 
-        if (shuffledList.length!==0) {
-          factory.index= shuffledList[(shuffledList.length-1)];
-          shuffledList.pop();
-          return factory.getCurrent();
-        } else {
+        if (shuffleList.length===0&&repeat) {
+          factory.setShuffle(true); //Creates new list
+        } else if (shuffleList.length===0&&!repeat) {
           return false;
         }
+
+        var index = Math.floor(Math.random() * shuffleList.length)
+        factory.index = shuffleList[index];
+        shuffleList.splice(index,1);
+
+        return factory.getCurrent();
 
       } else if (factory.index>0) {
         factory.index--;

@@ -625,6 +625,30 @@ angular.module('bmmLibApp')
   };
 
   /** Add a track, and PUT it again **/
+  factory.userTrackCollectionPost = function(options) {
+
+    if (typeof options === 'undefined') { options = {}; }
+
+    /** headers
+     *    'Accept-Language':        String          ISO 639-1 || ISO 639-3
+     *    'Link':                   <url1> <- Currently not working with multiple
+     *    'Link':                   <url2> <- last will be used
+     */
+
+    return $.ajax({
+      method: 'POST',
+      url: serverUrli+'user/track_collection',
+      data: $.param(options),
+      dataType: 'json'
+    }).fail( function() {
+
+      //console.log(xhr);
+
+    });
+
+  };
+
+  /** Add a track, and PUT it again **/
   factory.userTrackCollectionLink = function(playlist, tracks, language) {
 
     if (typeof tracks === 'undefined') { tracks = {}; }
