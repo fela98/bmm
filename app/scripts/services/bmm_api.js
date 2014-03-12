@@ -637,7 +637,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'POST',
-      url: serverUrli+'user/track_collection',
+      url: serverUrli+'track_collection',
       data: $.param(options),
       dataType: 'json'
     }).fail( function() {
@@ -661,7 +661,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'LINK',
-      url: serverUrli+'user/track_collection/'+playlist,
+      url: serverUrli+'track_collection/'+playlist,
       beforeSend: function (xhr) {
         $.each(tracks, function() {
           //@todo - Find a solution for multiple Link requests
@@ -683,7 +683,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrli+'user/track_collection/'+id,
+      url: serverUrli+'track_collection/'+id,
       dataType: 'json'
     }).fail( function(xhr) {
 
@@ -726,7 +726,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'DELETE',
-      url: serverUrli+'user/track_collection/'+id,
+      url: serverUrli+'track_collection/'+id,
       dataType: 'json'
     }).fail( function() {
 
