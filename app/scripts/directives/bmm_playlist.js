@@ -31,16 +31,26 @@ angular.module('bmmLibApp')
           element.toggleClass('active');
         });
 
+        var a,b,c; //Quickfix for wrong y-position while scrolling
+
         var appendDragDrop = function() {
           element.find('tbody').find('tr').each(function() {
             $(this).draggable({
               handle: '.drag',
               helper: 'clone',
-              appendTo: '.bmm-main-container',
+              appendTo: '.bmm-navigator-playlist',
               revert: 'invalid',
               scope: 'move',
               containment: '.bmm-main-container',
               scroll: true,
+              start: function(e,ui) {
+                a = ui.position.top;
+                b = $('.bmm-container-main').scrollTop();
+                c = e.pageY;
+              },
+              drag: function(e,ui) {
+                ui.position.top = a+$('.bmm-container-main').scrollTop()-b+e.pageY-c;
+              },
               cursorAt: {
                 left: 2,
                 top: 2
