@@ -40,7 +40,8 @@ angular.module('bmmLibApp')
               revert: 'invalid',
               scope: 'move',
               containment: '.bmm-main-container',
-              scroll: true
+              scroll: true,
+              refreshPositions: true
             });
           });
 
