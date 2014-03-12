@@ -41,7 +41,10 @@ angular.module('bmmLibApp')
               scope: 'move',
               containment: '.bmm-main-container',
               scroll: true,
-              refreshPositions: true
+              cursorAt: {
+                left: 2,
+                top: 2
+              }
             });
           });
 
