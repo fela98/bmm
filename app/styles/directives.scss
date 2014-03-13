@@ -345,6 +345,7 @@ body {
   width: 100%;
   background: $bmm-background;
   box-shadow: 0 0 .2em;
+  opacity: 0.8;
 
   .bmm-volume-slider {
     margin: .8em .4em;
@@ -699,6 +700,7 @@ body {
     .bmm-video-target {
       width: 100%;
       height: 100%;
+      background: black;
     }
 
   }
@@ -881,7 +883,6 @@ body {
   width: 2em;
   height: 1.7em;
   right: .8em;
-  box-shadow: 0 0 1em rgba(132, 132, 132, 1);
   opacity: .7;
 }
 
