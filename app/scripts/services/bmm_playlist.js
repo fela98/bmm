@@ -4,7 +4,7 @@ angular.module('bmmLibApp')
   .factory('bmmPlaylist', ['bmmShuffle', function (bmmShuffle) {
     
     var factory = {},
-        url=false,
+        url='',
         shuffle=false,
         repeat=false,
         tracks=[],
