@@ -774,7 +774,9 @@ body {
   width: 4.5em;
   height: 4.5em;
   margin-right: .5em;
-  background-color: $bmm-background-inverse;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   border: .2em $bmm-background solid;
   float: left;
 }

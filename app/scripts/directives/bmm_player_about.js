@@ -3,7 +3,7 @@
 angular.module('bmmLibApp')
   .directive('bmmPlayerAbout', [function () {
     return {
-      template: '<div class="bmm-player-thumbnail"></div>'+
+      template: '<div class="bmm-player-thumbnail" style="background-image: url({{background | bmmCover}});"></div>'+
 				'<div class="bmm-player-title"></div>'+
         '<div class="bmm-player-subtitle"></div>'+
         '<div class="bmm-player-extra"></div>',
@@ -17,6 +17,7 @@ angular.module('bmmLibApp')
             });
           }
 
+          scope.background = attrs.cover;
           element.find('.bmm-player-title').append(attrs.title);
           element.find('.bmm-player-subtitle').append(attrs.subtitle);
           element.find('.bmm-player-extra').append(attrs.extra);
@@ -29,6 +30,10 @@ angular.module('bmmLibApp')
             
             checkMinified();
 
+          });
+
+          scope.$watch('bmmPlayer.getCover', function(cover) {
+            scope.background = cover;
           });
 
           scope.$watch('bmmPlayer.getTitle', function(title) {
