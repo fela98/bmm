@@ -33,7 +33,6 @@ angular.module('bmmLibApp')
         }
       }
       
-      
       return cover;
     };
   });

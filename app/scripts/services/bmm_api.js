@@ -818,6 +818,24 @@ angular.module('bmmLibApp')
 
   };
 
+  /** Get a list of tracks from contributor **/
+  factory.contributorTracksGet = function(id, options) {
+
+    if (typeof options === 'undefined') { options = {}; }
+
+    return $.ajax({
+      method: 'GET',
+      url: serverUrli+'contributor/'+id+'/track/',
+      data: $.param(options),
+      dataType: 'json'
+    }).fail( function(xhr) {
+
+      console.log(xhr);
+
+    });
+
+  };
+
   return factory;
 
 }]);
