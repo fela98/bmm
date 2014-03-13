@@ -400,7 +400,7 @@ angular.module('bmmLibApp')
   };
 
   /** Get a list of tracks related to what you asked for **/
-  factory.trackRel = function(name, options, language) {
+  factory.trackRel = function(key, options, language) {
 
     if (typeof options === 'undefined') { options = {}; }
     if (typeof language === 'undefined') { language = ''; }
@@ -415,7 +415,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrli+'track/rel/'+name,
+      url: serverUrli+'track/rel/'+key,
       headers: {
         'Accept-Language': language
       },
@@ -430,9 +430,8 @@ angular.module('bmmLibApp')
   };
 
   /** Get a translated version of a track **/
-  factory.trackGet = function(id, options, language) {
+  factory.trackGet = function(id, language) {
 
-    if (typeof options === 'undefined') { options = {}; }
     if (typeof language === 'undefined') { language = ''; }
 
     /** RETURNS
@@ -445,7 +444,6 @@ angular.module('bmmLibApp')
       headers: {
         'Accept-Language': language
       },
-      data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
 
@@ -710,7 +708,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'PUT',
-      url: serverUrli+'user/track_collection/'+id,
+      url: serverUrli+'track_collection/'+id,
       data: $.param(options),
       dataType: 'json'
     }).fail( function() {
@@ -731,6 +729,90 @@ angular.module('bmmLibApp')
     }).fail( function() {
 
       //console.log(xhr);
+
+    });
+
+  };
+
+  /** Get a list of contributors **/
+  factory.contributorGet = function(options) {
+
+    if (typeof options === 'undefined') { options = {}; }
+
+    return $.ajax({
+      method: 'GET',
+      url: serverUrli+'contributor',
+      data: $.param(options),
+      dataType: 'json'
+    }).fail( function(xhr) {
+
+      console.log(xhr);
+
+    });
+
+  };
+
+  /** Insert a contributor **/
+  factory.contributorPost = function(options) {
+
+    if (typeof options === 'undefined') { options = {}; }
+
+    return $.ajax({
+      method: 'POST',
+      url: serverUrli+'contributor',
+      data: $.param(options),
+      dataType: 'json'
+    }).fail( function(xhr) {
+
+      console.log(xhr);
+
+    });
+
+  };
+
+  /** Get a contributor **/
+  factory.contributorIdGet = function(id) {
+
+    return $.ajax({
+      method: 'GET',
+      url: serverUrli+'contributor/'+id,
+      dataType: 'json'
+    }).fail( function(xhr) {
+
+      console.log(xhr);
+
+    });
+
+  };
+
+  /** Update a contributor **/
+  factory.contributorIdPut = function(id, options) {
+
+    if (typeof options === 'undefined') { options = {}; }
+
+    return $.ajax({
+      method: 'PUT',
+      url: serverUrli+'contributor/'+id,
+      data: $.param(options),
+      dataType: 'json'
+    }).fail( function(xhr) {
+
+      console.log(xhr);
+
+    });
+
+  };
+
+  /** Delete a contributor **/
+  factory.contributorIdDelete = function(id) {
+
+    return $.ajax({
+      method: 'DELETE',
+      url: serverUrli+'contributor/'+id,
+      dataType: 'json'
+    }).fail( function(xhr) {
+
+      console.log(xhr);
 
     });
 
