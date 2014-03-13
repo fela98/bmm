@@ -6,7 +6,9 @@ angular.module('bmmLibApp')
     var factory = {},
         video = {},
         currentNavigator = 'main', //Options ['main', 'playlist']
-        displayNavigator = true;
+        displayNavigator = true,
+        mediaLanguageIsSet = false,
+        username;
 
     video.screen = {};
     video.screen.height = '180';
@@ -44,6 +46,25 @@ angular.module('bmmLibApp')
 
       return displayNavigator;
 
+    };
+
+    factory.mediaLanguage = 'nb'; //Fallbacklanguage
+    
+    factory.setMediaLanguage = function(lang) {
+      mediaLanguageIsSet = true;
+      factory.mediaLanguage = lang;
+    };
+
+    factory.mediaLanguageIsSet = function() {
+      return mediaLanguageIsSet;
+    };
+
+    factory.setUsername = function(name) {
+      username = name;
+    };
+
+    factory.getUsername = function() {
+      return username;
     };
 
     return factory;
