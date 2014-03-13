@@ -156,12 +156,12 @@ angular.module('bmmLibApp')
     if (source.video) {
       $(videoTarget).jPlayer('setMedia', {
         m4v: source.url,
-        poster: 'http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png'
+        poster: factory.getCover
       });
     } else {
       $(videoTarget).jPlayer('setMedia', {
         mp3: source.url,
-        poster: 'http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png'
+        poster: factory.getCover
       });
     }
 
