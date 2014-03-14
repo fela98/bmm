@@ -12,7 +12,9 @@ $gray: #858585;
 
 @import url("https://fonts.googleapis.com/css?family=Alegreya+Sans+SC");
 body, h1, h2, h3, h4, h5, h6, p {
-  font-family: 'Alegreya Sans SC', sans-serif;
+  font-family: 'Alegreya Sans SC', sans-serif !important;
+}
+body {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -628,9 +630,6 @@ body {
 
     > div {
       float: left;
-      h2 {
-        display: block;
-      }
     }
 
     ul {
