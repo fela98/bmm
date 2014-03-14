@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .factory('bmmPlaylist', ['bmmShuffle', function (bmmShuffle) {
+  .factory('bmmPlaylist', [ function () {
     
     var factory = {},
         url='',
@@ -107,7 +107,7 @@ angular.module('bmmLibApp')
           return false;
         }
 
-        var index = Math.floor(Math.random() * shuffleList.length)
+        var index = Math.floor(Math.random() * shuffleList.length);
         factory.index = shuffleList[index];
         shuffleList.splice(index,1);
 
@@ -135,7 +135,7 @@ angular.module('bmmLibApp')
           return false;
         }
 
-        var index = Math.floor(Math.random() * shuffleList.length)
+        var index = Math.floor(Math.random() * shuffleList.length);
         factory.index = shuffleList[index];
         shuffleList.splice(index,1);
 

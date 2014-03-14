@@ -6,7 +6,7 @@ angular.module('bmmLibApp')
 
       if (cover===null) {
         if (typeof type==='undefined') {
-          cover = 'fallback_images/svg/person.svg'
+          cover = 'fallback_images/svg/person.svg';
         } else {
           switch(type) {
             case 'speech':
