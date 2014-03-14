@@ -668,6 +668,10 @@ body {
   }
 }
 
+.bmm-view>.ng-scope>div h2 {
+  display: block;
+}
+
 //***********************************//
 //*******bmm-video-fullscreen********//
 .bmm-video-fullscreen {
@@ -1836,7 +1840,7 @@ $animation-video-type: ease;
 }
 
 .small {
-  font-size: 100%;
+  font-size: 100% !important;
 }
 
 //***********************************//
