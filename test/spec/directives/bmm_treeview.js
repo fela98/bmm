@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: bmmSliderList', function () {
+describe('Directive: bmmTreeview', function () {
 
   // load the directive's module
   beforeEach(module('bmmLibApp'));
@@ -13,8 +13,8 @@ describe('Directive: bmmSliderList', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<bmm-slider-list></bmm-slider-list>');
+    element = angular.element('<bmm-treeview></bmm-treeview>');
     element = $compile(element)(scope);
-    //expect(element.text()).toBe('this is the bmmSliderList directive');
+    expect(element.text()).toBe('this is the bmmTreeview directive');
   }));
 });
