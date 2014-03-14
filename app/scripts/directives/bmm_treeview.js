@@ -54,13 +54,13 @@ angular.module('bmmLibApp')
               '<i class="expanded" data-ng-show="node.' + nodeChildren + '.length && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
               '<i class="normal" data-ng-hide="node.' + nodeChildren + '.length"></i> ' +
               '<span data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node)">{{node.' + nodeLabel + '}}</span>' +
-              '<div data-ng-hide="node.collapsed" data-tree-id="' + treeId + '" data-tree-model="node.' + nodeChildren + '" data-node-id=' + nodeId + ' data-node-label=' + nodeLabel + ' data-node-children=' + nodeChildren + '></div>' +
+              '<div data-ng-hide="node.collapsed" data-tree-id="' + treeId + '" data-bmm-treeview="node.' + nodeChildren + '" data-node-id=' + nodeId + ' data-node-label=' + nodeLabel + ' data-node-children=' + nodeChildren + '></div>' +
             '</li>' +
           '</ul>';
         //check tree id, tree model
         if( treeId && bmmTreeview ) {
           //root node
-          if( attrs.angularTreeview ) {
+          if( attrs.bmmLibApp ) {
           
             //create tree object if not exists
             scope[treeId] = scope[treeId] || {};
