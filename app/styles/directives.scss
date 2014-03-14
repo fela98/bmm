@@ -197,7 +197,7 @@ tr.ui-draggable-dragging div {
 
 //***********************************//
 //*************tree-view*************//
-div[data-angular-treeview] {
+div[data-bmm-lib-app] {
   /* prevent user selection */
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
@@ -212,7 +212,7 @@ div[data-angular-treeview] {
   text-decoration: none;
 }
 
-div[data-tree-model] ul {
+div[data-bmm-treeview] ul {
   margin: 0;
   padding: 0;
   list-style: none; 
@@ -220,35 +220,35 @@ div[data-tree-model] ul {
   overflow: hidden;
 }
 
-div[data-tree-model] li {
+div[data-bmm-treeview] li {
   position: relative;
   padding: 0 0 0 20px;
   line-height: 20px;
 }
 
-div[data-tree-model] li .expanded {
+div[data-bmm-treeview] li .expanded {
   padding: 1px 10px;
   background-image: url("../images/treeview/folder.png");
   background-repeat: no-repeat;
 }
 
-div[data-tree-model] li .collapsed {
+div[data-bmm-treeview] li .collapsed {
   padding: 1px 10px;
   background-image: url("../images/treeview/folder-closed.png");
   background-repeat: no-repeat;
 }
 
-div[data-tree-model] li .normal {
+div[data-bmm-treeview] li .normal {
   padding: 1px 10px;
   background-image: url("../images/treeview/file.png");
   background-repeat: no-repeat;
 }
 
-div[data-tree-model] li i, div[data-tree-model] li span {
+div[data-bmm-treeview] li i, div[data-bmm-treeview] li span {
   cursor: pointer;
 }
 
-div[data-tree-model] li .selected {
+div[data-bmm-treeview] li .selected {
   background-color: #aaddff;
   font-weight: bold;
   padding: 1px 5px;
