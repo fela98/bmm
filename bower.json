@@ -1,7 +1,7 @@
 {
   "name": "bmmLib",
   "directory": "public",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "dependencies": {
     "angular": "1.2.6",
     "json3": "~3.2.6",

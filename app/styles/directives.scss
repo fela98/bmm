@@ -731,25 +731,79 @@ body {
 }
 
 //***********************************//
-//******bmm-navigator-playlist*******//
-.bmm-button-delete {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 3em;
-  background: url('../images/trash.png');
-  background-position: center center;
-  background-size: 2em 2em;
-  background-repeat: no-repeat;
+//*******bmm-navigator-backend*******//
+.bmm-navigator-backend.bmm-small {
+  margin-left: -16em;
+}
+.bmm-navigator-backend {
+  position: relative;
+  float: left;
+  width: 18em;
+  min-width: 18em;
+  min-height: 100%;
+  color: $bmm-background;
+
+  $animation-video-speed: .5s;
+  $animation-video-type: ease;
+
+  -webkit-transition: all $animation-video-speed $animation-video-type;
+  -moz-transition: all $animation-video-speed $animation-video-type;
+  -ms-transition: all $animation-video-speed $animation-video-type;
+  -o-transition: all $animation-video-speed $animation-video-type;
+  transition: all $animation-video-speed $animation-video-type;
+
+  .bmm-button-delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 3em;
+    background-image: url('../images/svg/trash.svg');
+    background-position: center center;
+    background-size: 1.2em 1.2em;
+    background-repeat: no-repeat;
+  }
+
+  .bmm-button-delete:hover {
+    cursor: pointer;
+  }
+
+  h1 {
+    padding-left: .5em;
+    font-size: 2.1em;
+    color: $bmm-main;
+  }
+
+  h3 {
+    background-image: url(../images/svg/pluss.svg);
+    background-size: 1.4em 1.3em;
+    background-position: .19em .35em;
+    background-repeat: no-repeat;
+    padding: .5em 0 .5em 1.8em;
+    font-size: 1em;
+    margin: 1em 1.1em;
+  }
+
+  h3:hover {
+    background-color: $bmm-main;
+    cursor: pointer;
+  }
+
+  form.bmm-private {
+    input:first-child {
+      width: 9em;
+    }
+  }
+
 }
 
-.bmm-button-delete:hover {
-  cursor: pointer;
+.bmm-navigator-backend.minified {
+  height: 100%;
+  margin: 0;
 }
 
 //***********************************//
-//******bmm-navigator-playlist*******//
+//*******bmm-navigator-playlist******//
 .bmm-navigator-playlist.bmm-small {
   margin-left: -16em;
 }
