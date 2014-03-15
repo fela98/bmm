@@ -62,13 +62,13 @@ angular.module('bmmLibApp')
             '</li>' +
           '</ul>';
 
-        scope.admin = scope[admin];
-
         //check tree id, tree model
         if( treeId && bmmTreeview ) {
           //root node
           if( attrs.bmmLibApp ) {
           
+            scope.admin = scope[admin] || false;
+
             //create tree object if not exists
             scope[treeId] = scope[treeId] || {};
 
