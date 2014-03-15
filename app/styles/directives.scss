@@ -208,7 +208,6 @@ div[data-bmm-lib-app] {
   /* default */
   font-family: Tahoma;
   font-size:13px;
-  color: #555;
   text-decoration: none;
 }
 
@@ -796,6 +795,7 @@ body {
   }
 
   form.bmm-private {
+    color: $bmm-background-inverse;
     input:first-child {
       margin-left: 2.8em;
     }
