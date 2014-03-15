@@ -16,6 +16,7 @@
   node-children: each node's children
 
   <div
+    data-admin="false"
     data-angular-treeview="true"
     data-tree-id="tree"
     data-tree-model="roleList"
@@ -49,6 +50,9 @@ angular.module('bmmLibApp')
         //tree template
         var template =
           '<ul>' +
+            '<li ng-show="admin"><form ng-submit="add(input.name,"id (later)");">'+
+              '<input name="title" type="text"><input type="submit" value="Legg til">'+
+            '</form></li>'+
             '<li data-ng-repeat="node in ' + bmmTreeview + '" id="{{node.roleId}}" ng-class="{draggable: node.group==\'track\'}" >' +
               '<i class="collapsed" data-ng-show="node.' + nodeChildren + '.length && node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
               '<i class="expanded" data-ng-show="node.' + nodeChildren + '.length && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
@@ -57,6 +61,9 @@ angular.module('bmmLibApp')
               '<div data-ng-hide="node.collapsed" data-tree-id="' + treeId + '" data-bmm-treeview="node.' + nodeChildren + '" data-node-id=' + nodeId + ' data-node-label=' + nodeLabel + ' data-node-children=' + nodeChildren + '></div>' +
             '</li>' +
           '</ul>';
+
+        scope.admin = scope[admin];
+
         //check tree id, tree model
         if( treeId && bmmTreeview ) {
           //root node
