@@ -71,7 +71,11 @@ angular.module('bmmLibApp')
       method: 'POST',
       url: serverUrli+'album/',
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -101,7 +105,11 @@ angular.module('bmmLibApp')
         'Accept-Language': language
       },
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -144,7 +152,11 @@ angular.module('bmmLibApp')
         'Accept-Language': language
       },
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -178,7 +190,11 @@ angular.module('bmmLibApp')
       method: 'PUT',
       url: serverUrli+'album/'+id,
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -193,7 +209,11 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'DELETE',
       url: serverUrli+'album/'+id,
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -217,7 +237,11 @@ angular.module('bmmLibApp')
       method: 'GET',
       url: serverUrli+'facets/published/years',
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -240,7 +264,11 @@ angular.module('bmmLibApp')
       method: 'POST',
       url: serverUrli+'login/authentication',
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -278,7 +306,11 @@ angular.module('bmmLibApp')
         'Accept-Language': language
       },
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -298,7 +330,11 @@ angular.module('bmmLibApp')
       headers: {
         'Accept-Language': language
       },
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -359,7 +395,11 @@ angular.module('bmmLibApp')
       method: 'POST',
       url: serverUrli+'track',
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -390,7 +430,11 @@ angular.module('bmmLibApp')
         'Accept-Language': language
       },
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -420,7 +464,11 @@ angular.module('bmmLibApp')
         'Accept-Language': language
       },
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -444,7 +492,11 @@ angular.module('bmmLibApp')
       headers: {
         'Accept-Language': language
       },
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -505,7 +557,11 @@ angular.module('bmmLibApp')
       method: 'PUT',
       url: serverUrli+'track/'+id,
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -520,7 +576,11 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'DELETE',
       url: serverUrli+'track/'+id,
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -546,7 +606,11 @@ angular.module('bmmLibApp')
       dataType: 'json',
       data: $.param({
         type: type
-      })
+      }),
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -613,7 +677,11 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'user',
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -637,7 +705,11 @@ angular.module('bmmLibApp')
       method: 'POST',
       url: serverUrli+'track_collection/',
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function() {
 
       //console.log(xhr);
@@ -667,7 +739,11 @@ angular.module('bmmLibApp')
         });
         xhr.setRequestHeader('Accept-Language', language);
       },
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function() {
 
       //console.log(xhr);
@@ -682,7 +758,11 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'track_collection/'+id,
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -710,7 +790,11 @@ angular.module('bmmLibApp')
       method: 'PUT',
       url: serverUrli+'track_collection/'+id,
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function() {
 
       //console.log(xhr);
@@ -725,7 +809,11 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'DELETE',
       url: serverUrli+'track_collection/'+id,
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function() {
 
       //console.log(xhr);
@@ -743,7 +831,11 @@ angular.module('bmmLibApp')
       method: 'GET',
       url: serverUrli+'contributor',
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -761,7 +853,11 @@ angular.module('bmmLibApp')
       method: 'POST',
       url: serverUrli+'contributor',
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -776,7 +872,11 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'contributor/'+id,
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -794,7 +894,11 @@ angular.module('bmmLibApp')
       method: 'PUT',
       url: serverUrli+'contributor/'+id,
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -809,7 +913,11 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'DELETE',
       url: serverUrli+'contributor/'+id,
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);
@@ -827,7 +935,11 @@ angular.module('bmmLibApp')
       method: 'GET',
       url: serverUrli+'contributor/'+id+'/track/',
       data: $.param(options),
-      dataType: 'json'
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
     }).fail( function(xhr) {
 
       console.log(xhr);

@@ -34,6 +34,9 @@ angular.module('bmmLibApp')
       link: function ( scope, element, attrs ) {
         //tree id
         var treeId = attrs.treeId;
+
+        //tree id
+        var admin = attrs.admin;
       
         //tree model
         var bmmTreeview = attrs.bmmTreeview;
@@ -50,9 +53,9 @@ angular.module('bmmLibApp')
         //tree template
         var template =
           '<ul>' +
-            '<li ng-show="admin"><form ng-submit="add(input.name,"id (later)");">'+
+            '<!--li ng-show="admin"><form ng-submit="add(input.name,"id (later)");">'+
               '<input name="title" type="text"><input type="submit" value="Legg til">'+
-            '</form></li>'+
+            '</form></li-->'+
             '<li data-ng-repeat="node in ' + bmmTreeview + '" id="{{node.roleId}}" ng-class="{draggable: node.group==\'track\'}" >' +
               '<i class="collapsed" data-ng-show="node.' + nodeChildren + '.length && node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
               '<i class="expanded" data-ng-show="node.' + nodeChildren + '.length && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
@@ -70,7 +73,7 @@ angular.module('bmmLibApp')
             scope.admin = scope[admin] || false;
 
             //create tree object if not exists
-            scope[treeId] = scope[treeId] || {};
+            //scope[treeId] = scope[treeId] || {};
 
             //if node head clicks,
             scope[treeId].selectNodeHead = scope[treeId].selectNodeHead || function( selectedNode ){
