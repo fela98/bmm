@@ -47,7 +47,7 @@ angular.module('bmmLibApp')
   };
 
   /** Save a new album **/
-  factory.album = function(options) {
+  factory.albumPost = function(options) {
     
     if (typeof options === 'undefined') { options = {}; }
 
@@ -69,7 +69,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'POST',
-      url: serverUrli+'album',
+      url: serverUrli+'album/',
       data: $.param(options),
       dataType: 'json'
     }).fail( function(xhr) {
