@@ -27,11 +27,11 @@ angular.module('bmmLibApp')
 
         $(window).unbind('keyup');
         $(window).bind('keyup', function(e) {
-          if (e.keyCode === 32) { console.log('so far');
-            if (!element.hasClass('active')) { console.log('so good');
-              bmmPlayer.setPlay();
+          if (e.keyCode === 32) {
+            if (!element.hasClass('active')) {
+              //bmmPlayer.setPlay(); @todo - fix when player is active
             } else {
-              bmmPlayer.setPause();
+              //bmmPlayer.setPause();
             }
           }
         });
