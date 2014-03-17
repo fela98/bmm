@@ -117,17 +117,6 @@ body {
     overflow: hidden !important;
   }
 
-  .bmm-navigator-switch-swipe.fixed {
-    position: fixed;
-    display: inline-block;
-    height: 100%;
-    width: 18em;
-  }
-
-  .bmm-navigator-switch-swipe.fixed.bmm-small {
-    width: 2em;
-  }
-
 }
 
 tr.ui-draggable-dragging {
@@ -842,6 +831,8 @@ body {
   min-width: 18em;
   min-height: 100%;
   color: $bmm-background;
+  padding-bottom: 999em;
+  margin-bottom: -999em;
 
   $animation-video-speed: .5s;
   $animation-video-type: ease;
@@ -1007,10 +998,6 @@ body {
     }
 
   }
-}
-
-.bmm-navigator-switch-swipe {
-  display: none;
 }
 
 .bmm-navigator-switch {
