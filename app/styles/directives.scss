@@ -1844,9 +1844,6 @@ $animation-video-type: ease;
   .bmm-latest-list {
     width: 22em;
     float: left;
-    ul {
-      list-style-type: none;
-    }
   }
 
   .minified .bmm-latest-list.last {
@@ -1898,6 +1895,12 @@ $animation-video-type: ease;
 
 .bmm-latest-list.small {
     width: 17em;
+}
+
+.bmm-latest-list {
+  ul {
+    list-style-type: none;
+  }
 }
 
 .small .bmm-latest-bullet {

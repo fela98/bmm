@@ -156,6 +156,9 @@ angular.module('bmmLibApp')
         //language
         resolvedData.language = data.language;
 
+        //date
+        resolvedData.date = data.published_at;
+
         //subtype
         resolvedData.subtype = data.subtype;
 
