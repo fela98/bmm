@@ -38,6 +38,10 @@ body {
     display: none;
   }
 
+  .bmm-navigator-switch.bmm-small {
+    margin-left: 14.2em;
+  }
+
   .bmm-container-header ul.dropdown-menu {
     width: auto;
     li {
@@ -97,6 +101,11 @@ body {
     padding: 2em 1em;
     margin-bottom: 0;
     left: 0;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
   }
   .bmm-navigator-switch {
     position: fixed !important;
@@ -116,8 +125,6 @@ body {
   .bmm-main-container {
     overflow: hidden !important;
   }
-
-  
 
 }
 
@@ -830,11 +837,11 @@ body {
   $animation-video-speed: .5s;
   $animation-video-type: ease;
 
-  -webkit-transition: all $animation-video-speed $animation-video-type;
-  -moz-transition: all $animation-video-speed $animation-video-type;
-  -ms-transition: all $animation-video-speed $animation-video-type;
-  -o-transition: all $animation-video-speed $animation-video-type;
-  transition: all $animation-video-speed $animation-video-type;
+  -webkit-transition: margin-left $animation-video-speed $animation-video-type;
+  -moz-transition: margin-left $animation-video-speed $animation-video-type;
+  -ms-transition: margin-left $animation-video-speed $animation-video-type;
+  -o-transition: margin-left $animation-video-speed $animation-video-type;
+  transition: margin-left $animation-video-speed $animation-video-type;
 
   ul {
     margin: 0;
