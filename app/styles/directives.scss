@@ -39,7 +39,7 @@ body {
   }
 
   .bmm-navigator-switch.bmm-small {
-    margin-left: 14.2em;
+    margin-left: 14.2em !important;
   }
 
   .bmm-container-header ul.dropdown-menu {
@@ -94,10 +94,12 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;
   }
   .bmm-view.bmm-small {
     position: absolute !important;
     overflow-x: hidden !important;
+    overflow: auto;
     padding: 2em 1em;
     margin-bottom: 0;
     left: 0;
