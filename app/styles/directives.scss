@@ -31,8 +31,27 @@ body {
 }
 
 //***********************************//
+//*************bmm-swipe*************//
+.bmm-swipe {
+  display: none;
+}
+
+//***********************************//
 //*************MINIFIED**************//
 @media screen and (max-width: 30em) {
+
+  .bmm-swipe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2em;
+    height: 100%;
+    display: inline-block;
+  }
+
+  .bmm-swipe.bmm-small {
+    width: 18em;
+  }
 
   .bmm-large-only {
     display: none;
