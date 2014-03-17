@@ -53,6 +53,15 @@ angular.module('bmmLibApp')
                   $('.bmm-player-target').scrollTop()<$('.bmm-container-header').height()) {
                 $('.bmm-navigator-switch').removeClass('fixed');
               }
+              if (!$('.bmm-navigator-switch-swipe').hasClass('fixed')&&
+                  $('.bmm-player-target').scrollTop()>=$('.bmm-container-header').height()+
+                                                       $('.bmm-navigator-playlist').height()) {
+                $('.bmm-navigator-switch-swipe').addClass('fixed');
+              } else if ($('.bmm-navigator-switch-swipe').hasClass('fixed')&&
+                  $('.bmm-player-target').scrollTop()<$('.bmm-container-header').height()+
+                                                      $('.bmm-navigator-playlist').height()) {
+                $('.bmm-navigator-switc-swipe').removeClass('fixed');
+              }
             });
             
           }
