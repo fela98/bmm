@@ -68,7 +68,7 @@ body {
   }
 
   .bmm-navigator-playlist .bmm-container-header {
-    display: inline-block;
+    display: inline-block !important;
     ul {
       float: none !important;
       width: 100%;
@@ -104,13 +104,6 @@ body {
   }
   .bmm-navigator-switch.bmm-small {
     margin-left: -14.2em;
-  }
-
-  .bmm-main-container.bmm-small {
-    position: relative;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    height: 100%;
   }
 
   .bmm-main-container {
