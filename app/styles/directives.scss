@@ -40,26 +40,8 @@ body {
 //*************MINIFIED**************//
 @media screen and (max-width: 30em) {
 
-  .bmm-swipe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 18em;
-    height: 100%;
-    display: inline-block;
-    pointer-events: none;
-  }
-
-  .bmm-swipe.bmm-small {
-    width: 2em;
-  }
-
   .bmm-large-only {
     display: none;
-  }
-
-  .bmm-navigator-switch.bmm-small {
-    margin-left: 14.2em !important;
   }
 
   .bmm-container-header ul.dropdown-menu {
@@ -85,40 +67,23 @@ body {
     transition: all $animation-video-speed $animation-video-type;
   }
 
+  .bmm-navigator-playlist .bmm-container-header {
+    display: inline-block;
+  }
   .bmm-container-header {
-    max-width: 18em;
-
-    ul {
-      float: none !important;
-      width: 100%;
-      margin-bottom: 1em !important;
-      li {
-        float: none !important;
-        padding: .5em 0 .5em 1.8em !important;
-        margin: 0 1.1em !important;
-      }
-    }
-
+    display: none;
   }
-  .bmm-container-header.bmm-small {
-    position: relative;
-    float: left;
-    margin-left: -16em;
-  }
+
   .bmm-container-main {
     overflow-x: hidden !important;
   }
+
   .bmm-view {
-    position: absolute !important;
-    left: 18em;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+    width: auto;
   }
+
   .bmm-view.bmm-small {
-    position: absolute !important;
-    overflow-x: hidden !important;
+    position: relative;
     overflow: auto;
     padding: 2em 1em;
     margin-bottom: 0;
@@ -140,7 +105,8 @@ body {
 
   .bmm-main-container.bmm-small {
     position: relative;
-    overflow: auto !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
     height: 100%;
   }
 
@@ -849,6 +815,9 @@ body {
 
 //***********************************//
 //*******bmm-navigator-playlist******//
+.bmm-navigator-playlist .bmm-container-header {
+  display: none;
+}
 .bmm-navigator-playlist.bmm-small {
   margin-left: -16em;
 }
