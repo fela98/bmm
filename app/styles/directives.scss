@@ -44,13 +44,14 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 2em;
+    width: 18em;
     height: 100%;
     display: inline-block;
+    pointer-events: none;
   }
 
   .bmm-swipe.bmm-small {
-    width: 18em;
+    width: 2em;
   }
 
   .bmm-large-only {
