@@ -7,8 +7,7 @@ angular.module('bmmLibApp')
         url='',
         shuffle=false,
         repeat=false,
-        tracks=[],
-        shuffleList=[];
+        tracks=[];
 
     factory.setTracks = function(options) {
 
@@ -47,11 +46,6 @@ angular.module('bmmLibApp')
       } else {
         shuffle = !shuffle;
       }
-
-      shuffleList = [];
-      $.each(tracks, function(index) {
-        shuffleList.push(index);
-      });
 
       return shuffle;
 
@@ -100,19 +94,8 @@ angular.module('bmmLibApp')
     factory.getNext = function() {
 
       if (shuffle) {
-
-        if (shuffleList.length===0&&repeat) {
-          factory.setShuffle(true); //Creates new list
-        } else if (shuffleList.length===0&&!repeat) {
-          return false;
-        }
-
-        var index = Math.floor(Math.random() * shuffleList.length);
-        factory.index = shuffleList[index];
-        shuffleList.splice(index,1);
-
+        factory.index = Math.floor(Math.random()*tracks.length);
         return factory.getCurrent();
-
       } else if (factory.index<(tracks.length-1)) {
         factory.index++;
         return factory.getCurrent();
@@ -127,21 +110,7 @@ angular.module('bmmLibApp')
 
     factory.getPrevious = function() {
 
-      if (shuffle) {
-
-        if (shuffleList.length===0&&repeat) {
-          factory.setShuffle(true); //Creates new list
-        } else if (shuffleList.length===0&&!repeat) {
-          return false;
-        }
-
-        var index = Math.floor(Math.random() * shuffleList.length);
-        factory.index = shuffleList[index];
-        shuffleList.splice(index,1);
-
-        return factory.getCurrent();
-
-      } else if (factory.index>0) {
+      if (factory.index>0) {
         factory.index--;
         return factory.getCurrent();
       } else if (repeat) {

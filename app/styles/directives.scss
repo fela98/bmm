@@ -77,7 +77,9 @@ body {
 
   }
   .bmm-container-header.bmm-small {
-    margin-left: -18em;
+    position: relative;
+    float: left;
+    margin-left: -16em;
   }
   .bmm-container-main {
     overflow-x: hidden !important;
@@ -101,20 +103,21 @@ body {
     background-image: url(../images/svg/blacktoggle_hover.svg) !important;
   }
   .bmm-navigator-switch.bmm-small {
+    margin-left: -14.2em;
     background-image: url(../images/svg/blacktoggle.svg) !important;
   }
 
   .bmm-main-container.bmm-small {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
+    overflow: auto !important;
     height: 100%;
-    width: 100%;
   }
 
   .bmm-main-container {
     overflow: hidden !important;
   }
+
+  
 
 }
 
@@ -497,12 +500,15 @@ body {
 .album-large:nth-child(3) { background: url('../images/barnasmp3.jpg'); }
 
 .album-latest {
-    width: 9em;
-    overflow: hidden;
-    float: left;
-    font-size: 0.7em;
-    margin-left: 1.5em;
-    margin-bottom: 0.5em;
+  width: 9em;
+  overflow: hidden;
+  float: left;
+  font-size: 0.7em;
+  margin-left: 1.5em;
+  margin-bottom: 0.5em;
+  ul {
+    list-style-type: none;
+  }
 }
 
 .album-latest:first-child,
@@ -1820,6 +1826,13 @@ $animation-video-type: ease;
 
 //***********************************//
 //*************bmm-latest************//
+
+.bmm-latest {
+  ul {
+    list-style-type: none;
+  }
+}
+
 *,
 .minified .small {
 
@@ -1828,7 +1841,6 @@ $animation-video-type: ease;
     margin-top: .2em;
     margin-left: .4em;
       ul {
-        list-style-type: none;
         padding: 0;
         margin: 0
       }
@@ -1927,7 +1939,7 @@ $animation-video-type: ease;
 }
 .album-video-about { color: #555; }
 
-* .bmm-latest-video {
+.bmm-latest-video {
   min-width: 30em;
   .bmm-latest-thumbnail {
     width: 9em;
@@ -1940,6 +1952,9 @@ $animation-video-type: ease;
   }
   .bmm-latest-title {
     font-size: .9em;
+  }
+  ul {
+    list-style-type: none;
   }
 }
 
