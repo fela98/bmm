@@ -690,6 +690,10 @@ body {
       }
     }
   }
+  .bmm-copyright {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .bmm-view.minified {
@@ -1259,11 +1263,6 @@ body {
     padding: 1em 0 1em 1em;
     width: 18em;
     float: left;
-  }
-
-  .bmm-copyright {
-    width: 100%;
-    text-align: center;
   }
 
   .bmm-player-buttons {

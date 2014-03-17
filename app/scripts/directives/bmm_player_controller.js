@@ -16,7 +16,6 @@ angular.module('bmmLibApp')
                       '<div bmm-volume-controller></div>'+
                     '</div>'+
                   '</div>'+
-                  '<div class="bmm-copyright">{{copyright}}</div>'+
                 '</div>',
       compile : function() {
         return {
@@ -27,8 +26,6 @@ angular.module('bmmLibApp')
                 mediaslider, shuffle, mainControllers, tools, about, volume,
                 video, videoContainer, toolsPos='',
                 minified = false;
-
-            scope.copyright = attrs.copyright;
 
             //PRESET
             element.addClass('bmm-player-controller');
