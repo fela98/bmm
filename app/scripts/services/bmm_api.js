@@ -730,7 +730,7 @@ angular.module('bmmLibApp')
      */
 
     return $.ajax({
-      method: 'LINK',
+      method: 'POST',
       url: serverUrli+'track_collection/'+playlist,
       beforeSend: function (xhr) {
         $.each(tracks, function() {
@@ -741,7 +741,8 @@ angular.module('bmmLibApp')
       },
       dataType: 'json',
       xhrFields: {
-        'withCredentials': true
+        'withCredentials': true,
+        '_method': 'LINK'
       },
       crossDomain: true
     }).fail( function() {
