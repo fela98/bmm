@@ -738,11 +738,11 @@ angular.module('bmmLibApp')
           xhr.setRequestHeader('Link', '<'+serverUrli+'track/'+this+'>');
         });
         xhr.setRequestHeader('Accept-Language', language);
+        xhr.setRequestHeader('_method', 'LINK');
       },
       dataType: 'json',
       xhrFields: {
-        'withCredentials': true,
-        '_method': 'LINK'
+        'withCredentials': true
       },
       crossDomain: true
     }).fail( function() {
