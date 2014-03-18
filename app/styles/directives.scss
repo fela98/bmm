@@ -815,7 +815,7 @@ body {
   display: none;
 }
 .bmm-navigator-playlist.bmm-small {
-  margin-left: -17em;
+  margin-left: -17.5em;
 }
 .bmm-navigator-playlist {
   position: relative;
@@ -1002,7 +1002,7 @@ body {
   background-image: url(../images/svg/toggle_hover.svg);
   background-color: $bmm-background-inverse;
   background-size: contain;
-  background-position:  1.4em 1.5em;
+  background-position:  .1em .45em;
   background-repeat: no-repeat;
   cursor: pointer;
   z-index: 1;
@@ -1022,6 +1022,7 @@ body {
   margin-left: 18em;
   opacity: .7;
   background-image: url(../images/svg/toggle.svg);
+  background-color: none;
 }
 
 .bmm-navigator-switch.fixed {
