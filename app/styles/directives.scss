@@ -815,7 +815,7 @@ body {
   display: none;
 }
 .bmm-navigator-playlist.bmm-small {
-  margin-left: -16em;
+  margin-left: -17em;
 }
 .bmm-navigator-playlist {
   position: relative;
@@ -997,11 +997,12 @@ body {
   position: absolute;
   top: .50em;
   margin-left: 16.2em;
-  width: 1.7em;
-  height: 1.5em;
+  width: 1.5em;
+  height: 2.5em;
   background-image: url(../images/svg/toggle_hover.svg);
+  background-color: $bmm-background-inverse;
   background-size: contain;
-  background-position:  center center;
+  background-position:  1.4em 1.5em;
   background-repeat: no-repeat;
   cursor: pointer;
   z-index: 1;
@@ -1018,7 +1019,8 @@ body {
 }
 
 .bmm-navigator-switch.bmm-small {
-  margin-left: 16.19em; //Fix bug in chrome, that doesnt render correctly on fixed
+  margin-left: 18em;
+  opacity: .7;
   background-image: url(../images/svg/toggle.svg);
 }
 
