@@ -23,12 +23,12 @@ angular.module('bmmDebug', [
   'angularTreeview'
 ]).run(['$route', 'bmmApi', function($route, bmmApi)  {
 
-    bmmApi.serverUrl('https://'+window.location.hostname+'/bmm/api/web/app.php/');
+    //bmmApi.serverUrl('https://'+window.location.hostname+'/bmm/api/web/app.php/');
     
-    bmmApi.user().done(function() {
+    /*bmmApi.user().done(function() {
     }).fail(function() {
       bmmApi.loginRedirect();
-    });
+    });*/
 
     $route.reload();
 

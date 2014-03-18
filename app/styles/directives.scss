@@ -31,6 +31,29 @@ body {
 }
 
 //***********************************//
+//************SCROLL BARS************//
+::-webkit-scrollbar {
+  width: .5em;
+  height: .5em;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $bmm-background;
+} /* the new scrollbar will have a flat appearance with the set background color */
+ 
+::-webkit-scrollbar-thumb {
+  background-color: #769989;
+} /* this will style the thumb, ignoring the track */
+ 
+::-webkit-scrollbar-button {
+  display: none;
+} /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
+ 
+::-webkit-scrollbar-corner {
+  background-color: #E7E7E7;
+}
+
+//***********************************//
 //*************bmm-swipe*************//
 .bmm-swipe {
   display: none;
@@ -54,7 +77,6 @@ body {
 
   .bmm-container-header,
   .bmm-container-main,
-  .bmm-view,
   .bmm-main-container
   {
     $animation-video-speed: .5s;
@@ -92,22 +114,11 @@ body {
     width: auto;
   }
 
-  .bmm-view.bmm-small {
-    position: relative;
-    overflow: auto;
-    padding: 2em 1em;
-    margin-bottom: 0;
-    left: 0;
-  }
   .bmm-navigator-switch {
     position: fixed !important;
   }
   .bmm-navigator-switch.bmm-small {
     margin-left: -14.2em;
-  }
-
-  .bmm-main-container {
-    overflow: hidden !important;
   }
 
 }
@@ -417,8 +428,11 @@ body {
 }
 
 .bmm-main-container {
+  position: relative;
   background-color: $bmm-background-inverse;
-  min-height: 100%;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 .bmm-logo {
@@ -604,11 +618,11 @@ body {
 //*************bmm-view**************//
 .bmm-view {
   position: relative;
-  overflow: auto;
+  margin-left: 18em;
   padding: 2em 1em;
   background-color: $bmm-background;
-  padding-bottom: 999em;
-  margin-bottom: -997em;
+  height: 100%;
+  overflow: auto;
   h2, .bmm-path {
     color: $bmm-main;
     display: inline-block;
@@ -656,16 +670,18 @@ body {
     width: 100%;
     text-align: center;
   }
+  $animation-video-speed: .5s;
+  $animation-video-type: ease;
+
+  -webkit-transition: margin-left $animation-video-speed $animation-video-type;
+  -moz-transition: margin-left $animation-video-speed $animation-video-type;
+  -ms-transition: margin-left $animation-video-speed $animation-video-type;
+  -o-transition: margin-left $animation-video-speed $animation-video-type;
+  transition: margin-left $animation-video-speed $animation-video-type;
 }
 
-.bmm-view.minified {
-  height: 100%;
-  margin: 0;
-  padding: 2em 0;
-  margin-right: 0;
-  > .ng-scope {
-    padding: 0 .5em;
-  }
+.bmm-view.bmm-small {
+  margin-left: .5em;
 }
 
 .bmm-view>.ng-scope>div h2 {
@@ -816,16 +832,15 @@ body {
 }
 .bmm-navigator-playlist.bmm-small {
   margin-left: -17.5em;
+  overflow: visible;
 }
 .bmm-navigator-playlist {
-  position: relative;
-  float: left;
+  position: absolute;
   width: 18em;
   min-width: 18em;
-  min-height: 100%;
+  height: 100%;
   color: $bmm-background;
-  padding-bottom: 999em;
-  margin-bottom: -999em;
+  overflow: auto;
 
   $animation-video-speed: .5s;
   $animation-video-type: ease;
@@ -1000,9 +1015,8 @@ body {
   width: 1.5em;
   height: 2.5em;
   background-image: url(../images/svg/toggle_hover.svg);
-  background-color: $bmm-background-inverse;
-  background-size: contain;
-  background-position:  .1em .45em;
+  background-size: .45em 1.5em;
+  background-position: .47em .45em;
   background-repeat: no-repeat;
   cursor: pointer;
   z-index: 1;
@@ -1022,7 +1036,7 @@ body {
   margin-left: 18em;
   opacity: .7;
   background-image: url(../images/svg/toggle.svg);
-  background-color: none;
+  background-color: $bmm-background-inverse !important;
 }
 
 .bmm-navigator-switch.fixed {
@@ -1185,7 +1199,7 @@ body {
 
   .bmm-wrapper {
     margin: 0 auto;
-    overflow: visible;
+    overflow: auto;
   }
 }
 

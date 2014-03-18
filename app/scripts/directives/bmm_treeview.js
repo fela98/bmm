@@ -36,7 +36,7 @@ angular.module('bmmLibApp')
         var treeId = attrs.treeId;
 
         //tree id
-        var admin = attrs.admin;
+        //var admin = attrs.admin;
       
         //tree model
         var bmmTreeview = attrs.bmmTreeview;

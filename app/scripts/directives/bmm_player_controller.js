@@ -19,7 +19,7 @@ angular.module('bmmLibApp')
                 '</div>',
       compile : function() {
         return {
-          pre : function(scope, element, attrs) {
+          pre : function(scope, element) {
 
             //DEFINITIONS
             var width, aboutWidth, clock1, clock2, target, buttons, repeat,
