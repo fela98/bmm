@@ -27,6 +27,11 @@ angular.module('bmmLibApp')
                 video, videoContainer, toolsPos='',
                 minified = false;
 
+            var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
+            if (iOS) {
+              $('body').find('.bmm-track-download').css('display','none');
+            }
+
             //PRESET
             element.addClass('bmm-player-controller');
             scope.clock1 = '00:00';
@@ -140,6 +145,11 @@ angular.module('bmmLibApp')
                 }
               });
 
+              scope.file = '';
+              scope.$watch('bmmPlayer.source', function(file) {
+                scope.file = file;
+              });
+
             });
 
             //IF DIV DIMENSIONS CHANGE
@@ -249,6 +259,7 @@ angular.module('bmmLibApp')
 
                 case 'topTools':
     
+                  /*
                   volume.attr({
                     length: '4em',
                     orientation: 'horizontal'
@@ -263,10 +274,15 @@ angular.module('bmmLibApp')
                     width: '100%'
                   });
 
+                  */
+
+                  volume.css('display','none');
+
                   break;
 
                 case 'normalTools':
 
+                  /*
                   element.css('paddingTop', '');
     
                   volume.attr({
@@ -288,6 +304,9 @@ angular.module('bmmLibApp')
                   }).children().css('float', '');
 
                   //video.detach().appendTo(tools).css('float', '');
+                  */
+
+                  volume.css('display','');
 
                   break;
 

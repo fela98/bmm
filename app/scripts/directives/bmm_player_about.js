@@ -18,6 +18,7 @@ angular.module('bmmLibApp')
           }
 
           scope.background = attrs.cover;
+
           element.find('.bmm-player-title').append(attrs.title);
           element.find('.bmm-player-subtitle').append(attrs.subtitle);
           element.find('.bmm-player-extra').append(attrs.extra);

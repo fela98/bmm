@@ -152,6 +152,7 @@ angular.module('bmmLibApp')
     factory.getTitle = track.title;
     factory.getSubtitle = track.subtitle;
     factory.getExtra = track.extra;
+    factory.source = source.url;
 
     if (source.video) {
       $(videoTarget).jPlayer('setMedia', {
@@ -191,6 +192,7 @@ angular.module('bmmLibApp')
   factory.getExtra = '';
   factory.getFullscreen = 'off';
   factory.showVideo = false;
+  factory.source = '';
   factory.getPlaying = false;
   factory.getTrackCount = 0; //Checked by playlists (updates current playing track)
 
