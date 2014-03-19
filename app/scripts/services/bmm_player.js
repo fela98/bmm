@@ -148,8 +148,6 @@ angular.module('bmmLibApp')
     var paused = $(videoTarget).data('jPlayer').status.paused;
     source = track;
 
-    console.log(track);
-
     factory.getCover = track.cover;
     factory.getTitle = track.title;
     factory.getSubtitle = track.subtitle;

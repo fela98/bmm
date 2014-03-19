@@ -35,7 +35,7 @@ angular.module('bmmLibApp')
           cover: this.cover,
           url: this.file,
           duration: this.duration,
-          video: this.video
+          video: video
         });
 
       });
