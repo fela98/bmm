@@ -9,7 +9,7 @@ angular.module('bmmLibApp')
 
       var resolvedData = {};
 
-      if (data.cover!==null) {
+      if (typeof data.cover!=='undefined') {
 
         resolvedData.cover = data.cover;
 
