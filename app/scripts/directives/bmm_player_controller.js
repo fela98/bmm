@@ -80,97 +80,59 @@ angular.module('bmmLibApp')
               });
 
               video.click(function() {
+                toggleVideo();
+              });
 
-                var extraHeight = 0;
-                if (toolsPos==='topTools') {
-                  extraHeight = element.parent().find('.bmm-player-tools').height();
-                }
+              var showVideo = function() {
+                videoContainer.attr('active', 'true');
 
+                element.parent().find('.bmm-video-screen').show().css({
+                  width: (bmmUser.getScreenHeight()-10)/(9/16),
+                  height: bmmUser.getScreenHeight()-10,
+                  top: 10
+                });
+
+                target.animate({
+                  height: element.parent().height()-
+                          element.height()-
+                          bmmUser.getScreenHeight()
+
+                }, 'fast');
+
+                videoContainer.animate({
+                  height: bmmUser.getScreenHeight()
+                }, 'fast', function() {
+                  $(window).trigger('resize');
+                });
+              };
+
+              var hideVideo = function() {
+                videoContainer.attr('active', 'false');
+
+                target.animate({
+                  height: element.parent().height()-(element.height()-bmmUser.getScreenHeight())
+                }, 'fast');
+
+                videoContainer.animate({
+                  height: 0
+                }, 'fast', function() {
+                  element.find('.bmm-video-screen').hide();
+                  $(window).trigger('resize');
+                });
+              };
+
+              var toggleVideo = function() {
                 if (videoContainer.attr('active')==='true') {
-                  videoContainer.attr('active', 'false');
-
-                  if (videoContainer.attr('direction')!=='w') {
-
-                    target.animate({
-                      height: element.parent().height()-extraHeight-
-                              (element.height()-bmmUser.getScreenHeight())
-                    }, 'fast');
-
-                    videoContainer.animate({
-                      height: 0
-                    }, 'fast', function() {
-                      element.find('.bmm-video-screen').hide();
-                      $(window).trigger('resize');
-                    });
-
-                  } else {
-
-                    target.animate({
-                      width: element.parent().width()-
-                             element.parent().find('.bmm-player-tools').width()
-                    }, 'fast');
-
-                    videoContainer.animate({
-                      width: 0
-                    }, 'fast', function() {
-                      element.parent().find('.bmm-video-screen').hide();
-                      $(window).trigger('resize');
-                    });
-
-                  }
-
+                  hideVideo();
                 } else {
-                  videoContainer.attr('active', 'true');
-
-                  element.parent().find('.bmm-video-screen').show();
-
-                  if (videoContainer.attr('direction')!=='w') {
-
-                    element.parent().find('.bmm-video-screen').css({
-                      width: (bmmUser.getScreenHeight()-10)/(9/16),
-                      height: bmmUser.getScreenHeight()-10,
-                      top: 10
-                    });
-
-                    target.animate({
-                      height: element.parent().height()-
-                              element.height()-
-                              bmmUser.getScreenHeight()-
-                              extraHeight
-
-                    }, 'fast');
-
-                    videoContainer.animate({
-                      height: bmmUser.getScreenHeight()
-                    }, 'fast', function() {
-                      $(window).trigger('resize');
-                    });
-
-                  } else {
-
-                    element.parent().find('.bmm-video-screen').css({
-                      width: bmmUser.getScreenWidth(),
-                      height: bmmUser.getScreenWidth()/(16/9),
-                      top: (videoContainer.height()/2)-
-                           (bmmUser.getScreenWidth()/(16/9)/2)
-                    });
-
-                    target.animate({
-                      width: element.parent().width()-
-                             element.parent().find('.bmm-player-tools').width()-
-                             bmmUser.getScreenWidth()+1
-                    }, 'fast');
-
-                    videoContainer.animate({
-                      width: bmmUser.getScreenWidth()
-                    }, 'fast', function() {
-                      $(window).trigger('resize');
-                    });
-
-                  }
-
+                  showVideo();
                 }
+              };
 
+              scope.$watch('bmmPlayer.showVideo', function(show) {
+                if (videoContainer.attr('active')!=='true'&&show) {
+                  showVideo();
+                }
               });
 
             });

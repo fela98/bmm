@@ -158,6 +158,7 @@ angular.module('bmmLibApp')
         m4v: source.url,
         poster: factory.getCover
       });
+      factory.showVideo = true;
     } else {
       $(videoTarget).jPlayer('setMedia', {
         mp3: source.url,
@@ -189,6 +190,7 @@ angular.module('bmmLibApp')
   factory.getSubtitle = '';
   factory.getExtra = '';
   factory.getFullscreen = 'off';
+  factory.showVideo = false;
   factory.getPlaying = false;
   factory.getTrackCount = 0; //Checked by playlists (updates current playing track)
 
