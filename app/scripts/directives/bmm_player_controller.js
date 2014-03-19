@@ -85,6 +85,7 @@ angular.module('bmmLibApp')
 
               var showVideo = function() {
                 videoContainer.attr('active', 'true');
+                bmmPlayer.showVideo = true;
 
                 element.parent().find('.bmm-video-screen').show().css({
                   width: (bmmUser.getScreenHeight()-10)/(9/16),
@@ -108,6 +109,7 @@ angular.module('bmmLibApp')
 
               var hideVideo = function() {
                 videoContainer.attr('active', 'false');
+                bmmPlayer.showVideo = false;
 
                 target.animate({
                   height: element.parent().height()-(element.height()-bmmUser.getScreenHeight())
@@ -132,6 +134,9 @@ angular.module('bmmLibApp')
               scope.$watch('bmmPlayer.showVideo', function(show) {
                 if (videoContainer.attr('active')!=='true'&&show) {
                   showVideo();
+                }
+                if (videoContainer.attr('active')==='true'&&!show) {
+                  hideVideo();
                 }
               });
 

@@ -9,29 +9,37 @@ angular.module('bmmLibApp')
 
       var resolvedData = {};
 
-      //Find cover image url
-      if (typeof data._meta!=='undefined'&&
-          typeof data._meta.parent!=='undefined'&&
-          typeof data._meta.parent.cover!=='undefined'&&
-          data._meta.parent.cover!==null) {
-        resolvedData.cover = data._meta.parent.cover;
+      if (data.cover!==null) {
+
+        resolvedData.cover = data.cover;
+
       } else {
 
-        switch(data.subtype) {
-          case 'speech':
-            resolvedData.cover='fallback_images/svg/speech.svg';
-            break;
-          case 'song':
-          case 'singsong':
-          case 'audiobook':
-            resolvedData.cover='fallback_images/svg/song.svg';
-            break;
-          case 'video':
-            resolvedData.cover='fallback_images/svg/video.svg';
-            break;
-          default:
-            resolvedData.cover='fallback_images/svg/person.svg';
-            break;
+        //Find album cover image url
+        if (typeof data._meta!=='undefined'&&
+            typeof data._meta.parent!=='undefined'&&
+            typeof data._meta.parent.cover!=='undefined'&&
+            data._meta.parent.cover!==null) {
+          resolvedData.cover = data._meta.parent.cover;
+        } else {
+
+          switch(data.subtype) {
+            case 'speech':
+              resolvedData.cover='fallback_images/svg/speech.svg';
+              break;
+            case 'song':
+            case 'singsong':
+            case 'audiobook':
+              resolvedData.cover='fallback_images/svg/song.svg';
+              break;
+            case 'video':
+              resolvedData.cover='fallback_images/svg/video.svg';
+              break;
+            default:
+              resolvedData.cover='fallback_images/svg/person.svg';
+              break;
+          }
+
         }
 
       }
