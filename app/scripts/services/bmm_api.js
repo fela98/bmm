@@ -738,9 +738,9 @@ angular.module('bmmLibApp')
           xhr.setRequestHeader('Link', '<'+serverUrli+'track/'+this+'>');
         });
         xhr.setRequestHeader('Accept-Language', language);
-        xhr.setRequestHeader('_method', 'LINK');
       },
       dataType: 'json',
+      data: $.param({_method: 'LINK'}),
       xhrFields: {
         'withCredentials': true
       },

@@ -56,7 +56,7 @@ angular.module('bmmLibApp')
             '<!li ng-show="admin"><form ng-submit="add(input.name,"id (later)");">'+
               '<input name="title" type="text"><input type="submit" value="Legg til">'+
             '</form></li>'+*/
-            '<li data-ng-repeat="node in ' + bmmTreeview + '" id="{{node.roleId}}" ng-class="{draggable: node.group==\'track\'}" >' +
+            '<li data-ng-repeat="node in ' + bmmTreeview + '" id="{{node.roleId}}" id="{{node.language}}" ng-class="{draggable: node.group==\'track\'}" >' +
               '<i class="collapsed" data-ng-show="node.' + nodeChildren + '.length && node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
               '<i class="expanded" data-ng-show="node.' + nodeChildren + '.length && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
               '<i class="normal" data-ng-hide="node.' + nodeChildren + '.length"></i> ' +
