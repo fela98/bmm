@@ -39,7 +39,7 @@ angular.module('bmmLibApp')
               if (typeof element.attr('orientation')!=='undefined') {
                 orientation = element.attr('orientation');
               } else if (element.parent().width()<=width) {
-                orientation='vertical';
+                //orientation='vertical';
               }
 
               if (orientation==='vertical') {
