@@ -352,6 +352,10 @@ h2.speech {
 
 //***********************************//
 //**********bmm-common-divs**********//
+.bmm-transparent {
+  opacity: 0.1;
+}
+
 .bmm-background-right {
   position: absolute;
   top: 0;
@@ -1765,7 +1769,7 @@ $animation-video-type: ease;
       margin: auto;
       top: 5%;
       left: 25%;
-      width: 50%;
+      width: 47.8%;
       height: 75%;
       background-color: black;
       display: none;
