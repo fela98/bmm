@@ -105,8 +105,7 @@ angular.module('bmmLibApp')
       headers: {
         'Accept-Language': language
       },
-      data: JSON.stringify(options),
-      contentType: 'application/json',
+      data: $.param(options),
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -153,8 +152,7 @@ angular.module('bmmLibApp')
       headers: {
         'Accept-Language': language
       },
-      data: JSON.stringify(options),
-      contentType: 'application/json',
+      data: $.param(options),
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -240,8 +238,7 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'facets/published/years',
-      data: JSON.stringify(options),
-      contentType: 'application/json',
+      data: $.param(options),
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -311,8 +308,7 @@ angular.module('bmmLibApp')
       headers: {
         'Accept-Language': language
       },
-      data: JSON.stringify(options),
-      contentType: 'application/json',
+      data: $.param(options),
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -437,8 +433,7 @@ angular.module('bmmLibApp')
       headers: {
         'Accept-Language': language
       },
-      data: JSON.stringify(options),
-      contentType: 'application/json',
+      data: $.param(options),
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -472,8 +467,7 @@ angular.module('bmmLibApp')
       headers: {
         'Accept-Language': language
       },
-      data: JSON.stringify(options),
-      contentType: 'application/json',
+      data: $.param(options),
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -848,8 +842,7 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'contributor',
-      data: JSON.stringify(options),
-      contentType: 'application/json',
+      data: $.param(options),
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -955,8 +948,7 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'contributor/'+id+'/track/',
-      data: JSON.stringify(options),
-      contentType: 'application/json',
+      data: $.param(options),
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
