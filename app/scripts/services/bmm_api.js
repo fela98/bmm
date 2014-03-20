@@ -482,9 +482,10 @@ angular.module('bmmLibApp')
   };
 
   /** Get a translated version of a track **/
-  factory.trackGet = function(id, language) {
+  factory.trackGet = function(id, language, options) {
 
     if (typeof language === 'undefined') { language = ''; }
+    if (typeof options === 'undefined') { options = {}; }
 
     /** RETURNS
      *    Absolute file path
@@ -496,6 +497,7 @@ angular.module('bmmLibApp')
       headers: {
         'Accept-Language': language
       },
+      data: $.param(options),
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
