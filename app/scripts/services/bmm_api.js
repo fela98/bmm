@@ -70,7 +70,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'POST',
       url: serverUrli+'album/',
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -104,7 +105,8 @@ angular.module('bmmLibApp')
       headers: {
         'Accept-Language': language
       },
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -151,7 +153,8 @@ angular.module('bmmLibApp')
       headers: {
         'Accept-Language': language
       },
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -189,7 +192,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'PUT',
       url: serverUrli+'album/'+id,
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -236,7 +240,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'facets/published/years',
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -263,7 +268,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'POST',
       url: serverUrli+'login/authentication',
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -305,7 +311,8 @@ angular.module('bmmLibApp')
       headers: {
         'Accept-Language': language
       },
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -394,7 +401,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'POST',
       url: serverUrli+'track',
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -429,7 +437,8 @@ angular.module('bmmLibApp')
       headers: {
         'Accept-Language': language
       },
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -463,7 +472,8 @@ angular.module('bmmLibApp')
       headers: {
         'Accept-Language': language
       },
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -556,7 +566,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'PUT',
       url: serverUrli+'track/'+id,
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -604,9 +615,10 @@ angular.module('bmmLibApp')
       url: serverUrli+'track/'+id+'/files',
       file: file,
       dataType: 'json',
-      data: $.param({
+      data: JSON.stringify({
         type: type
       }),
+      contentType: 'application/json',
       xhrFields: {
         'withCredentials': true
       },
@@ -704,7 +716,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'POST',
       url: serverUrli+'track_collection/',
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -740,7 +753,10 @@ angular.module('bmmLibApp')
         xhr.setRequestHeader('Accept-Language', language);
       },
       dataType: 'json',
-      data: $.param({_method: 'LINK'}),
+      data: JSON.stringify({
+        _method: 'LINK'
+      }),
+      contentType: 'application/json',
       xhrFields: {
         'withCredentials': true
       },
@@ -790,7 +806,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'PUT',
       url: serverUrli+'track_collection/'+id,
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -831,7 +848,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'contributor',
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -853,7 +871,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'POST',
       url: serverUrli+'contributor',
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -894,7 +913,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'PUT',
       url: serverUrli+'contributor/'+id,
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -935,7 +955,8 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'contributor/'+id+'/track/',
-      data: $.param(options),
+      data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
