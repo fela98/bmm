@@ -1,8 +1,14 @@
 'use strict';
 
 angular.module('bmmDebug')
-  .controller('MainCtrl', function ($scope, $timeout) {
+  .controller('MainCtrl', function ($scope, $timeout, $filter) {
     
+    //$scope.bibleSolved = $filter('bmmBibleVerse')($scope.bible);
+
+    $scope.$watch('bible', function(text) {
+      $scope.bibleSolved = $filter('bmmBibleVerse')(text);
+    });
+
     $scope.go = function () {
       console.log('click');
     };

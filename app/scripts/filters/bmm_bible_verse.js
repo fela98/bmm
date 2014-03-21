@@ -4,310 +4,357 @@ angular.module('bmmLibApp')
   .filter('bmmBibleVerse', ['bmmTranslator', function (bmmTranslator) {
     return function (input) {
 
-      var output=' ';
+      var output=[];
+      if (typeof input!=='undefined'&&input!=='') {
 
-      if (typeof input!=='undefined') {
-
+        //minified will contain bibleverses shortened from 2-3 letters
         var minified={};
 
+        //For all translations, copy a 2-3 letter bibleverse into minified
         $.each(bmmTranslator.get(), function(key) {
 
-          var threeLtr = bmmTranslator.get()[key];
-
-          threeLtr = threeLtr.toLowerCase();
-          threeLtr = threeLtr.replace(/\s/g,'');
+          //Make sure translation is lowercase
+          var threeLtr = this.toLowerCase();
+          //Filter out strange characters (Blacklist)
+          //Whitelist is not recomended as multiple languages is suported
+          threeLtr = threeLtr.replace(/[\s\.¦:;¶*~"'_\\\/\-\,><!$£#¤%&=+?|{}\[\]¨^`´@]/g,'');
+          //Copy first 3 letters
           threeLtr = threeLtr.substring(0,3);
-
+          //Use the same key as translationfile and set converted string
           minified[key] = threeLtr;
 
         });
 
+        /**
+         *  Make lowercase, remove all dots and spaces
+         *  Split string into array by commas
+         */
         input = input.toLowerCase();
-        input = input.replace(/\s+/g,' ');
-        input = input.replace(/\./g,'');
+        input = input.replace(/\.\s/g,'');
         input = input.split(',');
 
+        //For each comma separated string
         $.each(input, function() {
 
-          var chapter, start, end, results='', data;
+          //Sort by book, chapter and verses
+          var book={}, data, bookEnd;
 
           data = this;
-          data = data.toLowerCase();
 
-          if (data.substring(0,1)===' ') {
-            data = data.replace(' ','');
+          //Find length of book
+          bookEnd=-1;
+          for (var i=0; i < data.length; i++) {
+            //If the third character or greater is numeric
+            if (i>1&&data[i].match(/^\d+$/)) {
+              bookEnd=i-1; //Start of chapter found
+              break;
+            }
           }
 
-          if ((data.substring(0,1)).match(/^\d+$/)&&
-              (data.substring(1,2)===' ')) {
-            data = data.replace(' ','');
+          //If not start of chapter was found
+          if (bookEnd===-1) {
+            book.name = data;
+            data = '';
+          //If start of chapter was found
+          } else {
+            book.name = data.substring(0,(bookEnd+1));
+            data = data.substring(bookEnd+1);
           }
 
-          data = data.split(' ');
+          //Filter out strange characters (Blacklist)
+          //Whitelist is not recomended as multiple languages is suported
+          book.name = book.name.replace(/[¦:;¶*~"'_\\\/\-\,><!$£#¤%&=+?|{}\[\]¨^`´@]/g,'');
 
-          if (typeof data[0]==='undefined') { data[0] = ''; }
-          if (typeof data[1]==='undefined') { data[1] = ''; }
+          /**
+           *  ---- BOOK IS NOW FOUND, CHAPTER NEXT ----
+           */
+          
+          book.chapters = [];
 
-          chapter = data[0];
-          chapter = chapter.substring(0,3);
-          start = data[1].split('-');
-          end = start[1];
-          start = start[0];
+          //Set ; and + as :
+          data = data.replace(/[;+]/g,':');
+          //Remove all characters thats not in the list
+          data = data.replace(/[^0-9&:\-]/g,'');
 
-          switch (chapter) {
-            case minified.bibleGenesisShort:
-              chapter = bmmTranslator.get().bibleGenesis;
-              break;
-            case minified.bibleExodusShort:
-              chapter = bmmTranslator.get().bibleExodus;
-              break;
-            case minified.bibleLeviticusShort:
-              chapter = bmmTranslator.get().bibleLeviticus;
-              break;
-            case minified.bibleNumbersShort:
-              chapter = bmmTranslator.get().bibleNumbers;
-              break;
-            case minified.bibleDeuteronomyShort:
-              chapter = bmmTranslator.get().bibleDeuteronomy;
-              break;
-            case minified.bibleJoshuaShort:
-              chapter = bmmTranslator.get().bibleJoshua;
-              break;
-            case minified.bibleJudgesShort:
-              chapter = bmmTranslator.get().bibleJudges;
-              break;
-            case minified.bibleRuthShort:
-              chapter = bmmTranslator.get().bibleRuth;
-              break;
-            case minified.bibleFirstSamuelShort:
-              chapter = bmmTranslator.get().bibleFirstSamuel;
-              break;
-            case minified.bibleSecondSamuelShort:
-              chapter = bmmTranslator.get().bibleSecondSamuel;
-              break;
-            case minified.bibleFirstKingsShort:
-              chapter = bmmTranslator.get().bibleFirstKings;
-              break;
-            case minified.bibleSecondKingsShort:
-              chapter = bmmTranslator.get().bibleSecondKings;
-              break;
-            case minified.bibleFirstChroniclesShort:
-              chapter = bmmTranslator.get().bibleFirstChronicles;
-              break;
-            case minified.bibleSecondChroniclesShort:
-              chapter = bmmTranslator.get().bibleSecondChronicles;
-              break;
-            case minified.bibleEzraShort:
-              chapter = bmmTranslator.get().bibleEzra;
-              break;
-            case minified.bibleNehemiahShort:
-              chapter = bmmTranslator.get().bibleNehemiah;
-              break;
-            case minified.bibleTobitShort:
-              chapter = bmmTranslator.get().bibleTobit;
-              break;
-            case minified.bibleJudithShort:
-              chapter = bmmTranslator.get().bibleJudith;
-              break;
-            case minified.bibleEstherShort:
-              chapter = bmmTranslator.get().bibleEsther;
-              break;
-            case minified.bibleFirstMaccabeesShort:
-              chapter = bmmTranslator.get().bibleFirstMaccabees;
-              break;
-            case minified.bibleSecondMaccabeesShort:
-              chapter = bmmTranslator.get().bibleSecondMaccabees;
-              break;
-            case minified.bibleJobShort:
-              chapter = bmmTranslator.get().bibleJob;
-              break;
-            case minified.biblePsalmsShort:
-              chapter = bmmTranslator.get().biblePsalms;
-              break;
-            case minified.bibleProverbsShort:
-              chapter = bmmTranslator.get().bibleProverbs;
-              break;
-            case minified.bibleEcclesiastesShort:
-              chapter = bmmTranslator.get().bibleEcclesiastes;
-              break;
-            case minified.bibleSongOfSongsShort:
-              chapter = bmmTranslator.get().bibleSongOfSongs;
-              break;
-            case minified.bibleWisdomShort:
-              chapter = bmmTranslator.get().bibleWisdom;
-              break;
-            case minified.bibleSirachShort:
-              chapter = bmmTranslator.get().bibleSirach;
-              break;
-            case minified.bibleIsaiahShort:
-              chapter = bmmTranslator.get().bibleIsaiah;
-              break;
-            case minified.bibleJeremiahShort:
-              chapter = bmmTranslator.get().bibleJeremiah;
-              break;
-            case minified.bibleLamentationsShort:
-              chapter = bmmTranslator.get().bibleLamentations;
-              break;
-            case minified.bibleBaruchShort:
-              chapter = bmmTranslator.get().bibleBaruch;
-              break;
-            case minified.bibleEzekielShort:
-              chapter = bmmTranslator.get().bibleEzekiel;
-              break;
-            case minified.bibleDanielShort:
-              chapter = bmmTranslator.get().bibleDaniel;
-              break;
-            case minified.bibleHoseaShort:
-              chapter = bmmTranslator.get().bibleHosea;
-              break;
-            case minified.bibleJoelShort:
-              chapter = bmmTranslator.get().bibleJoel;
-              break;
-            case minified.bibleAmosShort:
-              chapter = bmmTranslator.get().bibleAmos;
-              break;
-            case minified.bibleObadiahShort:
-              chapter = bmmTranslator.get().bibleObadiah;
-              break;
-            case minified.bibleJonahShort:
-              chapter = bmmTranslator.get().bibleJonah;
-              break;
-            case minified.bibleMicahShort:
-              chapter = bmmTranslator.get().bibleMicah;
-              break;
-            case minified.bibleNahumShort:
-              chapter = bmmTranslator.get().bibleNahum;
-              break;
-            case minified.bibleHabakkukShort:
-              chapter = bmmTranslator.get().bibleHabakkuk;
-              break;
-            case minified.bibleZephaniahShort:
-              chapter = bmmTranslator.get().bibleZephaniah;
-              break;
-            case minified.bibleHaggaiShort:
-              chapter = bmmTranslator.get().bibleHaggai;
-              break;
-            case minified.bibleZechariahShort:
-              chapter = bmmTranslator.get().bibleZechariah;
-              break;
-            case minified.bibleMalachiShort:
-              chapter = bmmTranslator.get().bibleMalachi;
-              break;
-            case minified.bibleMatthewShort:
-              chapter = bmmTranslator.get().bibleMatthew;
-              break;
-            case minified.bibleMarkShort:
-              chapter = bmmTranslator.get().bibleMark;
-              break;
-            case minified.bibleLukeShort:
-              chapter = bmmTranslator.get().bibleLuke;
-              break;
-            case minified.bibleJohnShort:
-              chapter = bmmTranslator.get().bibleJohn;
-              break;
-            case minified.bibleActsOfTheApostlesShort:
-              chapter = bmmTranslator.get().bibleActsOfTheApostles;
-              break;
-            case minified.bibleRomansShort:
-              chapter = bmmTranslator.get().bibleRomans;
-              break;
-            case minified.bibleFirstCorinthiansShort:
-              chapter = bmmTranslator.get().bibleFirstCorinthians;
-              break;
-            case minified.bibleSecondCorinthiansShort:
-              chapter = bmmTranslator.get().bibleSecondCorinthians;
-              break;
-            case minified.bibleGalatiansShort:
-              chapter = bmmTranslator.get().bibleGalatians;
-              break;
-            case minified.bibleEphesiansShort:
-              chapter = bmmTranslator.get().bibleEphesians;
-              break;
-            case minified.biblePhilippiansShort:
-              chapter = bmmTranslator.get().biblePhilippians;
-              break;
-            case minified.bibleColossiansShort:
-              chapter = bmmTranslator.get().bibleColossians;
-              break;
-            case minified.bibleFirstThessaloniansShort:
-              chapter = bmmTranslator.get().bibleFirstThessalonians;
-              break;
-            case minified.bibleSecondThessaloniansShort:
-              chapter = bmmTranslator.get().bibleSecondThessalonians;
-              break;
-            case minified.bibleFirstTimothyShort:
-              chapter = bmmTranslator.get().bibleFirstTimothy;
-              break;
-            case minified.bibleSecondTimothyShort:
-              chapter = bmmTranslator.get().bibleSecondTimothy;
-              break;
-            case minified.bibleTitusShort:
-              chapter = bmmTranslator.get().bibleTitus;
-              break;
-            case minified.biblePhilemonShort:
-              chapter = bmmTranslator.get().biblePhilemon;
-              break;
-            case minified.bibleHebrewsShort:
-              chapter = bmmTranslator.get().bibleHebrews;
-              break;
-            case minified.bibleJamesShort:
-              chapter = bmmTranslator.get().bibleJames;
-              break;
-            case minified.bibleFirstPeterShort:
-              chapter = bmmTranslator.get().bibleFirstPeter;
-              break;
-            case minified.bibleSecondPeterShort:
-              chapter = bmmTranslator.get().bibleSecondPeter;
-              break;
-            case minified.bibleFirstJohnShort:
-              chapter = bmmTranslator.get().bibleFirstJohn;
-              break;
-            case minified.bibleSecondJohnShort:
-              chapter = bmmTranslator.get().bibleSecondJohn;
-              break;
-            case minified.bibleThirdJohnShort:
-              chapter = bmmTranslator.get().bibleThirdJohn;
-              break;
-            case minified.bibleJudeShort:
-              chapter = bmmTranslator.get().bibleJude;
-              break;
-            case minified.bibleRevelationShort:
-              chapter = bmmTranslator.get().bibleRevelation;
-              break;
-            default:
-              chapter = false;
-          }
+          //Split chapters based on &
+          $.each(data.split('&'), function() {
 
-          if (start<1||start>999||!(start+'').match(/^\d+$/)) { start = false; }
-          if (end<1||end>999||!(end+'').match(/^\d+$/)) { end = false; }
+            var results = this.split(':'), chapter={};
+            chapter.verses=[];
 
-          if (chapter!==false) {
+            $.each(results, function(index) {
 
-            results+=chapter;
+              //First in array equals chapter
+              if (index===0&&this>0) {
+                chapter.number = Number(this);
+              //Other in array equals verses
+              } else {
+                
+                //If single verse
+                if (this.indexOf('-')===-1) {
+                  if (this>0) {
+                    chapter.verses.push(Number(this));
+                  }
+                //If verses [from-to]
+                } else {
+                  var verseFromTo = this.split('-');
+                  if (verseFromTo[0]!=='') {
 
-            if (start!==false) {
+                    //If last verse is less than first, make it equal
+                    if (verseFromTo[1]===''||Number(verseFromTo[1])<Number(verseFromTo[0])) {
+                      verseFromTo[1] = verseFromTo[0];
+                    }
 
-              results+=' '+start;
+                    //Add all verses
+                    for (var i = verseFromTo[0]; i<=verseFromTo[1]; i++) {
+                      if (i>0) {
+                        chapter.verses.push(Number(i));
+                      }
+                    }
 
-              if (end!==false&&Number(end)>Number(start)) {
-
-                results+='-'+end;
+                  }
+                  
+                }
 
               }
 
-            }
+            });
 
+            book.chapters.push(chapter);
+
+          });
+
+          switch (book.name) {
+            case minified.bibleGenesisShort:
+              book.name = bmmTranslator.get().bibleGenesis;
+              break;
+            case minified.bibleExodusShort:
+              book.name = bmmTranslator.get().bibleExodus;
+              break;
+            case minified.bibleLeviticusShort:
+              book.name = bmmTranslator.get().bibleLeviticus;
+              break;
+            case minified.bibleNumbersShort:
+              book.name = bmmTranslator.get().bibleNumbers;
+              break;
+            case minified.bibleDeuteronomyShort:
+              book.name = bmmTranslator.get().bibleDeuteronomy;
+              break;
+            case minified.bibleJoshuaShort:
+              book.name = bmmTranslator.get().bibleJoshua;
+              break;
+            case minified.bibleJudgesShort:
+              book.name = bmmTranslator.get().bibleJudges;
+              break;
+            case minified.bibleRuthShort:
+              book.name = bmmTranslator.get().bibleRuth;
+              break;
+            case minified.bibleFirstSamuelShort:
+              book.name = bmmTranslator.get().bibleFirstSamuel;
+              break;
+            case minified.bibleSecondSamuelShort:
+              book.name = bmmTranslator.get().bibleSecondSamuel;
+              break;
+            case minified.bibleFirstKingsShort:
+              book.name = bmmTranslator.get().bibleFirstKings;
+              break;
+            case minified.bibleSecondKingsShort:
+              book.name = bmmTranslator.get().bibleSecondKings;
+              break;
+            case minified.bibleFirstChroniclesShort:
+              book.name = bmmTranslator.get().bibleFirstChronicles;
+              break;
+            case minified.bibleSecondChroniclesShort:
+              book.name = bmmTranslator.get().bibleSecondChronicles;
+              break;
+            case minified.bibleEzraShort:
+              book.name = bmmTranslator.get().bibleEzra;
+              break;
+            case minified.bibleNehemiahShort:
+              book.name = bmmTranslator.get().bibleNehemiah;
+              break;
+            case minified.bibleTobitShort:
+              book.name = bmmTranslator.get().bibleTobit;
+              break;
+            case minified.bibleJudithShort:
+              book.name = bmmTranslator.get().bibleJudith;
+              break;
+            case minified.bibleEstherShort:
+              book.name = bmmTranslator.get().bibleEsther;
+              break;
+            case minified.bibleFirstMaccabeesShort:
+              book.name = bmmTranslator.get().bibleFirstMaccabees;
+              break;
+            case minified.bibleSecondMaccabeesShort:
+              book.name = bmmTranslator.get().bibleSecondMaccabees;
+              break;
+            case minified.bibleJobShort:
+              book.name = bmmTranslator.get().bibleJob;
+              break;
+            case minified.biblePsalmsShort:
+              book.name = bmmTranslator.get().biblePsalms;
+              break;
+            case minified.bibleProverbsShort:
+              book.name = bmmTranslator.get().bibleProverbs;
+              break;
+            case minified.bibleEcclesiastesShort:
+              book.name = bmmTranslator.get().bibleEcclesiastes;
+              break;
+            case minified.bibleSongOfSongsShort:
+              book.name = bmmTranslator.get().bibleSongOfSongs;
+              break;
+            case minified.bibleWisdomShort:
+              book.name = bmmTranslator.get().bibleWisdom;
+              break;
+            case minified.bibleSirachShort:
+              book.name = bmmTranslator.get().bibleSirach;
+              break;
+            case minified.bibleIsaiahShort:
+              book.name = bmmTranslator.get().bibleIsaiah;
+              break;
+            case minified.bibleJeremiahShort:
+              book.name = bmmTranslator.get().bibleJeremiah;
+              break;
+            case minified.bibleLamentationsShort:
+              book.name = bmmTranslator.get().bibleLamentations;
+              break;
+            case minified.bibleBaruchShort:
+              book.name = bmmTranslator.get().bibleBaruch;
+              break;
+            case minified.bibleEzekielShort:
+              book.name = bmmTranslator.get().bibleEzekiel;
+              break;
+            case minified.bibleDanielShort:
+              book.name = bmmTranslator.get().bibleDaniel;
+              break;
+            case minified.bibleHoseaShort:
+              book.name = bmmTranslator.get().bibleHosea;
+              break;
+            case minified.bibleJoelShort:
+              book.name = bmmTranslator.get().bibleJoel;
+              break;
+            case minified.bibleAmosShort:
+              book.name = bmmTranslator.get().bibleAmos;
+              break;
+            case minified.bibleObadiahShort:
+              book.name = bmmTranslator.get().bibleObadiah;
+              break;
+            case minified.bibleJonahShort:
+              book.name = bmmTranslator.get().bibleJonah;
+              break;
+            case minified.bibleMicahShort:
+              book.name = bmmTranslator.get().bibleMicah;
+              break;
+            case minified.bibleNahumShort:
+              book.name = bmmTranslator.get().bibleNahum;
+              break;
+            case minified.bibleHabakkukShort:
+              book.name = bmmTranslator.get().bibleHabakkuk;
+              break;
+            case minified.bibleZephaniahShort:
+              book.name = bmmTranslator.get().bibleZephaniah;
+              break;
+            case minified.bibleHaggaiShort:
+              book.name = bmmTranslator.get().bibleHaggai;
+              break;
+            case minified.bibleZechariahShort:
+              book.name = bmmTranslator.get().bibleZechariah;
+              break;
+            case minified.bibleMalachiShort:
+              book.name = bmmTranslator.get().bibleMalachi;
+              break;
+            case minified.bibleMatthewShort:
+              book.name = bmmTranslator.get().bibleMatthew;
+              break;
+            case minified.bibleMarkShort:
+              book.name = bmmTranslator.get().bibleMark;
+              break;
+            case minified.bibleLukeShort:
+              book.name = bmmTranslator.get().bibleLuke;
+              break;
+            case minified.bibleJohnShort:
+              book.name = bmmTranslator.get().bibleJohn;
+              break;
+            case minified.bibleActsOfTheApostlesShort:
+              book.name = bmmTranslator.get().bibleActsOfTheApostles;
+              break;
+            case minified.bibleRomansShort:
+              book.name = bmmTranslator.get().bibleRomans;
+              break;
+            case minified.bibleFirstCorinthiansShort:
+              book.name = bmmTranslator.get().bibleFirstCorinthians;
+              break;
+            case minified.bibleSecondCorinthiansShort:
+              book.name = bmmTranslator.get().bibleSecondCorinthians;
+              break;
+            case minified.bibleGalatiansShort:
+              book.name = bmmTranslator.get().bibleGalatians;
+              break;
+            case minified.bibleEphesiansShort:
+              book.name = bmmTranslator.get().bibleEphesians;
+              break;
+            case minified.biblePhilippiansShort:
+              book.name = bmmTranslator.get().biblePhilippians;
+              break;
+            case minified.bibleColossiansShort:
+              book.name = bmmTranslator.get().bibleColossians;
+              break;
+            case minified.bibleFirstThessaloniansShort:
+              book.name = bmmTranslator.get().bibleFirstThessalonians;
+              break;
+            case minified.bibleSecondThessaloniansShort:
+              book.name = bmmTranslator.get().bibleSecondThessalonians;
+              break;
+            case minified.bibleFirstTimothyShort:
+              book.name = bmmTranslator.get().bibleFirstTimothy;
+              break;
+            case minified.bibleSecondTimothyShort:
+              book.name = bmmTranslator.get().bibleSecondTimothy;
+              break;
+            case minified.bibleTitusShort:
+              book.name = bmmTranslator.get().bibleTitus;
+              break;
+            case minified.biblePhilemonShort:
+              book.name = bmmTranslator.get().biblePhilemon;
+              break;
+            case minified.bibleHebrewsShort:
+              book.name = bmmTranslator.get().bibleHebrews;
+              break;
+            case minified.bibleJamesShort:
+              book.name = bmmTranslator.get().bibleJames;
+              break;
+            case minified.bibleFirstPeterShort:
+              book.name = bmmTranslator.get().bibleFirstPeter;
+              break;
+            case minified.bibleSecondPeterShort:
+              book.name = bmmTranslator.get().bibleSecondPeter;
+              break;
+            case minified.bibleFirstJohnShort:
+              book.name = bmmTranslator.get().bibleFirstJohn;
+              break;
+            case minified.bibleSecondJohnShort:
+              book.name = bmmTranslator.get().bibleSecondJohn;
+              break;
+            case minified.bibleThirdJohnShort:
+              book.name = bmmTranslator.get().bibleThirdJohn;
+              break;
+            case minified.bibleJudeShort:
+              book.name = bmmTranslator.get().bibleJude;
+              break;
+            case minified.bibleRevelationShort:
+              book.name = bmmTranslator.get().bibleRevelation;
+              break;
+            default:
+              book.name = false;
           }
 
-          results+=', ';
-
-          if (results!==', ') {
-            output+=results;
+          if (book.name!==false) {
+            output.push(book);
           }
-          
+
         });
       }
-      
+
       return output;
 
     };
