@@ -224,8 +224,8 @@ angular.module('bmmLibApp')
 
   };
 
-  /** Get a list of years for the archive **/
-  factory.facetsPublishedYears = function(options) {
+  /** Get a list of years with albums for the archive (published sorting) **/
+  factory.facetsAlbumPublishedYears = function(options) {
 
     if (typeof options === 'undefined') { options = {}; }
 
@@ -237,7 +237,35 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrli+'facets/published/years',
+      url: serverUrli+'facets/album_published/years',
+      data: $.param(options),
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
+    }).fail( function(xhr) {
+
+      console.log(xhr);
+
+    });
+
+  };
+
+  /** Get a list of years with tracks for the archive (recorded sorting) **/
+  factory.facetsTrackRecordedYears = function(options) {
+
+    if (typeof options === 'undefined') { options = {}; }
+
+    /** OPTIONS (Stars = Required)
+     *    content-type              Array(String)   song|speech|audiobook|singsong|video
+     *    media-type                Array(String)   audio|video
+     *    unpublished               String          hide|show|only
+     */
+
+    return $.ajax({
+      method: 'GET',
+      url: serverUrli+'facets/track_recorded/years',
       data: $.param(options),
       dataType: 'json',
       xhrFields: {

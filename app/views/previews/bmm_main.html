@@ -93,7 +93,13 @@
 
 		<div class="bmm-view" ng-class="{'bmm-small': miniScreen}">
 
-			<div class="bmm-navigator-toggle load"></div>
+			<input type="text" style="width: 100%;" ng-model="bible"><br>
+			<div ng-repeat="a in bibleSolved">
+				{{a.name}}
+				<li ng-repeat="b in a.chapters">
+					{{b.number}}: <a ng-repeat="c in b.verses">,{{c}}</a>
+				</li>
+			</div>
 
 			<div bmm-path></div>
 
