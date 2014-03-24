@@ -244,13 +244,13 @@ div[data-bmm-treeview] li .collapsed {
 }
 
 div[data-bmm-treeview] li .new-album {
-  padding: 1px 10px 0 20px;
+  padding: 1px 0 0 20px;
   background-image: url("../images/treeview/folder-new-album.png");
   background-repeat: no-repeat;
 }
 
 div[data-bmm-treeview] li .new-track {
-  padding: 1px 0 0 20px;
+  padding: 1px 10px 0 20px;
   background-image: url("../images/treeview/folder-new-track.png");
   background-repeat: no-repeat;
 }

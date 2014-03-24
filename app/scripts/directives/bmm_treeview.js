@@ -54,17 +54,17 @@ angular.module('bmmLibApp')
         var template =
           '<ul>' +
             '<li class="test" ng-show="{{admin}}">'+
-              '<i class="new-album" ng-hide="node.newAlbum||node.newTrack||node.group==\'year\'" ng-click="node.newAlbum=true">Nytt album</i>' +
-              '<i class="new-track" ng-hide="node.newAlbum||node.newTrack||node.group==\'year\'" ng-click="node.newTrack=true">Ny Track</i>' +
-              '<form ng-show="node.newAlbum" ng-submit="addAlbum(node.title,node.roleId,node.children);">'+
-                '<input placeholder="Album tittel" name="title" ng-model="node.title" type="text">'+
-                '<input type="submit" value="" class="bmm-confirm">'+
-                '<div class="bmm-remove" ng-click="node.newAlbum = false"></div>'+
-              '</form>'+
-              '<form ng-show="node.newTrack" ng-submit="addTrack(node.title,node.roleId,node.children);">'+
+              '<i class="new-track" ng-hide="node.group==\'year\'||node.group==\'loading\'||node.group==\'undefined\'" ng-click="node.newTrack=true;node.newAlbum=false;">Ny Track</i>' +
+              '<i class="new-album" ng-hide="node.group==\'year\'||node.group==\'loading\'" ng-click="node.newAlbum=true;node.newTrack=false;">Nytt album</i>' +
+              '<form ng-show="node.newTrack" ng-submit="addTrack(node);">'+
                 '<input placeholder="Track tittel" name="title" ng-model="node.title" type="text">'+
                 '<input type="submit" value="" class="bmm-confirm">'+
                 '<div class="bmm-remove" ng-click="node.newTrack = false"></div>'+
+              '</form>'+
+              '<form ng-show="node.newAlbum" ng-submit="addAlbum(node);">'+
+                '<input placeholder="Album tittel" name="title" ng-model="node.title" type="text">'+
+                '<input type="submit" value="" class="bmm-confirm">'+
+                '<div class="bmm-remove" ng-click="node.newAlbum = false"></div>'+
               '</form>'+
             '</li>'+
             '<li data-ng-repeat="node in ' + bmmTreeview + '" id="{{node.roleId}}" id="{{node.language}}" ng-class="{draggable: node.group==\'track\'}" >' +
