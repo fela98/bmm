@@ -3,14 +3,22 @@
 angular.module('bmmLibApp')
   .factory('bmmTranslator', function () {
     
-    var factory = {}, translation = {};
+    var factory = {}, translation = {}, bibleTranslation = {};
+
+    factory.set = function(t) {
+      translation = t;
+    };
 
     factory.get = function() {
       return translation;
     };
 
-    factory.set = function(t) {
-      translation = t;
+    factory.setBible = function(t) {
+      bibleTranslation = t;
+    };
+
+    factory.getBible = function() {
+      return bibleTranslation;
     };
 
     return factory;

@@ -213,7 +213,6 @@ div[data-bmm-lib-app] {
   user-select: none;
 
   /* default */
-  font-family: Tahoma;
   font-size:13px;
   text-decoration: none;
 }
@@ -241,6 +240,18 @@ div[data-bmm-treeview] li .expanded {
 div[data-bmm-treeview] li .collapsed {
   padding: 1px 10px;
   background-image: url("../images/treeview/folder-closed.png");
+  background-repeat: no-repeat;
+}
+
+div[data-bmm-treeview] li .new-album {
+  padding: 1px 10px 0 20px;
+  background-image: url("../images/treeview/folder-new-album.png");
+  background-repeat: no-repeat;
+}
+
+div[data-bmm-treeview] li .new-track {
+  padding: 1px 0 0 20px;
+  background-image: url("../images/treeview/folder-new-track.png");
   background-repeat: no-repeat;
 }
 
@@ -390,7 +401,7 @@ body {
 .bmm-options {
 
   float: right;
-  padding: 2.2em 1em 0 0;
+  padding: 1.4em 1em 0 0;
   list-style-type: none;
   cursor: default;
   .dropdown-menu {
@@ -446,7 +457,7 @@ body {
   background-image: url(../images/svg/logo.svg);
   background-size: contain;
   background-repeat: no-repeat;
-  margin: 1.5em 0 0;
+  margin: .65em 0 0;
   width: 7.5em;
   height: 2.8em;
 }
@@ -558,7 +569,7 @@ body {
 
   > * {
     float: left;
-    padding: 1.3em 0;
+    padding: 1.3em 0 0;
   }
 
   input {
@@ -758,12 +769,12 @@ body {
   margin-left: -16em;
 }
 .bmm-navigator-backend {
-  position: relative;
-  float: left;
+  position: absolute;
   width: 18em;
   min-width: 18em;
-  min-height: 100%;
+  height: 100%;
   color: $bmm-background;
+  overflow: auto;
 
   $animation-video-speed: .5s;
   $animation-video-type: ease;
@@ -2162,11 +2173,10 @@ $animation-video-type: ease;
     list-style-type: none;
     li {
       float: left;
-      margin: .4em 1em;
+      margin: 0 0 .4em 1em;
       padding: .2em;
-      border-radius: .3em;
       border: .1em solid rgba(152, 77, 77, 0.25);
-      background-color: #98BFF8;
+      background-color: #D1D1D1;
     }
   }
   .bmm-size-medium {
