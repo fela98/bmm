@@ -119,6 +119,40 @@ angular.module('bmmLibApp')
 
   };
 
+  /** Get all albums in a year **/
+  factory.albumPublishedYear = function(year, options, language) {
+    
+    if (typeof options === 'undefined') { options = {}; }
+    if (typeof language === 'undefined') { language = ''; }
+
+    /** OPTIONS (Stars = Required)
+     *    size                      Integer         \d+
+     *    from                      Integer         \d+
+     *    content-type              Array(string)   song|speech|audiobook|singsong|video
+     *    media-type                Array(string)   audio|video
+     *    unpublished               string          hide|show|only
+     */
+
+    return $.ajax({
+      method: 'GET',
+      url: serverUrli+'album/published/'+year,
+      headers: {
+        'Accept-Language': language
+      },
+      data: $.param(options),
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
+    }).fail( function(xhr) {
+
+      console.log(xhr);
+
+    });
+
+  };
+
   /** Get a translated version of an album **/
   factory.albumGet = function(id, language, options) {
 
