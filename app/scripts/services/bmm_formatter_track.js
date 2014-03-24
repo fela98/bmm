@@ -184,6 +184,10 @@ angular.module('bmmLibApp')
           resolvedData.combinedTitle = resolvedData.title + bindSign + resolvedData.performers;
         }
 
+        if (resolvedData.title === '') {
+          resolvedData.title = 'Ukjent';
+        }
+
       }
 
       /**

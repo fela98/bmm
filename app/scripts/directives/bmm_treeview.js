@@ -54,8 +54,8 @@ angular.module('bmmLibApp')
         var template =
           '<ul>' +
             '<li class="test" ng-show="{{admin}}">'+
-              '<i class="new-track" ng-hide="node.group==\'year\'||node.group==\'loading\'||node.group==undefined" ng-click="node.newTrack=true;node.newAlbum=false;">Ny Track</i>' +
-              '<i class="new-album" ng-hide="node.group==\'year\'||node.group==\'loading\'" ng-click="node.newAlbum=true;node.newTrack=false;">Nytt album</i>' +
+              '<i class="new-track" ng-hide="node.group==\'year\'||node.group==undefined" ng-click="node.newTrack=true;node.newAlbum=false;">Ny Track</i>' +
+              '<i class="new-album" ng-hide="node.group==\'year\'" ng-click="node.newAlbum=true;node.newTrack=false;">Nytt album</i>' +
               '<form ng-show="node.newTrack" ng-submit="addTrack(node);">'+
                 '<input placeholder="Track tittel" ng-model="node.title" type="text">'+
                 '<input type="submit" value="" class="bmm-confirm">'+
