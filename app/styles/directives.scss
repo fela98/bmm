@@ -91,6 +91,7 @@ ul {
     transition: all $animation-video-speed $animation-video-type;
   }
 
+  .bmm-navigator-backend .bmm-container-header,
   .bmm-navigator-playlist .bmm-container-header {
     display: inline-block !important;
     ul {
@@ -785,6 +786,10 @@ body {
   -o-transition: all $animation-video-speed $animation-video-type;
   transition: all $animation-video-speed $animation-video-type;
 
+  input {
+    color: black;
+  }
+
   > div form.bmm-private {
     input:first-child {
       width: 9em;
@@ -844,6 +849,9 @@ body {
 
 //***********************************//
 //*******bmm-navigator-playlist******//
+.bmm-navigator-backend
+.bmm-container-header
+.bmm-options,
 .bmm-navigator-playlist
 .bmm-container-header
 .bmm-options {
@@ -856,6 +864,7 @@ body {
     background-image: none;
   }
 }
+.bmm-navigator-backend .bmm-container-header,
 .bmm-navigator-playlist .bmm-container-header {
   display: none;
 }

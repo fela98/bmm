@@ -54,23 +54,23 @@ angular.module('bmmLibApp')
         var template =
           '<ul>' +
             '<li class="test" ng-show="{{admin}}">'+
-              '<i class="new-track" ng-hide="node.group==\'year\'||node.group==\'loading\'||node.group==\'undefined\'" ng-click="node.newTrack=true;node.newAlbum=false;">Ny Track</i>' +
+              '<i class="new-track" ng-hide="node.group==\'year\'||node.group==\'loading\'||node.group==undefined" ng-click="node.newTrack=true;node.newAlbum=false;">Ny Track</i>' +
               '<i class="new-album" ng-hide="node.group==\'year\'||node.group==\'loading\'" ng-click="node.newAlbum=true;node.newTrack=false;">Nytt album</i>' +
               '<form ng-show="node.newTrack" ng-submit="addTrack(node);">'+
-                '<input placeholder="Track tittel" name="title" ng-model="node.title" type="text">'+
+                '<input placeholder="Track tittel" ng-model="node.title" type="text">'+
                 '<input type="submit" value="" class="bmm-confirm">'+
                 '<div class="bmm-remove" ng-click="node.newTrack = false"></div>'+
               '</form>'+
               '<form ng-show="node.newAlbum" ng-submit="addAlbum(node);">'+
-                '<input placeholder="Album tittel" name="title" ng-model="node.title" type="text">'+
+                '<input placeholder="Album tittel" ng-model="node.title" type="text">'+
                 '<input type="submit" value="" class="bmm-confirm">'+
                 '<div class="bmm-remove" ng-click="node.newAlbum = false"></div>'+
               '</form>'+
             '</li>'+
             '<li data-ng-repeat="node in ' + bmmTreeview + '" id="{{node.roleId}}" id="{{node.language}}" ng-class="{draggable: node.group==\'track\'}" >' +
-              '<i class="collapsed" data-ng-show="node.' + nodeChildren + '.length && node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
-              '<i class="expanded" data-ng-show="node.' + nodeChildren + '.length && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
-              '<i class="normal" data-ng-hide="node.' + nodeChildren + '.length"></i> ' +
+              '<i class="collapsed" data-ng-show="(node.group==\'album\'||node.group==\'year\') && node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
+              '<i class="expanded" data-ng-show="(node.group==\'album\'||node.group==\'year\') && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
+              '<i class="normal" data-ng-hide="(node.group==\'album\'||node.group==\'year\')"></i> ' +
               '<span data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node)">{{node.' + nodeLabel + '}}</span>' +
               '<div data-ng-hide="node.collapsed" data-tree-id="' + treeId + '" data-bmm-treeview="node.' + nodeChildren + '" data-node-id=' + nodeId + ' data-node-label=' + nodeLabel + ' data-node-children=' + nodeChildren + '></div>' +
             '</li>' +
