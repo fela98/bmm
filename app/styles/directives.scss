@@ -9,9 +9,9 @@ $bmm-background: #F6F2F2;
 $bmm-background-inverse: #282E33;
 $gray: #858585;
 
-@import url("https://fonts.googleapis.com/css?family=Alegreya+Sans+SC");
+@import url("http://fonts.googleapis.com/css?family=Metrophobic");
 body, h1, h2, h3, h4, h5, h6, p {
-  font-family: 'Alegreya Sans SC', sans-serif !important;
+  font-family: 'Metrophobic', sans-serif !important;
 }
 body {
   position: absolute;
@@ -264,6 +264,7 @@ div[data-bmm-treeview] li .normal {
 
 div[data-bmm-treeview] li i, div[data-bmm-treeview] li span {
   cursor: pointer;
+  white-space: nowrap;
 }
 
 div[data-bmm-treeview] li .selected {
