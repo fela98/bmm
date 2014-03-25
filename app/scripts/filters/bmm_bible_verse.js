@@ -2,7 +2,7 @@
 
 angular.module('bmmLibApp')
   .filter('bmmBibleVerse', ['bmmTranslator', function (bmmTranslator) {
-    return function (input) {
+    return function (input, inverse) {
 
       var output=[];
       if (typeof input!=='undefined'&&input!=='') {
@@ -29,9 +29,9 @@ angular.module('bmmLibApp')
          */
         input = input.toLowerCase();
         input = input.replace(/[\.\s]/g,'');
-        input = input.split(',');
+        input = input.split('|');
 
-        //For each comma separated string
+        //For each comma separated string - OPEN TO ALLOW MULTIPLE BOOKS
         $.each(input, function() {
 
           //Sort by book, chapter and verses
@@ -69,8 +69,8 @@ angular.module('bmmLibApp')
           
           book.chapters = [];
 
-          //Set ; and + as :
-          data = data.replace(/[;+]/g,':');
+          //Set ; + , as :
+          data = data.replace(/[;+\,]/g,':');
           //Remove all characters thats not in the list
           data = data.replace(/[^0-9&:\-]/g,'');
 
@@ -133,6 +133,7 @@ angular.module('bmmLibApp')
             if (this.indexOf(book.name)!==-1) {
               book.name = this;
               book.shortcode = bmmTranslator.getBible().shortcodes[key];
+              book.key = key;
               output.push(book);
               return false;
             }
