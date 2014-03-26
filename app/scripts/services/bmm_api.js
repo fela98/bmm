@@ -348,25 +348,6 @@ angular.module('bmmLibApp')
 
   };
 
-  /** Get file url from path **/
-  factory.fileProtected = function(path) {
-
-    return $.ajax({
-      method: 'GET',
-      url: serverUrli+'file/protected/'+path,
-      dataType: 'json',
-      xhrFields: {
-        'withCredentials': true
-      },
-      crossDomain: true
-    }).fail( function(xhr) {
-
-      console.log(xhr);
-
-    });
-
-  };
-
   /** Authenticate by username and password **/
   factory.loginAuthentication = function(options) {
 
