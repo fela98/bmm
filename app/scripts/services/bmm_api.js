@@ -348,6 +348,25 @@ angular.module('bmmLibApp')
 
   };
 
+  /** Get file url from path **/
+  factory.fileProtected = function(path) {
+
+    return $.ajax({
+      method: 'GET',
+      url: serverUrli+'file/protected/'+path,
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
+    }).fail( function(xhr) {
+
+      console.log(xhr);
+
+    });
+
+  };
+
   /** Authenticate by username and password **/
   factory.loginAuthentication = function(options) {
 
@@ -836,7 +855,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'POST',
-      url: serverUrli+'track_collection/'+playlist,
+      url: serverUrli+'track_collection/'+playlist+'?_method=LINK',
       beforeSend: function (xhr) {
         $.each(tracks, function() {
           //@todo - Find a solution for multiple Link requests
@@ -845,10 +864,6 @@ angular.module('bmmLibApp')
         xhr.setRequestHeader('Accept-Language', language);
       },
       dataType: 'json',
-      data: JSON.stringify({
-        _method: 'LINK'
-      }),
-      contentType: 'application/json',
       xhrFields: {
         'withCredentials': true
       },

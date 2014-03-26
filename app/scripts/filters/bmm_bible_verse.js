@@ -2,7 +2,7 @@
 
 angular.module('bmmLibApp')
   .filter('bmmBibleVerse', ['bmmTranslator', function (bmmTranslator) {
-    return function (input, inverse) {
+    return function (input) {
 
       var output=[];
       if (typeof input!=='undefined'&&input!=='') {
