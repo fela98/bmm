@@ -376,15 +376,15 @@ div[data-bmm-treeview] li .selected {
 }
 
 .bmm-kilden {
-  background-image: url(../images/jpg/mp3kilden.jpg);
+  background-image: url(../images/svg/mp3kilden.svg);
 }
 
 .bmm-barnas {
-  background-image: url(../images/jpg/barnasmp3.jpg);
+  background-image: url(../images/svg/barnasmp3.svg);
 }
 
 .bmm-instrumental {
-  background-image: url(../images/jpg/instrumental.jpg);
+  background-image: url(../images/svg/instrumental.svg);
 }
 
 .bmm-album {
@@ -576,20 +576,7 @@ body {
 }
 
 //***********************************//
-//************album-large************//
-.album-large {
-    float: left;
-    margin: 1em 0 2.5em 0;
-    width: 32%;
-    height: 11.5em;
-    box-shadow: 0.1em 0.3em .92em .2em rgb(221, 221, 221);
-    cursor: pointer;
-}
-
-.album-large:nth-child(1) { background: url('../images/svg/mp3kilden.svg'); }
-.album-large:nth-child(2) { background: url('../images/svg/instrumental.svg'); }
-.album-large:nth-child(3) { background: url('../images/svg/barnasmp3.svg'); }
-
+//************album-latest***********//
 .album-latest {
   width: 9em;
   overflow: hidden;
