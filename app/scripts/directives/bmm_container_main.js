@@ -10,7 +10,6 @@ angular.module('bmmLibApp')
             //Save elements in cache
             var minified = false,
                 mainHeader = $('.bmm-container-header.main'),
-                mainContainer = $('.bmm-main-container'),
                 playlistNav = $('.bmm-navigator-playlist'),
                 backendNav = $('.bmm-navigator-backend'),
                 target = $('.bmm-player-target'),
@@ -40,8 +39,6 @@ angular.module('bmmLibApp')
               },1500);
             }
 
-            mainContainer.css('min-height', target.innerHeight()-mainHeader.innerHeight());
-
             //On window resize
             $(window).resize(function() {
 
@@ -56,10 +53,6 @@ angular.module('bmmLibApp')
                 
                 setNavHeight();
 
-              }
-
-              if (nh!==h) {
-                mainContainer.css('min-height', target.innerHeight()-mainHeader.innerHeight());
               }
 
               //When width is changed and small
