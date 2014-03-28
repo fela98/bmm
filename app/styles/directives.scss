@@ -114,6 +114,12 @@ ul {
 
 //***********************************//
 //*************MINIFIED**************//
+@media screen and (max-width: 26em) {
+  .bmm-volume-controller {
+    display: none !important;
+  }
+}
+
 @media screen and (max-width: 45em) {
 
   .bmm-player-clock {
