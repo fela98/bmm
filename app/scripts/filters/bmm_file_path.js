@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .filter('bmmFilePath', function (bmmApi) {
+  .filter('bmmFilePath', ['bmmApi', function (bmmApi) {
     return function (path) {
 
       if (path.substring(0,4)!=='http') {
@@ -10,4 +10,4 @@ angular.module('bmmLibApp')
 
       return path;
     };
-  });
+  }]);

@@ -24,8 +24,7 @@ angular.module('bmmLibApp')
             //DEFINITIONS
             var width, aboutWidth, clock1, clock2, target, buttons, repeat,
                 mediaslider, shuffle, mainControllers, tools, about, volume,
-                video, videoContainer, toolsPos='',
-                minified = false;
+                video, videoContainer, minified = false;
 
             var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
             if (iOS) {
@@ -98,10 +97,12 @@ angular.module('bmmLibApp')
                   top: 10
                 });
 
+                var topBarHeight = 32;
+
                 target.animate({
                   height: element.parent().height()-
                           element.height()-
-                          bmmUser.getScreenHeight()
+                          bmmUser.getScreenHeight()-topBarHeight
 
                 }, 'fast');
 
@@ -116,8 +117,10 @@ angular.module('bmmLibApp')
                 videoContainer.attr('active', 'false');
                 bmmPlayer.showVideo = false;
 
+                var topBarHeight = 32;
+
                 target.animate({
-                  height: element.parent().height()-(element.height()-bmmUser.getScreenHeight())
+                  height: element.parent().height()-(element.height()-bmmUser.getScreenHeight())-topBarHeight
                 }, 'fast');
 
                 videoContainer.animate({
@@ -159,25 +162,15 @@ angular.module('bmmLibApp')
                 resizeTarget();
               });
             });
-
+            
             //CHANGE TARGET DIMENSIONS
             var resizeTarget = function() {
 
-              if (toolsPos===''||toolsPos==='normalTools') {
-
-                target.css({
-                  height: element.parent().outerHeight()-
-                          element.outerHeight()
-                });
-
-              } else if (toolsPos==='topTools') {
-
-                target.css({
-                  height: element.parent().outerHeight()-
-                          element.outerHeight()
-                });
-
-              }
+              var topBarHeight = 32;
+              target.css({
+                height: element.parent().outerHeight()-
+                        element.outerHeight()-topBarHeight
+              });
 
             };
 
@@ -194,142 +187,57 @@ angular.module('bmmLibApp')
               //Check if 'player-about' should be minified and find size of slider
               if (buttons.width()<(aboutWidth*1.8)&&!minified) {
                 minified=true;
-                reorganizePlayer('minified');
+
+                var minitimer;
+                  
+                about.addClass('bmm-minified');
+                about.css({
+                  padding: '.5em 0 0 .8em',
+                  height: '',
+                  float: 'none'
+                });
+
+                about.after('<div class="bmm-player-minitimer"></div>');
+                minitimer = element.find('.bmm-player-minitimer');
+
+                clock1.remove().appendTo(minitimer);
+                minitimer.append('<div>&nbsp/&nbsp</div>');
+                clock2.remove().appendTo(minitimer);
+
+                minitimer.children().css('float', 'left');
+                minitimer.css({
+                  position: 'absolute',
+                  top: '.5em',
+                  right: '.8em'
+                });
+
+                mediaslider.css({
+                  width: '',
+                  float: 'none'
+                });
+
               } else if (buttons.width()>=(aboutWidth*2.8)&&minified) {
                 minified=false;
-                reorganizePlayer();
+                
+                //repeat.detach().insertBefore(mediaslider).css('float', '');
+                clock1.detach().insertBefore(mediaslider).css('float', '');
+                //shuffle.detach().insertAfter(mediaslider).css('float', '');
+                clock2.detach().insertAfter(mediaslider).css('float', '');
+
+                element.find('.bmm-player-minitimer').remove();
+                mediaslider.css('float', '');
+
+                about.removeClass('bmm-minified');
+                about.css({
+                  padding: '',
+                  float: ''
+                });
+
+                mainControllers.detach().insertAfter(clock2);
+
                 setSliderWidth();
               } else if (buttons.width()>=(aboutWidth*1.8)&&!minified) {
                 setSliderWidth();
-              }
-
-              //Find a position for the toolset
-              if (element.width()<450&&toolsPos!=='topTools') {
-                reorganizePlayer('topTools');
-              } else if (toolsPos!=='normalTools'&&
-                        element.width()>=450) {
-                reorganizePlayer('normalTools');
-              }
-
-            };
-
-            //REORGANIZE PLAYER DIRECTIVES
-            var reorganizePlayer = function(position) {
-
-              if (typeof position!== 'undefined'&&position!=='minified') {
-                toolsPos = position;
-              }
-
-              switch (position) {
-                case 'minified':
-
-                  var minitimer;
-                  
-                  about.addClass('bmm-minified');
-                  about.css({
-                    padding: '.5em 0 0 .8em',
-                    height: '',
-                    float: 'none'
-                  });
-
-                  about.after('<div class="bmm-player-minitimer"></div>');
-                  minitimer = element.find('.bmm-player-minitimer');
-
-                  //repeat.detach().appendTo(minitimer);
-                  clock1.remove().appendTo(minitimer);
-                  minitimer.append('<div>&nbsp/&nbsp</div>');
-                  clock2.remove().appendTo(minitimer);
-                  //shuffle.detach().appendTo(minitimer);
-
-                  minitimer.children().css('float', 'left');
-                  minitimer.css({
-                    position: 'absolute',
-                    top: '.5em',
-                    right: '.8em'
-                  });
-
-                  buttons.css('padding', '.5em');
-
-                  mediaslider.css({
-                    width: '',
-                    float: 'none'
-                  });
-
-                  break;
-
-                case 'topTools':
-    
-                  /*
-                  volume.attr({
-                    length: '4em',
-                    orientation: 'horizontal'
-                  });
-
-                  element.css('paddingTop', '');
-                  mainControllers.insertAfter(mediaslider);
-                  //video.detach().insertAfter(mainControllers).css('float', 'right');
-
-                  tools.detach().insertAfter(videoContainer)
-                  .css({
-                    width: '100%'
-                  });
-
-                  */
-
-                  volume.css('display','none');
-
-                  break;
-
-                case 'normalTools':
-
-                  /*
-                  element.css('paddingTop', '');
-    
-                  volume.attr({
-                    length: '5em',
-                    orientation: 'horizontal'
-                  });
-
-                  if (element.find('.bmm-player-minitimer').length>0) {
-                    mainControllers.insertAfter(mediaslider);
-                  } else {
-                    mainControllers.insertAfter(clock2);
-                  }
-
-                  element.find('.bmm-player-tools')
-                  .detach().insertAfter(mainControllers)
-                  .css({
-                    width: '',
-                    background: ''
-                  }).children().css('float', '');
-
-                  //video.detach().appendTo(tools).css('float', '');
-                  */
-
-                  volume.css('display','');
-
-                  break;
-
-                default:
-
-                  //repeat.detach().insertBefore(mediaslider).css('float', '');
-                  clock1.detach().insertBefore(mediaslider).css('float', '');
-                  //shuffle.detach().insertAfter(mediaslider).css('float', '');
-                  clock2.detach().insertAfter(mediaslider).css('float', '');
-
-                  element.find('.bmm-player-minitimer').remove();
-                  buttons.css('padding', '');
-                  mediaslider.css('float', '');
-
-                  about.removeClass('bmm-minified');
-                  about.css({
-                    padding: '',
-                    float: ''
-                  });
-
-                  mainControllers.detach().insertAfter(clock2);
-
-                  break;
               }
 
             };

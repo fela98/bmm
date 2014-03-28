@@ -22,16 +22,6 @@ angular.module('bmmLibApp')
           element.find('.bmm-player-title').append(attrs.title);
           element.find('.bmm-player-subtitle').append(attrs.subtitle);
           element.find('.bmm-player-extra').append(attrs.extra);
-          element.css({
-            overflow: 'hidden'
-          });
-          checkMinified();
-
-          $(window).resize(function() {
-            
-            checkMinified();
-
-          });
 
           scope.$watch('bmmPlayer.getCover', function(cover) {
             scope.background = cover;
@@ -48,16 +38,6 @@ angular.module('bmmLibApp')
           scope.$watch('bmmPlayer.getExtra', function(extra) {
             element.find('.bmm-player-extra').html(extra);
           });
-
-        };
-
-        var checkMinified = function() {
-
-          if (element.hasClass('bmm-minified')) {
-            element.height('auto');
-          } else {
-            element.height(element.find('.bmm-player-thumbnail').outerHeight());
-          }
 
         };
 

@@ -53,7 +53,7 @@ angular.module('bmmLibApp')
         //tree template
         var template =
           '<ul>' +
-            '<li class="test" ng-show="{{admin}}">'+
+            '<li ng-show="{{admin}}">'+
               '<i class="new-track" ng-hide="node.group==\'year\'||node.group==undefined" ng-click="node.newTrack=true;node.newAlbum=false;">Ny Track</i>' +
               '<i class="new-album" ng-hide="node.group==\'year\'" ng-click="node.newAlbum=true;node.newTrack=false;">Nytt album</i>' +
               '<form ng-show="node.newTrack" ng-submit="addTrack(node);">'+
@@ -67,7 +67,12 @@ angular.module('bmmLibApp')
                 '<div class="bmm-remove" ng-click="node.newAlbum = false"></div>'+
               '</form>'+
             '</li>'+
-            '<li data-ng-repeat="node in ' + bmmTreeview + '" id="{{node.roleId}}" id="{{node.language}}" ng-class="{draggable: node.group==\'track\'}" >' +
+            '<li data-ng-repeat="node in ' + bmmTreeview + '"'+
+                 'id="{{node.roleId}}" language="{{node.language}}" type="{{node.group}}"'+
+                 'ng-class="{draggable: node.group==\'track\''+
+                 ', \'admin-draggable\': ((node.group==\'album\'||node.group==\'track\')&&admin)'+ //&&admin
+                 ', \'admin-droppable\': (node.group!=\'track\'&&admin)'+
+                 '}">'+
               '<i class="collapsed" data-ng-show="(node.group==\'album\'||node.group==\'year\') && node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
               '<i class="expanded" data-ng-show="(node.group==\'album\'||node.group==\'year\') && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
               '<i class="normal" data-ng-hide="(node.group==\'album\'||node.group==\'year\')"></i> ' +

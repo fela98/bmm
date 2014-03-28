@@ -4,7 +4,7 @@
 
 <div bmm-container-main class="bmm-player-target">
 
-	<div class="bmm-container-header" ng-class="{'bmm-small': miniScreen}">
+	<div class="bmm-container-header main" ng-class="{'bmm-small': miniScreen}">
 		<div class="bmm-wrapper">
 
 			<div class="bmm-logo"></div>
@@ -56,6 +56,51 @@
 			>
 
 			</div>
+
+			<div class="bmm-container-header bmm-small"
+       ng-class="{'bmm-small': miniScreen}">
+        
+        <div class="bmm-wrapper">
+
+          <a ng-href="#" class="bmm-logo"></a> BETA v.1.6
+
+          <li class="dropdown bmm-options">
+            <a class="dropdown-toggle flags-{{mediaLanguage}}">
+              {{mediaLanguage | bmmLanguage}}
+            </a>
+            <ul class="dropdown-menu">
+              <li ng-repeat="lang in languages">
+                <a class="flags-{{lang}}"
+                   ng-click="setMediaLanguage(lang);">{{lang | bmmLanguage}}</a>
+              </li>
+            </ul>
+          </li>
+
+          <div class="bmm-search">
+
+            <form ng-submit="go('/search/'+bmm.term);" class="bmm-search">
+
+              <input ng-model="bmm.term" type="text" placeholder="{{translation.inputfieldSearch}}"/>
+              <input ng-href="#search/" type="submit" value=""/>
+
+            </form>
+
+          </div>
+
+          <div class="bmm-navigator-main">
+
+            <ul>
+							<li>Button1</li>
+							<li>Button2</li>
+							<li>Button3</li>
+							<li>Button4</li>
+							<li>Button5</li>
+						</ul>
+
+          </div>
+
+        </div>
+      </div>
 
 			<h1>Spillelister</h1>
 

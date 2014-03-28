@@ -25,6 +25,7 @@ angular.module('bmmLibApp')
 
         });
 
+        /*
         $(window).unbind('keyup');
         $(window).bind('keyup', function(e) {
           if (e.keyCode === 32) {
@@ -35,6 +36,7 @@ angular.module('bmmLibApp')
             }
           }
         });
+        */
 
       }
     };

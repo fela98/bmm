@@ -20,7 +20,7 @@ angular.module('bmmLibApp')
               videoscreen = element.find('.bmm-video-screen');
               setResizable();
 
-              $(window).resize(function() {
+              element.resize(function() {
                 setResizable();
                 setVideoDimensions();
               });

@@ -7,6 +7,16 @@ angular.module('bmmLibApp')
         return {
           pre : function(scope, element) {
 
+            //Save elements in cache
+            var minified = false,
+                mainHeader = $('.bmm-container-header.main'),
+                mainContainer = $('.bmm-main-container'),
+                playlistNav = $('.bmm-navigator-playlist'),
+                backendNav = $('.bmm-navigator-backend'),
+                target = $('.bmm-player-target'),
+                bmmView = $('.bmm-view'),
+                h = $(window).height(), w = $(window).width();
+
             //PRESET
             element.addClass('bmm-container-main');
 
@@ -22,40 +32,90 @@ angular.module('bmmLibApp')
               }
             });
 
-            if($(window).width() <= 500) {
+            if(mainHeader.css('display')==='none') {
+              minified = true;
+              scope.miniScreen = true;
               $timeout(function() {
-                $timeout(function() {
-                  $(window).trigger('resize');
-                });
-              });
+                setNavHeight();
+              },1500);
             }
 
-            var minified = false;
+            mainContainer.css('min-height', target.innerHeight()-mainHeader.innerHeight());
+
+            //On window resize
             $(window).resize(function() {
-              if($(window).width()<=500&&!minified) {
 
-                minified = true;
-                scope.miniScreen = true;
+              //Get new width/height
+              var nh = $(window).height(), nw = $(window).width();
 
-              } else if (minified&&$(window).width()>500) {
-
-                minified = false;
-                scope.miniScreen = false;
+              //When height is changed, navigator is fixed or small
+              if ((mainHeader.css('display')==='none'||
+                  playlistNav.hasClass('fixed')||
+                  backendNav.hasClass('fixed')
+                  )&&nh!==h) {
+                
+                setNavHeight();
 
               }
+
+              if (nh!==h) {
+                mainContainer.css('min-height', target.innerHeight()-mainHeader.innerHeight());
+              }
+
+              //When width is changed and small
+              if(w!==nw&&mainHeader.css('display')==='none'&&!minified) {
+                minified = true;
+                scope.miniScreen = true;
+                setNavHeight();
+              //When width is changed and big
+              } else if (w!==nw&&minified&&mainHeader.css('display')!=='none') {
+                minified = false;
+                scope.miniScreen = false;
+                playlistNav.css({ height: '' });
+                backendNav.css({ height: '' });
+              }
+
+              h = nh;
+              w = nw;
+
             });
 
             $('.bmm-player-target').scroll(function() {
 
-              if (!$('.bmm-navigator-switch').hasClass('fixed')&&
-                  $('.bmm-player-target').scrollTop()>=$('.bmm-container-header').height()) {
-                $('.bmm-navigator-switch').addClass('fixed');
-              } else if ($('.bmm-navigator-switch').hasClass('fixed')&&
-                  $('.bmm-player-target').scrollTop()<$('.bmm-container-header').height()) {
-                $('.bmm-navigator-switch').removeClass('fixed');
+              //If not minified
+              if (mainHeader.css('display')!=='none') {
+
+                if ((!playlistNav.hasClass('fixed')||!backendNav.hasClass('fixed'))&&
+                    target.scrollTop()>=mainHeader.height()&&
+                    playlistNav.height()<bmmView.height()) {
+
+                  playlistNav.addClass('fixed');
+                  backendNav.addClass('fixed');
+                  setNavHeight();
+
+                } else if ((playlistNav.hasClass('fixed')||backendNav.hasClass('fixed'))&&
+                    target.scrollTop()<mainHeader.height()) {
+
+                  playlistNav.removeClass('fixed').css({ height: '' });
+                  backendNav.removeClass('fixed').css({ height: '' });
+
+                }
+
               }
 
             });
+
+            var setNavHeight = function() {
+              //Calculate new height
+              playlistNav.css({
+                height: target.height()
+              });
+
+              //Calculate new height
+              backendNav.css({
+                height: target.height()
+              });
+            };
             
           }
         };

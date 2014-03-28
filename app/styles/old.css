@@ -9,9 +9,9 @@ $bmm-background: #F6F2F2;
 $bmm-background-inverse: #282E33;
 $gray: #858585;
 
-@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro");
+@import url("http://fonts.googleapis.com/css?family=Metrophobic");
 body, h1, h2, h3, h4, h5, h6, p {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Metrophobic', sans-serif !important;
 }
 body {
   position: absolute;
@@ -40,7 +40,7 @@ ul {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #cfcfcf;
+  background-color: $bmm-background;
 } /* the new scrollbar will have a flat appearance with the set background color */
  
 ::-webkit-scrollbar-thumb {
@@ -56,57 +56,6 @@ ul {
 }
 
 //***********************************//
-//**********admin-drag-drop**********//
-.admin-draggable.ui-draggable-dragging {
-  background: #1F9C62;
-  color: white;
-  list-style-type: none;
-  max-width: 12em;
-  max-height: 5em;
-  overflow: hidden;
-  * {
-    float: left;
-    white-space: nowrap;
-  }
-}
-
-.admin-droppable span.active.hover {
-  background: #F6F2F2;
-  color: #282E33;
-}
-
-//***********************************//
-//***********bmm-bible-book**********//
-.bmm-bible-book {
-  position: relative;
-  color: #FFF;
-  margin-right: 1em;
-  * {
-    float: left;
-  }
-  > p {
-      background: black;
-      padding: .1em .4em;
-    }
-  > * {
-    > p {
-      background: white;
-      color: black;
-      padding: .1em .4em;
-      font-weight: bold;
-    }
-    > * {
-      > p {
-        background: #2B2B2B;
-        border: #FFF dashed .1em;
-        padding: 0 .2em;
-        margin: 0 .2em;
-      }
-    }
-  }
-}
-
-//***********************************//
 //*************bmm-swipe*************//
 .bmm-swipe {
   display: none;
@@ -114,44 +63,6 @@ ul {
 
 //***********************************//
 //*************MINIFIED**************//
-@media screen and (max-width: 45em) {
-
-  .bmm-player-clock {
-      
-  }
-
-  .bmm-player-buttons {
-    padding: .5em;
-  }
-
-  .bmm-player-mediaslider {
-    //width: auto;
-    //float: none;
-  }
-
-  .bmm-player-about {
-
-    //padding: .5em 0 0 .8em !important;
-    //height: auto !important;
-    //width: 0 !important;
-    //float: none !important;
-    //overflow: visible !important;
-
-    .bmm-player-thumbnail,
-    .bmm-player-subtitle,
-    .bmm-player-extra {
-      display: none;
-    }
-
-    .bmm-player-title {
-      //padding: 0 !important;
-      //overflow: visible !important;
-    }
-
-  }
-
-}
-
 @media screen and (max-width: 30em) {
 
   .bmm-large-only {
@@ -173,11 +84,11 @@ ul {
     $animation-video-speed: .5s;
     $animation-video-type: ease;
 
-    -webkit-transition: margin-left $animation-video-speed $animation-video-type;
-    -moz-transition: margin-left $animation-video-speed $animation-video-type;
-    -ms-transition: margin-left $animation-video-speed $animation-video-type;
-    -o-transition: margin-left $animation-video-speed $animation-video-type;
-    transition: margin-left $animation-video-speed $animation-video-type;
+    -webkit-transition: all $animation-video-speed $animation-video-type;
+    -moz-transition: all $animation-video-speed $animation-video-type;
+    -ms-transition: all $animation-video-speed $animation-video-type;
+    -o-transition: all $animation-video-speed $animation-video-type;
+    transition: all $animation-video-speed $animation-video-type;
   }
 
   .bmm-navigator-backend .bmm-container-header,
@@ -194,14 +105,6 @@ ul {
       }
     }
   }
-
-  .bmm-navigator-backend,
-  .bmm-navigator-playlist {
-    position: fixed !important;
-    top: 33px;
-    z-index: 1;
-  }
-
   .bmm-container-header {
     display: none;
   }
@@ -212,6 +115,13 @@ ul {
 
   .bmm-view {
     width: auto;
+  }
+
+  .bmm-navigator-switch {
+    position: fixed !important;
+  }
+  .bmm-navigator-switch.bmm-small {
+    margin-left: -14.2em;
   }
 
 }
@@ -539,6 +449,7 @@ body {
 .bmm-main-container {
   position: relative;
   background-color: $bmm-background-inverse;
+  height: 100%;
   width: 100%;
   overflow: hidden;
 }
@@ -553,10 +464,33 @@ body {
   height: 2.8em;
 }
 
+.bmm-logo.minified {
+  position: relative;
+  float: left;
+  margin: .6em;
+  width: 3.5em;
+  height: 1.6em;
+  z-index: 10;
+}
+
 .bmm-wrapper {
   margin: auto;
   max-width: 70em;
-  //overflow: auto;
+  overflow: hidden;
+}
+
+.bmm-minified-header {
+  display: none;
+  width: 100%;
+
+  .bmm-search {
+    margin-top: .5em;
+  }
+
+}
+
+.minified .bmm-minified-header {
+  display: inline-block;
 }
 
 .ui-resizable-n {
@@ -585,9 +519,9 @@ body {
     cursor: pointer;
 }
 
-.album-large:nth-child(1) { background: url('../images/svg/mp3kilden.svg'); }
-.album-large:nth-child(2) { background: url('../images/svg/instrumental.svg'); }
-.album-large:nth-child(3) { background: url('../images/svg/barnasmp3.svg'); }
+.album-large:nth-child(1) { background: url('../images/mp3kilden.jpg'); }
+.album-large:nth-child(2) { background: url('../images/instrumental.jpg'); }
+.album-large:nth-child(3) { background: url('../images/barnasmp3.jpg'); }
 
 .album-latest {
   width: 9em;
@@ -671,6 +605,13 @@ body {
 
 }
 
+.minified .bmm-search {
+  input:first-child {
+    border: .1em solid #ccc;
+    width: auto;
+  }
+}
+
 .bmm-search-relation {
   font-size: .7em;
     color: #555;
@@ -697,11 +638,10 @@ body {
 .bmm-view {
   position: relative;
   margin-left: 18em;
-  padding: 2em 1em 1001em 1em;
-  margin-bottom: -999em;
+  padding: 2em 1em;
   background-color: $bmm-background;
-  //height: 100%;
-  //overflow: auto;
+  height: 100%;
+  overflow: auto;
   h2, .bmm-path {
     color: $bmm-main;
     display: inline-block;
@@ -830,16 +770,14 @@ body {
 .bmm-navigator-backend.bmm-small {
   margin-left: -17.5em;
   overflow: visible;
-  overflow-x: visible;
 }
 .bmm-navigator-backend {
-  position: relative;
-  float: left;
+  position: absolute;
   width: 18em;
   min-width: 18em;
+  height: 100%;
   color: $bmm-background;
   overflow: auto;
-  overflow-x: hidden;
 
   $animation-video-speed: .5s;
   $animation-video-type: ease;
@@ -906,10 +844,9 @@ body {
 
 }
 
-.bmm-navigator-backend.fixed {
-  position: fixed;
-  top: 33px;
-  z-index: 1;
+.bmm-navigator-backend.minified {
+  height: 100%;
+  margin: 0;
 }
 
 //***********************************//
@@ -929,17 +866,6 @@ body {
     background-image: none;
   }
 }
-
-.bmm-navigator-backend.bmm-small.fixed,
-.bmm-navigator-playlist.bmm-small.fixed {
-  * {
-    visibility: hidden;
-  }
-  .bmm-navigator-switch {
-    visibility: visible !important;
-  }
-}
-
 .bmm-navigator-backend .bmm-container-header,
 .bmm-navigator-playlist .bmm-container-header {
   display: none;
@@ -947,17 +873,14 @@ body {
 .bmm-navigator-playlist.bmm-small {
   margin-left: -17.5em;
   overflow: visible;
-  overflow-x: visible;
 }
 .bmm-navigator-playlist {
-  position: relative;
-  float: left;
+  position: absolute;
   width: 18em;
   min-width: 18em;
-  //height: 100%;
+  height: 100%;
   color: $bmm-background;
   overflow: auto;
-  overflow-x: hidden;
 
   $animation-video-speed: .5s;
   $animation-video-type: ease;
@@ -1079,10 +1002,9 @@ body {
 
 }
 
-.bmm-navigator-playlist.fixed {
-  position: fixed;
-  top: 33px;
-  z-index: 1;
+.bmm-navigator-playlist.minified {
+  height: 100%;
+  margin: 0;
 }
 
 //***********************************//
@@ -1097,7 +1019,6 @@ body {
   position: relative;
   width: 100%;
   overflow: hidden;
-  display: inline-block;
 
   ul {
 
@@ -1134,7 +1055,7 @@ body {
   width: 1.5em;
   height: 2.5em;
   background-image: url(../images/svg/toggle_hover.svg);
-  background-size: .43em 1.5em;
+  background-size: .45em 1.5em;
   background-position: .47em .45em;
   background-repeat: no-repeat;
   cursor: pointer;
@@ -1158,10 +1079,9 @@ body {
   background-color: $bmm-background-inverse !important;
 }
 
-/*
 .bmm-navigator-switch.fixed {
   position: fixed;
-}*/
+}
 
 //***********************************//
 //**************bmm-path*************//
@@ -1309,18 +1229,6 @@ body {
 //********bmm-container-main*********//
 .bmm-container-main {
   overflow: auto;
-  margin-top: 33px !important; //33px = topbar height
-}
-
-//Hide topbar spacer from embeded topbar which displaces bmm-container-main
-#sw-topbar-spacer {
-  display: none !important;
-}
-
-#sw-topbar {
-  > * {
-    white-space: nowrap;
-  }
 }
 
 //***********************************//
@@ -1328,7 +1236,6 @@ body {
 .bmm-container-header {
   background-color: $bmm-main;
   width: 100%;
-  padding-top: .5em;
 
   .bmm-wrapper {
     margin: 0 auto;
@@ -1338,7 +1245,6 @@ body {
 
 .bmm-container-header .bmm-wrapper {
   margin: 0 auto;
-  overflow: visible;
 }
 
 //***********************************//
@@ -1353,7 +1259,6 @@ body {
     position: relative;
     margin: auto;
     background: black;
-    max-width: 100%;
     height: 0;
     overflow: hidden;
 
@@ -1383,7 +1288,6 @@ body {
   }
 
   .bmm-player-about {
-    overflow: hidden;
     padding: 1em 0 1em 1em;
     width: 18em;
     float: left;
@@ -1399,6 +1303,10 @@ body {
 
     .bmm-player-mediaslider {
       margin: .55em 1em .5em;
+    }
+
+    .bmm-player-mediaslider.bmm-minified {
+      margin: .15em .2em 0;
     }
 
     .bmm-player-tools {
@@ -1449,6 +1357,16 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.bmm-minified .bmm-player-thumbnail,
+.bmm-minified .bmm-player-subtitle,
+.bmm-minified .bmm-player-extra {
+  display: none;
+}
+
+.bmm-minified .bmm-player-title {
+  padding: 0;
 }
 
 //***********************************//
