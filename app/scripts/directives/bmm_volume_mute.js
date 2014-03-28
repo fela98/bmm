@@ -9,6 +9,10 @@ angular.module('bmmLibApp')
           bmmPlayer.setMute();
         });
 
+        element.click(function() {
+        	element.toggleClass('muted');
+        });
+
       }
     };
   }]);

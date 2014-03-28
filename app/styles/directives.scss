@@ -114,7 +114,7 @@ ul {
 
 //***********************************//
 //*************MINIFIED**************//
-@media screen and (max-width: 26em) {
+@media screen and (max-width: 27em) {
   .bmm-volume-controller {
     display: none !important;
   }
@@ -1700,6 +1700,10 @@ body {
   opacity: 1;
   background-image: url(../images/svg/mute_hover.svg);
   cursor: pointer;
+}
+
+.bmm-volume-mute.muted {
+  background-image: url(../images/svg/muted.svg);
 }
 
 //***********************************//
