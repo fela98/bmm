@@ -13,8 +13,7 @@ angular.module('bmmLibApp')
                 playlistNav = $('.bmm-navigator-playlist'),
                 backendNav = $('.bmm-navigator-backend'),
                 target = $('.bmm-player-target'),
-                bmmView = $('.bmm-view'),
-                h = $(window).height(), w = $(window).width();
+                bmmView = $('.bmm-view');
 
             //PRESET
             element.addClass('bmm-container-main');
@@ -42,34 +41,28 @@ angular.module('bmmLibApp')
             //On window resize
             $(window).resize(function() {
 
-              //Get new width/height
-              var nh = $(window).height(), nw = $(window).width();
-
               //When height is changed, navigator is fixed or small
-              if ((mainHeader.css('display')==='none'||
+              if (mainHeader.css('display')==='none'||
                   playlistNav.hasClass('fixed')||
                   backendNav.hasClass('fixed')
-                  )&&nh!==h) {
+                  ) {
                 
                 setNavHeight();
 
               }
 
               //When width is changed and small
-              if(w!==nw&&mainHeader.css('display')==='none'&&!minified) {
+              if(mainHeader.css('display')==='none'&&!minified) {
                 minified = true;
                 scope.miniScreen = true;
                 setNavHeight();
               //When width is changed and big
-              } else if (w!==nw&&minified&&mainHeader.css('display')!=='none') {
+              } else if (minified&&mainHeader.css('display')!=='none') {
                 minified = false;
                 scope.miniScreen = false;
                 playlistNav.css({ height: '' });
                 backendNav.css({ height: '' });
               }
-
-              h = nh;
-              w = nw;
 
             });
 

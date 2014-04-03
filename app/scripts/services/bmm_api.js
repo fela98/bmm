@@ -780,7 +780,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrli+'user',
+      url: serverUrli+'/login/user',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
