@@ -8,6 +8,7 @@ angular.module('bmmLibApp')
         currentNavigator = 'main', //Options ['main', 'playlist']
         displayNavigator = true,
         mediaLanguageIsSet = false,
+        translation = {},
         username;
 
     video.screen = {};
@@ -57,6 +58,14 @@ angular.module('bmmLibApp')
 
     factory.mediaLanguageIsSet = function() {
       return mediaLanguageIsSet;
+    };
+
+    factory.setTranslation = function(lang) {
+      translation = lang;
+    };
+
+    factory.getTranslation = function() {
+      return translation;
     };
 
     factory.setUsername = function(name) {
