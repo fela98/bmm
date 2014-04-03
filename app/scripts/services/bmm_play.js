@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .factory('bmmPlay', ['bmmPlaylist', 'bmmPlayer', '$location', function (bmmPlaylist, bmmPlayer, $location) {
+  .factory('bmmPlay', ['bmmPlaylist', 'bmmPlayer', '$location', '$filter', function (bmmPlaylist, bmmPlayer, $location, $filter) {
     
     var factory = {};
 
@@ -32,7 +32,7 @@ angular.module('bmmLibApp')
           title: title,
           subtitle: performers,
           extra: this.language,
-          cover: this.cover,
+          cover: $filter('bmmCover')(this.cover,this.subtype),
           url: this.file,
           duration: this.duration,
           video: video

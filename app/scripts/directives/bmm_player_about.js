@@ -3,7 +3,7 @@
 angular.module('bmmLibApp')
   .directive('bmmPlayerAbout', [function () {
     return {
-      template: '<div class="bmm-player-thumbnail" style="background-image: url({{background | bmmCover}});"></div>'+
+      template: '<div class="bmm-player-thumbnail" style="background-image: url({{background}});"></div>'+
 				'<div class="bmm-player-title"></div>'+
         '<div class="bmm-player-subtitle"></div>'+
         '<div class="bmm-player-extra"></div>',

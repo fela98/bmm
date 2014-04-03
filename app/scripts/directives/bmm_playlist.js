@@ -41,6 +41,7 @@ angular.module('bmmLibApp')
               appendTo: '.bmm-main-container',
               revert: 'invalid',
               scope: 'move',
+              distance: 10,
               scroll: true,
               start: function(e,ui) {
                 a = ui.position.top;

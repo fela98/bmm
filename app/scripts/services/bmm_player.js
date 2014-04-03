@@ -137,10 +137,8 @@ angular.module('bmmLibApp')
   };
 
   factory.setVolume = function(volume) {
-    //$rootScope.$apply(function() {
     $(videoTarget).jPlayer('volume', volume);
     factory.getVolume = volume;
-    //});
   };
 
   factory.setSource = function(track) {
