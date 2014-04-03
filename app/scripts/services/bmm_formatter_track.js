@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('bmmLibApp')
-  .factory('bmmFormatterTrack', [ 'bmmUser', function (bmmUser) {
+  .factory('bmmFormatterTrack', [ function () {
     
-    var factory = {}, trans = bmmUser.getTranslation();
+    var factory = {};
 
     factory.resolve = function(data) {
 
@@ -118,8 +118,6 @@ angular.module('bmmLibApp')
               $.each(resolvedData.relations[key], function(index) {
                 if ((resolvedData.relations[key].length-1)===index) {
                   resolvedData.performers+= this.name;
-                } else if ((resolvedData.relations[key].length-2)===index) {
-                  resolvedData.performers+= this.name+' '+trans.track.and+' ';
                 } else {
                   resolvedData.performers+= this.name+', ';
                 }
@@ -131,8 +129,6 @@ angular.module('bmmLibApp')
               $.each(resolvedData.relations[key], function(index) {
                 if ((resolvedData.relations[key].length-1)===index) {
                   resolvedData.bible+= this.book+' '+this.chapter+':'+this.verse;
-                } else if ((resolvedData.relations[key].length-2)===index) {
-                  resolvedData.bible+= this.book+' '+this.chapter+':'+this.verse+' '+trans.track.and+' ';
                 } else {
                   resolvedData.bible+= this.book+' '+this.chapter+':'+this.verse+', ';
                 }
@@ -145,8 +141,6 @@ angular.module('bmmLibApp')
               $.each(resolvedData.relations[key], function(index) {
                 if ((resolvedData.relations[key].length-1)===index) {
                   resolvedData.unsorted+= this.name;
-                } else if ((resolvedData.relations[key].length-2)===index) {
-                  resolvedData.unsorted+= this.name+' '+trans.track.and+' ';
                 } else {
                   resolvedData.unsorted+= this.name+', ';
                 }
@@ -173,7 +167,7 @@ angular.module('bmmLibApp')
         //Combined title
         var bindSign = ' - ';
         if (resolvedData.performers===''&&resolvedData.title==='') {
-          bindSign = trans.track.unknown;
+          bindSign = '-';
         } else if (resolvedData.performers===''||resolvedData.title==='') {
           bindSign = '';
         }
@@ -185,7 +179,7 @@ angular.module('bmmLibApp')
         }
 
         if (resolvedData.title === '') {
-          resolvedData.title = trans.track.unknown;
+          resolvedData.title = '-';
         }
 
       }
