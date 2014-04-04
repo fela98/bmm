@@ -974,7 +974,9 @@ angular.module('bmmLibApp')
   };
 
   /** Get a contributor **/
-  factory.contributorIdGet = function(id) {
+  factory.contributorIdGet = function(id, language) {
+
+    if (typeof language === 'undefined') { language = ''; }
 
     return $.ajax({
       method: 'GET',
@@ -982,6 +984,9 @@ angular.module('bmmLibApp')
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
+      },
+      headers: {
+        'Accept-Language': language
       },
       crossDomain: true
     }).fail( function(xhr) {
@@ -1035,14 +1040,18 @@ angular.module('bmmLibApp')
   };
 
   /** Get a list of tracks from contributor **/
-  factory.contributorTracksGet = function(id, options) {
+  factory.contributorTracksGet = function(id, options, language) {
 
     if (typeof options === 'undefined') { options = {}; }
+    if (typeof language === 'undefined') { language = ''; }
 
     return $.ajax({
       method: 'GET',
       url: serverUrli+'contributor/'+id+'/track/',
       data: $.param(options),
+      headers: {
+        'Accept-Language': language
+      },
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
