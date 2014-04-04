@@ -58,7 +58,7 @@ angular.module('bmmLibApp')
         $.each( data.media, function() {
 
           resolvedData.file = this.files[0].url;
-          resolvedData.duration = Number(this.files[0].length);
+          resolvedData.duration = Number(this.files[0].duration);
           resolvedData.type = this.type;
 
           //Keep search while no video is found and more files available
