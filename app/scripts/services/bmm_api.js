@@ -101,7 +101,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrli+'album',
+      url: serverUrli+'album/',
       headers: {
         'Accept-Language': language
       },
@@ -135,7 +135,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrli+'album/published/'+year,
+      url: serverUrli+'album/published/'+year+'/',
       headers: {
         'Accept-Language': language
       },
@@ -169,7 +169,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrli+'album/tracks_recorded/'+year,
+      url: serverUrli+'album/tracks_recorded/'+year+'/',
       headers: {
         'Accept-Language': language
       },
@@ -492,7 +492,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'POST',
-      url: serverUrli+'track',
+      url: serverUrli+'track/',
       data: JSON.stringify(options),
       contentType: 'application/json',
       dataType: 'json',
@@ -525,7 +525,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrli+'track',
+      url: serverUrli+'track/',
       headers: {
         'Accept-Language': language
       },
@@ -559,7 +559,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrli+'track/rel/'+key,
+      url: serverUrli+'track/rel/'+key+'/',
       headers: {
         'Accept-Language': language
       },
@@ -704,7 +704,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'POST',
-      url: serverUrli+'track/'+id+'/files',
+      url: serverUrli+'track/'+id+'/files/',
       file: file,
       dataType: 'json',
       data: JSON.stringify({
@@ -935,7 +935,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'GET',
-      url: serverUrli+'contributor',
+      url: serverUrli+'contributor/',
       data: $.param(options),
       dataType: 'json',
       xhrFields: {
@@ -957,7 +957,7 @@ angular.module('bmmLibApp')
 
     return $.ajax({
       method: 'POST',
-      url: serverUrli+'contributor',
+      url: serverUrli+'contributor/',
       data: JSON.stringify(options),
       contentType: 'application/json',
       dataType: 'json',

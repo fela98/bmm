@@ -326,6 +326,7 @@ div[data-bmm-treeview] li {
   position: relative;
   padding: 0 0 0 20px;
   line-height: 20px;
+  white-space: nowrap;
 }
 
 div[data-bmm-treeview] li .expanded {
@@ -360,7 +361,6 @@ div[data-bmm-treeview] li .normal {
 
 div[data-bmm-treeview] li i, div[data-bmm-treeview] li span {
   cursor: pointer;
-  white-space: nowrap;
 }
 
 div[data-bmm-treeview] li .selected {
