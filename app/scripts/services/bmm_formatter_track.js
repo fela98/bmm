@@ -9,7 +9,7 @@ angular.module('bmmLibApp')
 
       var resolvedData = {};
 
-      if (typeof data.cover!=='undefined') {
+      if (typeof data.cover!=='undefined'&&data.cover!==null) {
 
         resolvedData.cover = data.cover;
 
@@ -21,6 +21,11 @@ angular.module('bmmLibApp')
             typeof data._meta.parent.cover!=='undefined'&&
             data._meta.parent.cover!==null) {
           resolvedData.cover = data._meta.parent.cover;
+        } else if (typeof data._meta!=='undefined'&&
+            typeof data._meta.root_parent!=='undefined'&&
+            typeof data._meta.root_parent.cover!=='undefined'&&
+            data._meta.root_parent.cover!==null) {
+          resolvedData.cover = data._meta.root_parent.cover;
         } else {
 
           switch(data.subtype) {
@@ -139,10 +144,16 @@ angular.module('bmmLibApp')
 
               if (resolvedData.title==='') {
                 $.each(resolvedData.relations[key], function(index) {
-                  if ((resolvedData.relations[key].length-1)===index) {
-                    resolvedData.title+= this.name+' '+this.id;
+                  var name;
+                  if (this.name==='herrens_veier') {
+                    name = 'HV';
                   } else {
-                    resolvedData.title+= this.name+' '+this.id+', ';
+                    name = 'MB';
+                  }
+                  if ((resolvedData.relations[key].length-1)===index) {
+                    resolvedData.title+= name+' '+this.id;
+                  } else {
+                    resolvedData.title+= name+' '+this.id+', ';
                   }
                 });
               }
