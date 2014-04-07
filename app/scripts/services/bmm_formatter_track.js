@@ -108,6 +108,7 @@ angular.module('bmmLibApp')
         resolvedData.performers = '';
         resolvedData.bible = '';
         resolvedData.unsorted = '';
+        resolvedData.title = '';
 
         //Format relations to strings
         $.each(resolvedData.relations, function(key) {
@@ -131,6 +132,17 @@ angular.module('bmmLibApp')
                   resolvedData.bible+= this.book+' '+this.chapter+':'+this.verse;
                 } else {
                   resolvedData.bible+= this.book+' '+this.chapter+':'+this.verse+', ';
+                }
+              });
+
+              break;
+            case 'songbook':
+
+              $.each(resolvedData.relations[key], function(index) {
+                if ((resolvedData.relations[key].length-1)===index) {
+                  resolvedData.title+= this.name+' '+this.id;
+                } else {
+                  resolvedData.title+= this.name+' '+this.id+', ';
                 }
               });
 
