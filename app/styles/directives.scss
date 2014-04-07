@@ -854,6 +854,23 @@ body {
     }
   }
 
+  .bmm-edit {
+    position: absolute;
+    top: 0;
+    right: 3.2em;
+    opacity: .7;
+    height: 100%;
+    width: 3em;
+    background: url('../images/svg/edit.svg');
+    background-position: center center;
+    background-size: 1.2em 1.2em;
+    background-repeat: no-repeat;
+  }
+
+  .bmm-edit:hover {
+    cursor: pointer;
+  }
+
   .bmm-button-delete {
     position: absolute;
     right: 0;
@@ -1004,6 +1021,9 @@ body {
       .bmm-button-delete {
         background-image: none;
       }
+      .bmm-edit {
+        background-image: none;
+      }
     }
 
     li:hover {
@@ -1015,6 +1035,14 @@ body {
       .bmm-button-delete:hover {
         opacity: 1;
         background-image: url('../images/svg/trash.svg');
+      }
+      .bmm-edit {
+        opacity: 0.6;
+        background-image: url('../images/svg/edit.svg');
+      }
+      .bmm-edit:hover {
+        opacity: 1;
+        background-image: url('../images/svg/edit.svg');
       }
     }
 
@@ -1041,6 +1069,22 @@ body {
   }
 
   .bmm-button-delete:hover {
+    cursor: pointer;
+  }
+
+  .bmm-edit {
+    position: absolute;
+    right: 3.2em;
+    top: 0;
+    height: 100%;
+    width: 3em;
+    background-image: url('../images/svg/edit.svg');
+    background-position: center center;
+    background-size: 1.2em 1.2em;
+    background-repeat: no-repeat;
+  }
+
+  .bmm-edit:hover {
     cursor: pointer;
   }
 
@@ -1226,15 +1270,6 @@ body {
   opacity: .7;
   width: 1em;
   background: url('../images/svg/sort.svg');
-  background-position: center center;
-  background-size: .6em 1em;
-  background-repeat: no-repeat;
-}
-
-.bmm-edit {
-  opacity: .7;
-  width: 1em;
-  background: url('../images/svg/edit.svg');
   background-position: center center;
   background-size: .6em 1em;
   background-repeat: no-repeat;
