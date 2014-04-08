@@ -29,6 +29,7 @@ angular.module('bmmLibApp')
         }
 
         tracks.push({
+          id: this.id,
           title: title,
           subtitle: performers,
           extra: this.language,

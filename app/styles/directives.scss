@@ -588,7 +588,7 @@ body {
   overflow: hidden;
   float: left;
   font-size: 0.7em;
-  margin-left: 1.5em;
+  margin-right: 1.5em;
   margin-bottom: 0.5em;
   ul {
     list-style-type: none;
@@ -603,8 +603,8 @@ body {
 }
 
 .album-latest:first-child .album-latest-image {
-    width: 21em;
-    height: 22em;
+    width: 19.5em;
+    height: 20em;
 }
 
 .album-latest-image {
@@ -1338,7 +1338,7 @@ body {
 }
 
 .bmm-move:hover {
-  cursor: move;
+  cursor: pointer;
   color: #0087FF;
   opacity: 0.7;
 }

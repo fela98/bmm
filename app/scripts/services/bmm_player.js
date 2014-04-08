@@ -150,6 +150,7 @@ angular.module('bmmLibApp')
     factory.getTitle = track.title;
     factory.getSubtitle = track.subtitle;
     factory.getExtra = track.extra;
+    factory.getId = track.id;
     factory.source = source.url;
 
     if (source.video) {
@@ -188,6 +189,7 @@ angular.module('bmmLibApp')
   factory.getTitle = '';
   factory.getSubtitle = '';
   factory.getExtra = '';
+  factory.getId = -1;
   factory.getFullscreen = 'off';
   factory.showVideo = false;
   factory.source = '';
