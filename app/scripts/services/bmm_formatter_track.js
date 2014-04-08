@@ -58,6 +58,22 @@ angular.module('bmmLibApp')
         resolvedData.parentTitle='';
       }
 
+      //Find root title
+      if (typeof data._meta!=='undefined'&&
+          typeof data._meta.root_parent!=='undefined'&&
+          typeof data._meta.root_parent.title!=='undefined') {
+        resolvedData.parentRootTitle = data._meta.root_parent.title;
+      } else {
+        resolvedData.parentRootTitle='';
+      }
+
+      //Set album title
+      if (resolvedData.parentTitle!==''&&resolvedData.parentRootTitle!=='') {
+        resolvedData.albumTitle = resolvedData.parentRootTitle+' - '+resolvedData.parentTitle;
+      } else {
+        resolvedData.albumTitle = resolvedData.parentRootTitle+' '+resolvedData.parentTitle;
+      }
+
       //Find file type, url and length
       if (typeof data.media!=='undefined'&&data.media.length>0) {
         $.each( data.media, function() {
@@ -210,7 +226,7 @@ angular.module('bmmLibApp')
 
       /**
        * Returns: file, duration, type (filetype), performers, title, cover, bible, parentTitle, subtype,
-       *          combinedTitle
+       *          combinedTitle, parentRootTitle, albumTitle
        */
 
       return resolvedData;

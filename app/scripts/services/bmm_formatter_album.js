@@ -17,6 +17,9 @@ angular.module('bmmLibApp')
 
       //Find title
       resolvedData.title = data.title;
+      if (resolvedData.title===''||resolvedData.title===null) {
+        resolvedData.title='-';
+      }
 
       //Find id
       resolvedData.id = data.id;
