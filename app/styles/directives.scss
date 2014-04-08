@@ -377,7 +377,6 @@ div[data-bmm-treeview] li .selected {
   > div {
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
   }
 }
 
@@ -396,8 +395,7 @@ div[data-bmm-treeview] li .selected {
 .bmm-album {
   display: inline-block;
     position: relative;
-    width: 30.5%;
-    margin-right: 2%;
+    width: 29.3%;
   div {
       position: absolute;
       top: 0;

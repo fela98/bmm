@@ -51,7 +51,6 @@ angular.module('bmmLibApp')
         var appendDragDrop = function() {
           if (element.attr('id')!==-1) {
             $(element).draggable({
-              handle: '.drag',
               helper: 'clone',
               appendTo: '.bmm-main-container',
               revert: 'invalid',
