@@ -610,7 +610,7 @@ angular.module('bmmLibApp')
   };
 
   /** Accept track guessed for file, when file is uploaded through FTP **/
-  factory.fileUploadedGuess_tracksGet = function() {
+  factory.fileUploadedGuessTracksGet = function() {
 
     return $.ajax({
       method: 'GET',
@@ -629,7 +629,9 @@ angular.module('bmmLibApp')
   };
 
   /** Accept track guessed for file, when file is uploaded through FTP **/
-  factory.fileUploadedNameLink = function(name) {
+  factory.fileUploadedNameLink = function(name, language) {
+
+    if (typeof language === 'undefined') { language = ''; }
 
     return $.ajax({
       method: 'POST',
@@ -637,6 +639,9 @@ angular.module('bmmLibApp')
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
+      },
+      headers: {
+        'Accept-Language': language
       },
       crossDomain: true
     }).fail( function() {
@@ -655,7 +660,7 @@ angular.module('bmmLibApp')
     return $.ajax({
       method: 'GET',
       url: serverUrli+'user/',
-      data: JSON.stringify(options),
+      data: $.param(options),
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
@@ -697,6 +702,7 @@ angular.module('bmmLibApp')
       method: 'PUT',
       url: serverUrli+'user/'+username,
       data: JSON.stringify(options),
+      contentType: 'application/json',
       dataType: 'json',
       xhrFields: {
         'withCredentials': true
