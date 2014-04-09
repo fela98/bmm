@@ -5,11 +5,12 @@ angular.module('bmmLibApp')
 
     var factory = {},
         video = {},
+        user = {},
         currentNavigator = 'main', //Options ['main', 'playlist']
         displayNavigator = true,
         mediaLanguageIsSet = false,
         translation = {},
-        username;
+        username; //Deprecated - use user instead
 
     video.screen = {};
     video.screen.height = '180';
@@ -68,12 +69,22 @@ angular.module('bmmLibApp')
       return translation;
     };
 
+    //Deprecated - use setUser instead
     factory.setUsername = function(name) {
       username = name;
     };
 
+    //Deprecated - use getUser instead
     factory.getUsername = function() {
       return username;
+    };
+
+    factory.setUser = function(_user) {
+      user = _user;
+    };
+
+    factory.getUser = function() {
+      return user;
     };
 
     return factory;

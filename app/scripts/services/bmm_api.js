@@ -6,13 +6,6 @@ angular.module('bmmLibApp')
   var factory = {},
       serverUrli = 'localhost/';
 
-  /**
-   *  Set custom serverUrli
-   *  
-   *  @method serverUrli
-   *  @requires url
-   *  @final
-   */
   factory.serverUrl = function(url) {
     serverUrli = url;
   };
@@ -23,15 +16,6 @@ angular.module('bmmLibApp')
 
   /** Get the basic information about the API **/
   factory.root = function() {
-    
-    /** RETURNS
-     *    name                      String
-     *    documentation             Url
-     *    system_status             Object
-     *      database                Boolean
-     *      search                  Boolean
-     *    languages                 Array(String)
-     */
 
     return $.ajax({
       method: 'GET',
@@ -50,22 +34,6 @@ angular.module('bmmLibApp')
   factory.albumPost = function(options) {
     
     if (typeof options === 'undefined') { options = {}; }
-
-    /** OPTIONS (Stars = Required)
-     *    parent_id *               Integer         Can also be NULL
-     *    started_at *              datetime        ISO 8601
-     *    ended_at *                datetime        ISO 8601
-     *    original_language *       String          ISO 639-1 || ISO 639-3
-     *    translations [{           Array(objects)
-     *      language: '',           string          ISO 639-1 || ISO 639-3
-     *      title: ''               String
-     *    }]
-     *    cover *                   String
-     *    show_in_listing *         Boolean
-     *    show_in_library *         Boolean
-     *    type                      String          Always 'album'
-     *    description               String
-     */
 
     return $.ajax({
       method: 'POST',
@@ -90,14 +58,6 @@ angular.module('bmmLibApp')
     
     if (typeof options === 'undefined') { options = {}; }
     if (typeof language === 'undefined') { language = ''; }
-
-    /** OPTIONS (Stars = Required)
-     *    size                      Integer         \d+
-     *    from                      Integer         \d+
-     *    content-type              Array(string)   song|speech|audiobook|singsong|video
-     *    media-type                Array(string)   audio|video
-     *    unpublished               string          hide|show|only
-     */
 
     return $.ajax({
       method: 'GET',
@@ -447,49 +407,6 @@ angular.module('bmmLibApp')
 
     if (typeof options === 'undefined') { options = {}; }
 
-    /** OPTIONS (Stars = Required)
-     *    parent_id *               Integer
-     *    listing_parent *          Integer
-     *    order *                   Integer
-     *    type                      String
-     *    description               String
-     *    subtype *                 String          speech|audiobook|singsong|video
-     *    tags *                    Array(String)
-     *    published_at *            datetime        ISO 8601
-     *    original_language *       String          ISO 639-1 || ISO 639-3 zxx
-     *    translations [{ *         Array(objects)
-     *      language: '', *         String          ISO 639-1 || ISO 639-3 zxx
-     *      title: '', *            String
-     *      rel [{ *                Array(objects)
-     *        type: '', *           String          bible|composer|lyrics|interpret|songbook
-     *        id: int, *            Integer         type: songbook
-     *        name: '',             String          type: composer|lyrics|interpret|songbook
-     *        timestamp: int, *     Integer         type: bible|songbook
-     *        book: '',             String          type: bible
-     *        chapter: int, *       Integer         type: bible
-     *        verse: int *          Integer         type: bible
-     *      }],
-     *      media [{ *              Array(Objects)
-     *        type: '',             String          audio|video
-     *        files: [{ *
-     *          mime_type: '', *    String
-     *          length: int, *      Integer
-     *          size: int, *        Integer
-     *          path: '' *          String
-     *        }],
-     *      }],
-     *    }]
-     *    rel[{
-     *      type: '', *             String
-     *      id: int, *              Integer         type: songbook
-     *      name: '',               String          type: composer|lyrics|interpret|songbook
-     *      timestamp: int, *       Integer         type: bible|songbook
-     *      book: '',               String          type: bible
-     *      chapter: int, *         Integer         type: bible
-     *      verse: int *            Integer         type: bible
-     *    }]
-     */
-
     return $.ajax({
       method: 'POST',
       url: serverUrli+'track/',
@@ -612,49 +529,6 @@ angular.module('bmmLibApp')
 
     if (typeof options === 'undefined') { options = {}; }
 
-    /** OPTIONS (Stars = Required)
-     *    parent_id *               Integer
-     *    listing_parent *          Integer
-     *    order *                   Integer
-     *    type                      String
-     *    description               String
-     *    subtype *                 String          speech|audiobook|singsong|video
-     *    tags *                    Array(String)
-     *    published_at *            datetime        ISO 8601
-     *    original_language *       String          ISO 639-1 || ISO 639-3 zxx
-     *    translations [{ *         Array(objects)
-     *      language: '', *         String          ISO 639-1 || ISO 639-3 zxx
-     *      title: '', *            String
-     *      rel [{ *                Array(objects)
-     *        type: '', *           String          bible|composer|lyrics|interpret|songbook
-     *        id: int, *            Integer         type: songbook
-     *        name: '',             String          type: composer|lyrics|interpret|songbook
-     *        timestamp: int, *     Integer         type: bible|songbook
-     *        book: '',             String          type: bible
-     *        chapter: int, *       Integer         type: bible
-     *        verse: int, *         Integer         type: bible
-     *      }],
-     *      media [{ *              Array(Objects)
-     *        type: '',             String          audio|video
-     *        files: [{ *
-     *          mime_type: '', *    String
-     *          length: int, *      Integer
-     *          size: int, *        Integer
-     *          path: '' *          String
-     *        }],
-     *      }],
-     *    }]
-     *    rel[{
-     *      type: '', *             String
-     *      id: int, *              Integer         type: songbook
-     *      name: '',               String          type: composer|lyrics|interpret|songbook
-     *      timestamp: int, *       Integer         type: bible|songbook
-     *      book: '',               String          type: bible
-     *      chapter: int, *         Integer         type: bible
-     *      verse: int, *           Integer         type: bible
-     *    }]
-     */
-
     return $.ajax({
       method: 'PUT',
       url: serverUrli+'track/'+id,
@@ -695,13 +569,6 @@ angular.module('bmmLibApp')
   /** Add a file to a track **/
   factory.trackFiles = function(id, type, file) {
 
-    //if (typeof options === 'undefined') { options = {}; }
-
-    /** OPTIONS (Stars = Required)
-     *    type *                    String          audio|video
-     *    file *                    file
-     */
-
     return $.ajax({
       method: 'POST',
       url: serverUrli+'track/'+id+'/files/',
@@ -717,66 +584,14 @@ angular.module('bmmLibApp')
       crossDomain: true
     }).fail( function(xhr) {
 
-      console.log(xhr);
+      //console.log(xhr);
 
     });
 
-    //$.each($files, function() {
-/*
-        //var file = this;
-        return $scope.upload = $upload.upload({
-          url: serverUrli+'track/'+id+'/files', //upload.php script, node.js route, or servlet url
-          method: 'POST',
-          // headers: {'headerKey': 'headerValue'},
-          // withCredentials: true,
-          file: file,
-          data: $.param({
-            type: type,
-            file: file
-          })
-          //dataType: 'json'
-          // file: $files, //upload multiple files, this feature only works in HTML5 FromData browsers
-          /* set file formData name for 'Content-Desposition' header. Default: 'file' */
-          //fileFormDataName: myFile, //OR for HTML5 multiple upload only a list: ['name1', 'name2', ...]
-          /* customize how data is added to formData. See #40#issuecomment-28612000 for example */
-          //formDataAppender: function(formData, key, val){} //#40#issuecomment-28612000
-        /*}).progress(function(evt) {
-          console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-        }).success(function(data/*, status, headers, config*//*) {
-          // file is uploaded successfully
-          /*console.log(data);
-        });
-        //.error(...)
-        //.then(success, error, progress); 
-      //});
-      // $scope.upload = $upload.upload({...})
-      //alternative way of uploading, sends the the file content directly with the same content-type of the file. Could be used to upload files to CouchDB, imgur, etc... for HTML5 FileReader browsers. 
-*/
   };
 
-  /** Get a file you can play **//* | Doesnt require a function
-  factory.trackFetch = function(absPath) {
-
-    /** OPTIONS (Stars = Required)
-     *    absPath: *               serverUrli/track/{id}/{lang}/track.{format}
-     *    {id}: *                  Integer
-     *    {lang}: *                String          ISO 639-1 || ISO 639-3
-     *    {format}: *              String          mp3|opus|mp4
-     *//*
-
-    return $.ajax({
-      method: 'GET',
-      url: absPath
-    }).fail( function(xhr) {
-
-      console.log(xhr);
-
-    });
-
-  };*/
-
   /** Get the users profile **/
-  factory.user = function() {
+  factory.loginUser = function() {
 
     return $.ajax({
       method: 'GET',
@@ -788,7 +603,127 @@ angular.module('bmmLibApp')
       crossDomain: true
     }).fail( function(xhr) {
 
-      console.log(xhr);
+      //console.log(xhr);
+
+    });
+
+  };
+
+  /** Accept track guessed for file, when file is uploaded through FTP **/
+  factory.fileUploadedGuess_tracksGet = function() {
+
+    return $.ajax({
+      method: 'GET',
+      url: serverUrli+'file/uploaded/guess_tracks',
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
+    }).fail( function() {
+
+      //console.log(xhr);
+
+    });
+
+  };
+
+  /** Accept track guessed for file, when file is uploaded through FTP **/
+  factory.fileUploadedNameLink = function(name) {
+
+    return $.ajax({
+      method: 'POST',
+      url: serverUrli+'file/uploaded/'+name+'?_method=LINK',
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
+    }).fail( function() {
+
+      //console.log(xhr);
+
+    });
+
+  };
+
+  /** Get a list of registered users (admins) **/
+  factory.userGet = function(options) {
+
+    if (typeof options === 'undefined') { options = {}; }
+
+    return $.ajax({
+      method: 'GET',
+      url: serverUrli+'user/',
+      data: JSON.stringify(options),
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
+    }).fail( function(xhr) {
+
+      //console.log(xhr);
+
+    });
+
+  };
+
+  /** Get a user profile **/
+  factory.userUsernameGet = function(username) {
+
+    return $.ajax({
+      method: 'GET',
+      url: serverUrli+'user/'+username,
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
+    }).fail( function(xhr) {
+
+      //console.log(xhr);
+
+    });
+
+  };
+
+  /** Update / create a user profile **/
+  factory.userUsernamePut = function(username, options) {
+
+    if (typeof options === 'undefined') { options = {}; }
+
+    return $.ajax({
+      method: 'PUT',
+      url: serverUrli+'user/'+username,
+      data: JSON.stringify(options),
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
+    }).fail( function(xhr) {
+
+      //console.log(xhr);
+
+    });
+
+  };
+
+  /** Delete a user profile **/
+  factory.userUsernameDelete = function(username) {
+
+    return $.ajax({
+      method: 'DELETE',
+      url: serverUrli+'user/'+username,
+      dataType: 'json',
+      xhrFields: {
+        'withCredentials': true
+      },
+      crossDomain: true
+    }).fail( function(xhr) {
+
+      //console.log(xhr);
 
     });
 
