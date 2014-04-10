@@ -629,9 +629,9 @@ angular.module('bmmLibApp')
   };
 
   /** Accept track guessed for file, when file is uploaded through FTP **/
-  factory.fileUploadedNameLink = function(name, language) {
+  factory.fileUploadedNameLink = function(name, track) {
 
-    if (typeof language === 'undefined') { language = ''; }
+    if (typeof track.language === 'undefined') { return false; }
 
     return $.ajax({
       method: 'POST',
@@ -640,8 +640,9 @@ angular.module('bmmLibApp')
       xhrFields: {
         'withCredentials': true
       },
-      headers: {
-        'Accept-Language': language
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader('Link', '<'+serverUrli+'track/'+track.id+'>');
+        xhr.setRequestHeader('Accept-Language', track.language);
       },
       crossDomain: true
     }).fail( function() {

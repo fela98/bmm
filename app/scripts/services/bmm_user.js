@@ -10,6 +10,7 @@ angular.module('bmmLibApp')
         displayNavigator = true,
         mediaLanguageIsSet = false,
         translation = {},
+        tagTranslation = {},
         username; //Deprecated - use user instead
 
     video.screen = {};
@@ -67,6 +68,14 @@ angular.module('bmmLibApp')
 
     factory.getTranslation = function() {
       return translation;
+    };
+
+    factory.setTagTranslation = function(file) {
+      tagTranslation = file;
+    };
+
+    factory.getTagTranslation = function() {
+      return tagTranslation;
     };
 
     //Deprecated - use setUser instead
