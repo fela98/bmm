@@ -6,7 +6,7 @@ angular.module('bmmLibApp')
       template: '<div class="bmm-player-thumbnail" style="background-image: url({{background}});"></div>'+
 				'<div title="{{title}}" class="bmm-player-title">{{title}}</div>'+
         '<div title="{{subtitle}}" class="bmm-player-subtitle">{{subtitle}}</div>'+
-        '<div title="{{extra}}" class="bmm-player-extra">{{extra}}</div>',
+        '<div title="{{extra}}" class="bmm-player-extra">{{extra | bmmLanguage}}</div>',
       link: function postLink(scope, element, attrs) {
         element.addClass('bmm-player-about');
 
