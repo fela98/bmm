@@ -18,6 +18,7 @@ angular.module('bmmLibApp')
             //PRESET
             element.addClass('bmm-container-main');
 
+            //Scrollbottom for bmm-view
             $(element).bind('scroll', function() {
               if($(this).scrollTop() + $(this).innerHeight()>=$(this)[0].scrollHeight) {
                 $('.bmm-view').trigger('scrollBottom');
@@ -27,6 +28,19 @@ angular.module('bmmLibApp')
             $(element.find('.bmm-view')).bind('scroll', function() {
               if($(this).scrollTop() + $(this).innerHeight()>=$(this)[0].scrollHeight) {
                 $('.bmm-view').trigger('scrollBottom');
+              }
+            });
+
+            //Scrollbottom for bmm-navigator-backend
+            $(element).bind('scroll', function() {
+              if($(this).scrollTop() + $(this).innerHeight()>=$(this)[0].scrollHeight) {
+                $('.bmm-navigator-backend').trigger('scrollBottomContributors');
+              }
+            });
+
+            $(element.find('.bmm-navigator-backend')).bind('scroll', function() {
+              if($(this).scrollTop() + $(this).innerHeight()>=$(this)[0].scrollHeight) {
+                $('.bmm-navigator-backend').trigger('scrollBottomContributors');
               }
             });
 
