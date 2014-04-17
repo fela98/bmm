@@ -185,7 +185,7 @@ angular.module('bmmLibApp')
             var checkForChanges = function() {
 
               //Check if 'player-about' should be minified and find size of slider
-              if (buttons.width()<(aboutWidth*1.8)&&!minified) {
+              if (buttons.width()<(aboutWidth*1.9)&&!minified) {
                 minified=true;
 
                 var minitimer;

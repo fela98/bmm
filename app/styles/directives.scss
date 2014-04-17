@@ -120,7 +120,7 @@ ul {
   }
 }
 
-@media screen and (max-width: 45em) {
+@media screen and (max-width: 47em) {
 
   .bmm-player-clock {
       
@@ -1433,7 +1433,7 @@ body {
     }
 
     .bmm-player-mediaslider {
-      margin: .55em 1em .5em;
+      margin: .75em 1em .5em;
     }
 
     .bmm-player-tools {
@@ -1668,6 +1668,10 @@ body {
   background-image: url(../images/svg/loop_hover.svg);
 }
 
+.bmm-player-repeat.active:hover {
+  background-image: url(../images/svg/loop.svg);
+}
+
 //***********************************//
 //*********bmm-player-shuffle********//
 .bmm-player-shuffle {
@@ -1688,6 +1692,10 @@ body {
 .bmm-player-shuffle.active {
   opacity: 1;
   background-image: url(../images/svg/shuffle_hover.svg);
+}
+
+.bmm-player-shuffle.active:hover {
+  background-image: url(../images/svg/shuffle.svg);
 }
 
 //***********************************//
