@@ -689,11 +689,10 @@ body {
 .bmm-view {
   position: relative;
   margin-left: 18em;
-  padding: 2em 1em 1001em 1em;
+  padding: 0 1em 1001em 1em;
   margin-bottom: -999em;
   background-color: $bmm-background;
-  //height: 100%;
-  //overflow: auto;
+
   h2, .bmm-path {
     color: $bmm-main;
     display: inline-block;
@@ -1421,7 +1420,7 @@ body {
   .bmm-player-about {
     overflow: hidden;
     padding: 1em 0 1em 1em;
-    width: 18em;
+    width: 19em;
     float: left;
   }
 
@@ -1651,7 +1650,7 @@ body {
 .bmm-player-repeat {
   width: 1.12em;
   height: 1.2em;
-  margin: 1em .7em 0 0;
+  margin: 1em .7em 0 .5em;
   opacity: 0.6;
   background-image: url(../images/svg/loop.svg);
   background-size: contain;
@@ -1695,7 +1694,7 @@ body {
 //*****bmm-player-clock****//
 .bmm-player-clock {
   width: 3.6em;
-  text-align: center;
+  //text-align: center;
 }
 
 //***********************************//
@@ -1732,7 +1731,8 @@ body {
   opacity: 0.6;
   width: 1.3em;
   height: 1.4em;
-  margin: .3em 0 0 1em;
+  margin: .3em .5em 0 0;
+  //margin: .3em 0 0 1em;
   background-image: url(../images/svg/mute.svg);
   background-size: contain;
   background-repeat: no-repeat;

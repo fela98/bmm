@@ -3,9 +3,8 @@
 angular.module('bmmLibApp')
   .directive('bmmVolumeController', ['$timeout', function ($timeout) {
     return {
-      template: '<div bmm-volume-mute></div>'+
-                '<div bmm-volume-slider></div>'+
-                '<div bmm-volume-max></div>',
+      template: '<div bmm-volume-slider></div>'+
+                '<div bmm-volume-mute></div>',
       compile : function() {
         return {
           pre : function(scope, element) {
