@@ -164,6 +164,7 @@ angular.module('bmmLibApp')
         mp3: source.url,
         poster: factory.getCover
       });
+      factory.showVideo = false;
     }
 
     if (!paused) {
